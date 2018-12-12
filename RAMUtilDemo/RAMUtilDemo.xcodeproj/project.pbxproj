@@ -13,9 +13,12 @@
 		3588B09421C0B7FD0085B8EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3588B09321C0B7FD0085B8EE /* Assets.xcassets */; };
 		3588B09721C0B7FD0085B8EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3588B09521C0B7FD0085B8EE /* LaunchScreen.storyboard */; };
 		3588B09A21C0B7FD0085B8EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3588B09921C0B7FD0085B8EE /* main.m */; };
+		3CAAC7576767896BAFE4789A /* libPods-RAMUtilDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A395D7E6A7DE069A98AFD46 /* libPods-RAMUtilDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A395D7E6A7DE069A98AFD46 /* libPods-RAMUtilDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RAMUtilDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C7926A168C8164D77724228 /* Pods-RAMUtilDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAMUtilDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo.release.xcconfig"; sourceTree = "<group>"; };
 		3588B08721C0B7FC0085B8EE /* RAMUtilDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RAMUtilDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3588B08A21C0B7FC0085B8EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3588B08B21C0B7FC0085B8EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		3588B09621C0B7FD0085B8EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3588B09821C0B7FD0085B8EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3588B09921C0B7FD0085B8EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B3AD32EE145FD47046E4259D /* Pods-RAMUtilDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAMUtilDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CAAC7576767896BAFE4789A /* libPods-RAMUtilDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				3588B08921C0B7FC0085B8EE /* RAMUtilDemo */,
 				3588B08821C0B7FC0085B8EE /* Products */,
+				C66CC8576F9592616182EB49 /* Pods */,
+				B5E9ECF6C2CC63F934798635 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +78,23 @@
 			path = RAMUtilDemo;
 			sourceTree = "<group>";
 		};
+		B5E9ECF6C2CC63F934798635 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A395D7E6A7DE069A98AFD46 /* libPods-RAMUtilDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C66CC8576F9592616182EB49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B3AD32EE145FD47046E4259D /* Pods-RAMUtilDemo.debug.xcconfig */,
+				2C7926A168C8164D77724228 /* Pods-RAMUtilDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -78,9 +102,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3588B09D21C0B7FD0085B8EE /* Build configuration list for PBXNativeTarget "RAMUtilDemo" */;
 			buildPhases = (
+				BD2049713418389378FE079D /* [CP] Check Pods Manifest.lock */,
 				3588B08321C0B7FC0085B8EE /* Sources */,
 				3588B08421C0B7FC0085B8EE /* Frameworks */,
 				3588B08521C0B7FC0085B8EE /* Resources */,
+				8DC1AF5B481206211A8EA447 /* [CP] Embed Pods Frameworks */,
+				E1AE68C75429F8C3A6F258DB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,6 +162,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8DC1AF5B481206211A8EA447 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD2049713418389378FE079D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E1AE68C75429F8C3A6F258DB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3588B08321C0B7FC0085B8EE /* Sources */ = {
@@ -281,6 +356,7 @@
 		};
 		3588B09E21C0B7FD0085B8EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3AD32EE145FD47046E4259D /* Pods-RAMUtilDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +374,7 @@
 		};
 		3588B09F21C0B7FD0085B8EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C7926A168C8164D77724228 /* Pods-RAMUtilDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,17 @@
+PODS:
+  - RAMUtil (1.0.0)
+
+DEPENDENCIES:
+  - RAMUtil (from `/Users/qiujunyun/Documents/WorkSpace/github/RAMUtil`)
+
+EXTERNAL SOURCES:
+  RAMUtil:
+    :branch: dev
+    :path: "/Users/qiujunyun/Documents/WorkSpace/github/RAMUtil"
+
+SPEC CHECKSUMS:
+  RAMUtil: f452019831008fec00897d3331010ac42cb7c2f3
+
+PODFILE CHECKSUM: d2964067cb0278e8fc916a8034ea64f5aca07a4e
+
+COCOAPODS: 1.1.1
