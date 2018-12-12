@@ -2,7 +2,7 @@
 //  github: https://github.com/nicklockwood/MustOverride
 //  debug 下才做执行检查
 
-#import "RAMMustOverrideCheck.h"
+#import "RAMMustOverrider.h"
 
 #if DEBUG
 
@@ -114,11 +114,11 @@ void RAMCheckOverrides(void) {
     }
 }
 
-@interface RAMMustOverrideCheck : NSObject
+@interface RAMMustOverrider : NSObject
 
 @end
 
-@implementation RAMMustOverrideCheck
+@implementation RAMMustOverrider
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
