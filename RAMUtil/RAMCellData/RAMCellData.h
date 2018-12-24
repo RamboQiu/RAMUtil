@@ -17,6 +17,6 @@
 /// 当前cell锁在的section
 @property (nonatomic, assign) CGFloat sectionHeaderHeight;
 @property (nonatomic, assign) CGFloat sectionFooterHeight;
-/// 勾选的时候需要使用到的model，如果没有一般是用
+/// 勾选的时候需要使用到的didSelModel，如果没有一般是用model
 @property (nonatomic, strong) id didSelModel;
 @end

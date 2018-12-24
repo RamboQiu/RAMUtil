@@ -24,4 +24,12 @@
     }
     return _cellIdentifier;
 }
+
+- (id)didSelModel {
+    if (_didSelModel) {
+        return _didSelModel;
+    } else {
+        return _model;
+    }
+}
 @end

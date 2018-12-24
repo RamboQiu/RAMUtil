@@ -9,6 +9,9 @@
 #import "ViewController.h"
 #import <RAMUtil/RAMCellData.h>
 #import <RAMUtil/RAMSafeCollection.h>
+#import <RAMUtil/RAMMustOverrider.h>
+#import "RAMBaseTableViewCell.h"
+#import "RAMExportViewController.h"
 
 @interface ViewController () <
 UITableViewDelegate,
@@ -22,12 +25,16 @@ UITableViewDataSource>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.title = @"RAMUtil";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.tableView];
+    
+    [self refreshTableView];
 }
 
 - (void)refreshTableView {
@@ -35,20 +42,46 @@ UITableViewDataSource>
     
     NSMutableArray<RAMCellData *> *section1 = [NSMutableArray array];
     
-    RAMCellData *cellData = RAMCellData.new;
+    RAMCellModel *exportModel = [[RAMCellModel alloc] initWithTitle:@"__attribute__ 应用实例"
+                                                               desc:@"对section部分的配置表信息存储理解实现的一些简单的数据存储提取"];
+    RAMCellData *exportData = RAMCellData.new;
+    exportData.cellClass = RAMBaseTableViewCell.class;
+    exportData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:exportModel];
+    exportData.cellCustomSEL = @selector(cusExportCell:withData:);
+    exportData.cellSelectSEL = @selector(selExportCellData:);
+    exportData.model = exportModel;
+    [section1 addObject:exportData];
+    
+    [self.staticData addObject:section1];
     
     [self.tableView reloadData];
 }
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    self.tableView.bounds = self.view.bounds;
+    self.tableView.frame = self.view.bounds;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark -
+- (void)cusExportCell:(RAMBaseTableViewCell *)cell withData:(RAMCellData *)data{
+    cell.model = data.model;
+}
+
+
+- (void)selExportCellData:(RAMCellData *)data {
+    RAMExportViewController *vc = [[RAMExportViewController alloc] init];
+    RAMCellModel *cellModel = data.didSelModel;
+    vc.titleText = cellModel.title;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+#pragma mark -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.staticData.count;
@@ -64,7 +97,7 @@ UITableViewDataSource>
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     if (data.cellSelectSEL)
-        [self performSelector:data.cellSelectSEL withObject:indexPath withObject:data];
+        [self performSelector:data.cellSelectSEL withObject:data];
 #pragma clang diagnostic pop
 }
 
