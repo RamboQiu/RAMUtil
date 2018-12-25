@@ -11,10 +11,10 @@
 
 @implementation RAMBlockB
 RAM_BLOCKS_EXPORT(A, ^(void){
-    printf("testB");
+    printf("\nRAMBlockB:test block A");
 })
 
 RAM_BLOCKS_EXPORT(C, ^(void){
-    printf("testC");
+    printf("\nRAMBlockB:test block C");
 })
 @end

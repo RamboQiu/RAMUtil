@@ -11,10 +11,10 @@
 
 @implementation RAMStageB
 RAM_FUNCTION_EXPORT(A)(void) {
-    printf("test2");
+    printf("\nRAMStageB:test function A");
 }
 
 RAM_FUNCTION_EXPORT(B)(void) {
-    printf("test1");
+    printf("\nRAMStageB:test function B");
 }
 @end

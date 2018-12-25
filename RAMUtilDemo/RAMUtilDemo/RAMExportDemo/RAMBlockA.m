@@ -11,6 +11,6 @@
 
 @implementation RAMBlockA
 RAM_BLOCKS_EXPORT(A, ^(void) {
-    printf("testA");
+    printf("\nRAMBlockA:test block A");
 })
 @end

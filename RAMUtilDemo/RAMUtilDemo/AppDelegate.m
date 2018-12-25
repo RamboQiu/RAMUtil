@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <RAMUtil/RAMExport.h>
 
 @interface AppDelegate ()
 
@@ -18,11 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    [RAMExport.sharedInstance executeArrayForKey:@"A"];
-    
-//    [RAMExport.sharedInstance executeBlockForKey:@"A"];
-    
-//    NSString *str = [RAMExport.sharedInstance valueForKey:@"S"];】
     return YES;
 }
 

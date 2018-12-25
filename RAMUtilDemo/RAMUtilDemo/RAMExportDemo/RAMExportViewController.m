@@ -7,6 +7,7 @@
 //
 
 #import "RAMExportViewController.h"
+#import <RAMUtil/RAMExport.h>
 
 @interface RAMExportViewController ()
 @property (nonatomic, strong) UITextView *descView;
@@ -21,11 +22,21 @@
     
     _descView = [[UITextView alloc] init];
     [self.view addSubview:_descView];
+    
+    [self test];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     _descView.frame = self.view.bounds;
+}
+
+- (void)test {
+    [RAMExport.sharedInstance executeArrayForKey:@"A"];
+
+    [RAMExport.sharedInstance executeBlockForKey:@"A"];
+
+    NSString *str = [RAMExport.sharedInstance valueForKey:@"S"];
 }
 
 
