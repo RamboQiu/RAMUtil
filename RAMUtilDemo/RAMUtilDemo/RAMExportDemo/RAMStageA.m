@@ -30,4 +30,25 @@ RAM_FUNCTION_EXPORT(A)() {
     printf("\nRAMStageA:test function A");
 }
 
+
+
+void Function_Attributes_section_0 (void)
+__attribute__ ((section ("__TEST,new_section")));
+void Function_Attributes_section_0 (void) {
+    static int aStatic =0;
+    aStatic++;
+}
+
+/* in RO section */
+const int descriptor[3] __attribute__ ((section ("descr,D"))) = { 1,2,3 };
+
+/* in RW section */
+long long rw_initialized[10] __attribute__ ((section ("INITIALIZED_RW,C"))) = {5};
+
+/* in RW section */
+long long rw[10] __attribute__ ((section ("RW,B")));
+
+/* in ZI section */
+long long altstack[10] __attribute__ ((section ("STACK,A"), zero_init));
+
 @end

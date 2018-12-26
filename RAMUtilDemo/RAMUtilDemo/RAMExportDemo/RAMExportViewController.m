@@ -37,6 +37,13 @@
     [RAMExport.sharedInstance executeBlockForKey:@"A"];
 
     NSString *str = [RAMExport.sharedInstance valueForKey:@"S"];
+    NSLog(@"%@", str);
+    
+    if ([RAMExport.sharedInstance hasPlacedAtSection:@"__ram.data"]) {
+        NSLog(@"YES");
+    } else {
+        NSLog(@"NO");
+    }
 }
 
 

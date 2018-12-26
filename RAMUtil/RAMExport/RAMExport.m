@@ -10,6 +10,8 @@
 // https://blog.csdn.net/zll_liang/article/details/8966106
 // https://blog.csdn.net/args_/article/details/53018656
 // https://www.jianshu.com/p/f0a56c5bc4fe
+// https://www.jianshu.com/p/bdbb0f5f0df5
+// http://www.voidcn.com/article/p-zlzztazc-bdh.html
 // debug 下才做执行检查
 
 #import "RAMExport.h"
@@ -55,7 +57,7 @@ NSArray<Class> *ram_classes_export(void) {
     Dl_info info;
     dladdr((const void *)&ram_classes_export, &info);
     const RAMExportValue mach_header = (RAMExportValue)info.dli_fbase;
-    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, "__DATA", "__funcName");
+    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, "__RAM", "__funcName");
     if (section == NULL) return nil;
     
     int addrOffset = sizeof(const char **);
@@ -93,21 +95,33 @@ NSArray<Class> *ram_classes_export(void) {
 
 #pragma mark -
 
-BOOL RAMHasKey(char *key) {
-    Dl_info info;
-    dladdr((const void *)&RAMHasKey, &info);
+BOOL RAMHasSection(char *segname, char *sectname) {
+//    char *result = malloc(strlen(segname)+strlen(sectname)+1+1);//+1 for the zero-terminator
+//    //in real code you would check for errors in malloc here
+//    if (result == NULL) exit (1);
+//
+//    strcpy(result, segname);
+//    strcat(result, ",");
+//    strcat(result, sectname);
+//
+//    struct section tmp;
+//    strcpy(tmp.segname, segname);
+//    strcpy(tmp.sectname, sectname);
+//    tmp.flags = S_ZEROFILL;
+//    __attribute__ ((section("__DATA,Z"))) static long long altstack[10];
+//    int b = sizeof(altstack);
+//    return b;
+// 官方推荐的方法试了下，并没有用
+// http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0474c/CACJAJGD.html
     
+    
+    Dl_info info;
+    dladdr((const void *)&RAMHasSection, &info);
+
     const RAMExportValue mach_header = (RAMExportValue)info.dli_fbase;
-    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, "__DATA", key);
+    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, segname, sectname);
     if (section == NULL) return NO;
     else return YES;
-    
-//    unsigned long size;
-//    struct RAM_Function *ptr = (struct RAM_Function *)getsectiondata(&_mh_execute_header, "__DATA", "__kylin__", &size);
-//    void (*funP)(void);
-//    funP = ptr->functionBlock;
-//    funP();
-//    ptr->functionBlock();
 }
 
 NSObject * RAMGetString(NSString *key) {
@@ -115,7 +129,7 @@ NSObject * RAMGetString(NSString *key) {
     dladdr((const void *)&RAMGetString, &info);
     
     const RAMExportValue mach_header = (RAMExportValue)info.dli_fbase;
-    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, "__DATA", "__ram.data");
+    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, "__RAM", "__ram.data");
     if (section == NULL) return nil;
     
     int addrOffset = sizeof(struct RAM_String);
@@ -137,7 +151,7 @@ void RAMExecuteFunction(char *key) {
     dladdr((const void *)&RAMExecuteFunction, &info);
     
     const RAMExportValue mach_header = (RAMExportValue)info.dli_fbase;
-    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, "__DATA", key);
+    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, "__RAM", key);
     if (section == NULL) return;
 
     int addrOffset = sizeof(struct RAM_Function);
@@ -147,8 +161,15 @@ void RAMExecuteFunction(char *key) {
         
         struct RAM_Function entry = *(struct RAM_Function *)(mach_header + addr);
         entry.function();
-        
     }
+    
+    // 也可以使用getsectiondata获取到指定的section
+    //    unsigned long size;
+    //    struct RAM_Function *ptr = (struct RAM_Function *)getsectiondata(&_mh_execute_header, "__DATA", "__test", &size);
+    //    void (*funP)(void);
+    //    funP = ptr->functionBlock;
+    //    funP();
+    //    ptr->functionBlock();
 }
 
 void RAMExecuteBlock(char *key) {
@@ -156,7 +177,7 @@ void RAMExecuteBlock(char *key) {
     dladdr((const void *)&RAMExecuteBlock, &info);
     
     const RAMExportValue mach_header = (RAMExportValue)info.dli_fbase;
-    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, "__DATA", key);
+    const RAMExportSection *section = RAMGetSectByNameFromHeader((void *)mach_header, "__RAM", key);
     if (section == NULL) return;
     
     int addrOffset = sizeof(struct RAM_Block);
@@ -205,6 +226,10 @@ void RAMExecuteBlock(char *key) {
         return (NSString *)value;
     }
     return @"";
+}
+
+- (BOOL)hasPlacedAtSection:(NSString *)section {
+    return RAMHasSection("__RAM", (char *)[section UTF8String]);
 }
 @end
 
