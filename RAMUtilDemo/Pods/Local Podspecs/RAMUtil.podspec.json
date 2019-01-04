@@ -18,5 +18,36 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "RAMUtil/**/*"
+  "subspecs": [
+    {
+      "name": "RAMExport",
+      "source_files": "RAMUtil/RAMExport/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMExport/*.h"
+    },
+    {
+      "name": "RAMLog",
+      "source_files": "RAMUtil/RAMLog/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMLog/*.h"
+    },
+    {
+      "name": "RAMSafeCollection",
+      "source_files": "RAMUtil/RAMSafeCollection/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMSafeCollection/*.h"
+    },
+    {
+      "name": "RAMMustOverrider",
+      "source_files": "RAMUtil/RAMMustOverrider/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMMustOverrider/*.h"
+    },
+    {
+      "name": "RAMFrame",
+      "source_files": "RAMUtil/RAMFrame/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMFrame/*.h"
+    },
+    {
+      "name": "RAMCellData",
+      "source_files": "RAMUtil/RAMCellData/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMCellData/*.h"
+    }
+  ]
 }

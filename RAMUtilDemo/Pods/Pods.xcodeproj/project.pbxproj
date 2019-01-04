@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21737650ACE0FC58914F2F4005B91626 /* RAMSafeCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = E4DC591E9787CB1B839C6CF4F50DC374 /* RAMSafeCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3ABA3A48AD660ACEFC2D757848BB6BF2 /* RAMMustOverrider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E136D3D8CC36BB6DD3BB357829C499A /* RAMMustOverrider.m */; };
-		43D150B2F68DEFCBA4E6EAE49E80804B /* RAMExport.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FCE339213504A1111B6CB3499F65C04 /* RAMExport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6C087FB4DF8FF5A817B2D3E9ABEAEB30 /* RAMSafeCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = CF86270E8EFBE5AC76A980EB41A0D994 /* RAMSafeCollection.m */; };
-		76EF7FB05A7E4E8E70B4807C967512FF /* RAMCellData.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FFF404085AC05EFE05BA439013BE2E2 /* RAMCellData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A10D93E73B29936FD0D179894D83158F /* RAMUtil-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3147F8A611A601F67D4499AA241D11E5 /* RAMUtil-dummy.m */; };
-		AB525B891CD7610E16279F0A4052C611 /* RAMMustOverrider.h in Headers */ = {isa = PBXBuildFile; fileRef = B572F4B0F8DC138BB72ADE6FE1781428 /* RAMMustOverrider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BA42180B5169EEAD6945241BEA51D2FA /* UIView+Frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 87FE252768D4508FF84ABC4495304386 /* UIView+Frame.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE46E53B481C923E7CF8AAA43A6BD525 /* RAMExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EC9246342B919E5319ACC0C3CB9270 /* RAMExport.m */; };
+		054EE728E563531FEA23DD630FDFFBA6 /* RAMSafeCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = D48AA7AEFF215834F62D423B2747223B /* RAMSafeCollection.m */; };
+		1830085B714A021C0E19A9E50055B31A /* RAMExport.m in Sources */ = {isa = PBXBuildFile; fileRef = B18954D43A92B5E16B2A575014C6BE76 /* RAMExport.m */; };
+		1C064B1B8A1ED38710837AB387952E4B /* RAMAdditionalLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = CFC78BD93E683AD4945374A3C7CC3370 /* RAMAdditionalLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2A0EE5F695CC07AC7DF59430F7768B5C /* RAMMustOverrider.h in Headers */ = {isa = PBXBuildFile; fileRef = 04E06392C4344207E6D95C9B42B55CE2 /* RAMMustOverrider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324576055D920180DEB84D23C417D835 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 664819E61D724DADC4749369D47A0F18 /* UIView+Frame.m */; };
+		32ED2DD1D2619F2559CAAAC9C2EEBE13 /* RAMCellData.h in Headers */ = {isa = PBXBuildFile; fileRef = 26E2B02BAEF201AC090E769474A73424 /* RAMCellData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5AD66EEDA1C3232EA560F245EB52D956 /* RAMExport.h in Headers */ = {isa = PBXBuildFile; fileRef = DD7B2493DBC6DE8B2323D4666D7D38CD /* RAMExport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		904E861D5DE1995B6E67D972D47E8516 /* RAMUtil-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D113B20D6FD848E21659C464A0479217 /* RAMUtil-dummy.m */; };
+		A1B60EA7BED04F27DF839DED3376236C /* RAMAdditionalLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD433AFC0DF8C5BC4431A5DEDF41816 /* RAMAdditionalLogger.m */; };
+		B9D6518BD893092E9C01C07ADCA12722 /* RAMSafeCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 07547039766638E1AC97896BCEB91F26 /* RAMSafeCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BEAF64E685A9B3651F779EF831FED617 /* UIView+Frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 31A85EFF8BBE07D3F2D7E882B1E53161 /* UIView+Frame.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB3B87E819356F8402B1292ABBA5907D /* RAMMustOverrider.m in Sources */ = {isa = PBXBuildFile; fileRef = F48EBD19C70881116F53829CA6EFA1AD /* RAMMustOverrider.m */; };
 		D6FDBAD64335348F16B208A8681C9D8D /* Pods-RAMUtilDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63740C7C6AB5D8383368AE01C681A007 /* Pods-RAMUtilDemo-dummy.m */; };
-		ED89854BD3D1347B40587CDB6283B3C6 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B46134F2A71871D77FD2D168A737874 /* UIView+Frame.m */; };
-		FC2939433024E59B81EE83157AD30B44 /* RAMCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05041E5E69851155A93398C1E269D558 /* RAMCellData.m */; };
+		E48A4AB5577E85DC80220B58740C0530 /* RAMCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 66738A96A353F1F2D925FE95E0755692 /* RAMCellData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,29 +34,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05041E5E69851155A93398C1E269D558 /* RAMCellData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RAMCellData.m; sourceTree = "<group>"; };
-		1B46134F2A71871D77FD2D168A737874 /* UIView+Frame.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		04E06392C4344207E6D95C9B42B55CE2 /* RAMMustOverrider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RAMMustOverrider.h; sourceTree = "<group>"; };
+		07547039766638E1AC97896BCEB91F26 /* RAMSafeCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RAMSafeCollection.h; sourceTree = "<group>"; };
 		246B5615556862B55BDD656518C507E7 /* Pods-RAMUtilDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RAMUtilDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		26E2B02BAEF201AC090E769474A73424 /* RAMCellData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RAMCellData.h; sourceTree = "<group>"; };
 		27BF99E26908ADEB248EBB97F245C711 /* Pods-RAMUtilDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RAMUtilDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		2AD3A461EBD91C7179ED1B509E4C13E9 /* libRAMUtil.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRAMUtil.a; path = libRAMUtil.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3147F8A611A601F67D4499AA241D11E5 /* RAMUtil-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RAMUtil-dummy.m"; sourceTree = "<group>"; };
+		31A85EFF8BBE07D3F2D7E882B1E53161 /* UIView+Frame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		4C9355A4F0461D7E71AA96C2F280AA4B /* Pods-RAMUtilDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RAMUtilDemo-frameworks.sh"; sourceTree = "<group>"; };
-		5C9F4AC274A128E8F81856171CD1F177 /* RAMUtil.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RAMUtil.xcconfig; sourceTree = "<group>"; };
+		5DD433AFC0DF8C5BC4431A5DEDF41816 /* RAMAdditionalLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RAMAdditionalLogger.m; sourceTree = "<group>"; };
 		63740C7C6AB5D8383368AE01C681A007 /* Pods-RAMUtilDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RAMUtilDemo-dummy.m"; sourceTree = "<group>"; };
-		7FCE339213504A1111B6CB3499F65C04 /* RAMExport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RAMExport.h; sourceTree = "<group>"; };
+		664819E61D724DADC4749369D47A0F18 /* UIView+Frame.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		66738A96A353F1F2D925FE95E0755692 /* RAMCellData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RAMCellData.m; sourceTree = "<group>"; };
 		8276CAB6FE0B9DF4BFB1D97149BD1E10 /* libPods-RAMUtilDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-RAMUtilDemo.a"; path = "libPods-RAMUtilDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		87FE252768D4508FF84ABC4495304386 /* UIView+Frame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		88EC9246342B919E5319ACC0C3CB9270 /* RAMExport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RAMExport.m; sourceTree = "<group>"; };
-		8E136D3D8CC36BB6DD3BB357829C499A /* RAMMustOverrider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RAMMustOverrider.m; sourceTree = "<group>"; };
 		8E521CC7E06C92944B1899A4273EF9D9 /* Pods-RAMUtilDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RAMUtilDemo.release.xcconfig"; sourceTree = "<group>"; };
 		8E6F5E1AB7CDD93DAECD8566A4241D8B /* Pods-RAMUtilDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RAMUtilDemo-acknowledgements.plist"; sourceTree = "<group>"; };
-		8FFF404085AC05EFE05BA439013BE2E2 /* RAMCellData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RAMCellData.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B572F4B0F8DC138BB72ADE6FE1781428 /* RAMMustOverrider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RAMMustOverrider.h; sourceTree = "<group>"; };
+		AD0C209D16EA8A9FEA083FC9B64E3CCF /* RAMUtil.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RAMUtil.xcconfig; sourceTree = "<group>"; };
+		B18954D43A92B5E16B2A575014C6BE76 /* RAMExport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RAMExport.m; sourceTree = "<group>"; };
 		BA774379A9BB4314AA0AD6D0A5BE1AAC /* Pods-RAMUtilDemo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RAMUtilDemo-resources.sh"; sourceTree = "<group>"; };
-		CF86270E8EFBE5AC76A980EB41A0D994 /* RAMSafeCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RAMSafeCollection.m; sourceTree = "<group>"; };
-		E4DC591E9787CB1B839C6CF4F50DC374 /* RAMSafeCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RAMSafeCollection.h; sourceTree = "<group>"; };
-		FE4C89B9D34BB825A7F87EA6F4C246A2 /* RAMUtil-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RAMUtil-prefix.pch"; sourceTree = "<group>"; };
+		CFC78BD93E683AD4945374A3C7CC3370 /* RAMAdditionalLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RAMAdditionalLogger.h; sourceTree = "<group>"; };
+		D113B20D6FD848E21659C464A0479217 /* RAMUtil-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RAMUtil-dummy.m"; sourceTree = "<group>"; };
+		D48AA7AEFF215834F62D423B2747223B /* RAMSafeCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RAMSafeCollection.m; sourceTree = "<group>"; };
+		DD7B2493DBC6DE8B2323D4666D7D38CD /* RAMExport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RAMExport.h; sourceTree = "<group>"; };
+		EF27B791F9E3162899566670F2C07533 /* RAMUtil-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RAMUtil-prefix.pch"; sourceTree = "<group>"; };
+		F48EBD19C70881116F53829CA6EFA1AD /* RAMMustOverrider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RAMMustOverrider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,11 +86,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1F5FC8D73EB546B9D73128053C30E6C5 /* RAMExport */ = {
+		11BA201E63DD8EF84CBF819295B68405 /* RAMSafeCollection */ = {
 			isa = PBXGroup;
 			children = (
-				7FCE339213504A1111B6CB3499F65C04 /* RAMExport.h */,
-				88EC9246342B919E5319ACC0C3CB9270 /* RAMExport.m */,
+				D9E19A3C2048735D4E3D2AF282156F5F /* RAMUtil */,
+			);
+			name = RAMSafeCollection;
+			sourceTree = "<group>";
+		};
+		1BC85F1ED5EE8D37E6E50E2888C1647F /* RAMExport */ = {
+			isa = PBXGroup;
+			children = (
+				DD7B2493DBC6DE8B2323D4666D7D38CD /* RAMExport.h */,
+				B18954D43A92B5E16B2A575014C6BE76 /* RAMExport.m */,
 			);
 			name = RAMExport;
 			path = RAMExport;
@@ -107,6 +119,15 @@
 			path = "Target Support Files/Pods-RAMUtilDemo";
 			sourceTree = "<group>";
 		};
+		286E36BBC80E48898E9601A060C187F4 /* RAMUtil */ = {
+			isa = PBXGroup;
+			children = (
+				9B857AC213695E2747A8488E1CC9F766 /* RAMCellData */,
+			);
+			name = RAMUtil;
+			path = RAMUtil;
+			sourceTree = "<group>";
+		};
 		292A9FB7FAAC987E73EC90A328FAB1C6 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,21 +136,43 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		360081067E10878EA5C1068E9398802F /* Support Files */ = {
+		2B4CC686AEE8A0372172A3F536CB882C /* RAMLog */ = {
 			isa = PBXGroup;
 			children = (
-				5C9F4AC274A128E8F81856171CD1F177 /* RAMUtil.xcconfig */,
-				3147F8A611A601F67D4499AA241D11E5 /* RAMUtil-dummy.m */,
-				FE4C89B9D34BB825A7F87EA6F4C246A2 /* RAMUtil-prefix.pch */,
+				E6032688FFE93088E55917D18B1D2732 /* RAMUtil */,
 			);
-			name = "Support Files";
-			path = "RAMUtilDemo/Pods/Target Support Files/RAMUtil";
+			name = RAMLog;
 			sourceTree = "<group>";
 		};
-		4E09492AC782353FD72C709FF92CAA19 /* Development Pods */ = {
+		54C68221F7CB0D018821708F64D706A7 /* RAMExport */ = {
 			isa = PBXGroup;
 			children = (
-				9927558354D7118B48BB6FD9B3F1D6E5 /* RAMUtil */,
+				AC9E9272EB295152B0759976803B4B4C /* RAMUtil */,
+			);
+			name = RAMExport;
+			sourceTree = "<group>";
+		};
+		6793A2C33CFDB64E0318CDD233B0C764 /* RAMUtil */ = {
+			isa = PBXGroup;
+			children = (
+				C649710F57730D583B0C61AE58D89AB2 /* RAMFrame */,
+			);
+			name = RAMUtil;
+			path = RAMUtil;
+			sourceTree = "<group>";
+		};
+		6C49E88D579D77DD075B4DF22616149F /* RAMMustOverrider */ = {
+			isa = PBXGroup;
+			children = (
+				A208DF05100D3E26F679C4888313B9C2 /* RAMUtil */,
+			);
+			name = RAMMustOverrider;
+			sourceTree = "<group>";
+		};
+		7D1E96C4DF0A0735E64CD6BE40DD1AC6 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7ECFB66625414EC41FD8F7BE55AEBAD3 /* RAMUtil */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -138,64 +181,113 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				4E09492AC782353FD72C709FF92CAA19 /* Development Pods */,
+				7D1E96C4DF0A0735E64CD6BE40DD1AC6 /* Development Pods */,
 				0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */,
 				D1D9F50C9B441EE1E8CCB9DE4AA909CE /* Products */,
 				292A9FB7FAAC987E73EC90A328FAB1C6 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		7E868D938C363EB35D560D984A06F8FB /* RAMSafeCollection */ = {
+		7ECFB66625414EC41FD8F7BE55AEBAD3 /* RAMUtil */ = {
 			isa = PBXGroup;
 			children = (
-				E4DC591E9787CB1B839C6CF4F50DC374 /* RAMSafeCollection.h */,
-				CF86270E8EFBE5AC76A980EB41A0D994 /* RAMSafeCollection.m */,
-			);
-			name = RAMSafeCollection;
-			path = RAMSafeCollection;
-			sourceTree = "<group>";
-		};
-		803FB8382757A6FC54444BCAE7BCD91C /* RAMFrame */ = {
-			isa = PBXGroup;
-			children = (
-				87FE252768D4508FF84ABC4495304386 /* UIView+Frame.h */,
-				1B46134F2A71871D77FD2D168A737874 /* UIView+Frame.m */,
-			);
-			name = RAMFrame;
-			path = RAMFrame;
-			sourceTree = "<group>";
-		};
-		8FE227AF56F2FD9E235BAEDF5EDB7894 /* RAMMustOverrider */ = {
-			isa = PBXGroup;
-			children = (
-				B572F4B0F8DC138BB72ADE6FE1781428 /* RAMMustOverrider.h */,
-				8E136D3D8CC36BB6DD3BB357829C499A /* RAMMustOverrider.m */,
-			);
-			name = RAMMustOverrider;
-			path = RAMMustOverrider;
-			sourceTree = "<group>";
-		};
-		9927558354D7118B48BB6FD9B3F1D6E5 /* RAMUtil */ = {
-			isa = PBXGroup;
-			children = (
-				BA39F640CDEDAEDBE5092A1C044967A6 /* RAMUtil */,
-				360081067E10878EA5C1068E9398802F /* Support Files */,
+				D4ECED672031AA6808CB255D528B48ED /* RAMCellData */,
+				54C68221F7CB0D018821708F64D706A7 /* RAMExport */,
+				A8B06572770608BE2635E8BD0994EF86 /* RAMFrame */,
+				2B4CC686AEE8A0372172A3F536CB882C /* RAMLog */,
+				6C49E88D579D77DD075B4DF22616149F /* RAMMustOverrider */,
+				11BA201E63DD8EF84CBF819295B68405 /* RAMSafeCollection */,
+				942BC52E0BBABABE869B897A832E93AC /* Support Files */,
 			);
 			name = RAMUtil;
 			path = /Users/qiujunyun/Documents/WorkSpace/github/RAMUtil;
 			sourceTree = "<absolute>";
 		};
-		BA39F640CDEDAEDBE5092A1C044967A6 /* RAMUtil */ = {
+		942BC52E0BBABABE869B897A832E93AC /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FFF8FF5C44CC5F078C5C443BFE433AE3 /* RAMCellData */,
-				1F5FC8D73EB546B9D73128053C30E6C5 /* RAMExport */,
-				803FB8382757A6FC54444BCAE7BCD91C /* RAMFrame */,
-				8FE227AF56F2FD9E235BAEDF5EDB7894 /* RAMMustOverrider */,
-				7E868D938C363EB35D560D984A06F8FB /* RAMSafeCollection */,
+				AD0C209D16EA8A9FEA083FC9B64E3CCF /* RAMUtil.xcconfig */,
+				D113B20D6FD848E21659C464A0479217 /* RAMUtil-dummy.m */,
+				EF27B791F9E3162899566670F2C07533 /* RAMUtil-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "RAMUtilDemo/Pods/Target Support Files/RAMUtil";
+			sourceTree = "<group>";
+		};
+		9B857AC213695E2747A8488E1CC9F766 /* RAMCellData */ = {
+			isa = PBXGroup;
+			children = (
+				26E2B02BAEF201AC090E769474A73424 /* RAMCellData.h */,
+				66738A96A353F1F2D925FE95E0755692 /* RAMCellData.m */,
+			);
+			name = RAMCellData;
+			path = RAMCellData;
+			sourceTree = "<group>";
+		};
+		A0087961CA93950C7DAD6A1E47F6D68F /* RAMSafeCollection */ = {
+			isa = PBXGroup;
+			children = (
+				07547039766638E1AC97896BCEB91F26 /* RAMSafeCollection.h */,
+				D48AA7AEFF215834F62D423B2747223B /* RAMSafeCollection.m */,
+			);
+			name = RAMSafeCollection;
+			path = RAMSafeCollection;
+			sourceTree = "<group>";
+		};
+		A0BBDAB32FEE72C4C42BE96C88CD6E00 /* RAMLog */ = {
+			isa = PBXGroup;
+			children = (
+				CFC78BD93E683AD4945374A3C7CC3370 /* RAMAdditionalLogger.h */,
+				5DD433AFC0DF8C5BC4431A5DEDF41816 /* RAMAdditionalLogger.m */,
+			);
+			name = RAMLog;
+			path = RAMLog;
+			sourceTree = "<group>";
+		};
+		A208DF05100D3E26F679C4888313B9C2 /* RAMUtil */ = {
+			isa = PBXGroup;
+			children = (
+				C02549674D8C20B1648C7149D6912DD6 /* RAMMustOverrider */,
 			);
 			name = RAMUtil;
 			path = RAMUtil;
+			sourceTree = "<group>";
+		};
+		A8B06572770608BE2635E8BD0994EF86 /* RAMFrame */ = {
+			isa = PBXGroup;
+			children = (
+				6793A2C33CFDB64E0318CDD233B0C764 /* RAMUtil */,
+			);
+			name = RAMFrame;
+			sourceTree = "<group>";
+		};
+		AC9E9272EB295152B0759976803B4B4C /* RAMUtil */ = {
+			isa = PBXGroup;
+			children = (
+				1BC85F1ED5EE8D37E6E50E2888C1647F /* RAMExport */,
+			);
+			name = RAMUtil;
+			path = RAMUtil;
+			sourceTree = "<group>";
+		};
+		C02549674D8C20B1648C7149D6912DD6 /* RAMMustOverrider */ = {
+			isa = PBXGroup;
+			children = (
+				04E06392C4344207E6D95C9B42B55CE2 /* RAMMustOverrider.h */,
+				F48EBD19C70881116F53829CA6EFA1AD /* RAMMustOverrider.m */,
+			);
+			name = RAMMustOverrider;
+			path = RAMMustOverrider;
+			sourceTree = "<group>";
+		};
+		C649710F57730D583B0C61AE58D89AB2 /* RAMFrame */ = {
+			isa = PBXGroup;
+			children = (
+				31A85EFF8BBE07D3F2D7E882B1E53161 /* UIView+Frame.h */,
+				664819E61D724DADC4749369D47A0F18 /* UIView+Frame.m */,
+			);
+			name = RAMFrame;
+			path = RAMFrame;
 			sourceTree = "<group>";
 		};
 		D1D9F50C9B441EE1E8CCB9DE4AA909CE /* Products */ = {
@@ -207,28 +299,45 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FFF8FF5C44CC5F078C5C443BFE433AE3 /* RAMCellData */ = {
+		D4ECED672031AA6808CB255D528B48ED /* RAMCellData */ = {
 			isa = PBXGroup;
 			children = (
-				8FFF404085AC05EFE05BA439013BE2E2 /* RAMCellData.h */,
-				05041E5E69851155A93398C1E269D558 /* RAMCellData.m */,
+				286E36BBC80E48898E9601A060C187F4 /* RAMUtil */,
 			);
 			name = RAMCellData;
-			path = RAMCellData;
+			sourceTree = "<group>";
+		};
+		D9E19A3C2048735D4E3D2AF282156F5F /* RAMUtil */ = {
+			isa = PBXGroup;
+			children = (
+				A0087961CA93950C7DAD6A1E47F6D68F /* RAMSafeCollection */,
+			);
+			name = RAMUtil;
+			path = RAMUtil;
+			sourceTree = "<group>";
+		};
+		E6032688FFE93088E55917D18B1D2732 /* RAMUtil */ = {
+			isa = PBXGroup;
+			children = (
+				A0BBDAB32FEE72C4C42BE96C88CD6E00 /* RAMLog */,
+			);
+			name = RAMUtil;
+			path = RAMUtil;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C9EC505C6CF36958360A0F0BF16A1B2F /* Headers */ = {
+		9926EC449E6C2867A18BC3539F0EEF50 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76EF7FB05A7E4E8E70B4807C967512FF /* RAMCellData.h in Headers */,
-				43D150B2F68DEFCBA4E6EAE49E80804B /* RAMExport.h in Headers */,
-				AB525B891CD7610E16279F0A4052C611 /* RAMMustOverrider.h in Headers */,
-				21737650ACE0FC58914F2F4005B91626 /* RAMSafeCollection.h in Headers */,
-				BA42180B5169EEAD6945241BEA51D2FA /* UIView+Frame.h in Headers */,
+				1C064B1B8A1ED38710837AB387952E4B /* RAMAdditionalLogger.h in Headers */,
+				32ED2DD1D2619F2559CAAAC9C2EEBE13 /* RAMCellData.h in Headers */,
+				5AD66EEDA1C3232EA560F245EB52D956 /* RAMExport.h in Headers */,
+				2A0EE5F695CC07AC7DF59430F7768B5C /* RAMMustOverrider.h in Headers */,
+				B9D6518BD893092E9C01C07ADCA12722 /* RAMSafeCollection.h in Headers */,
+				BEAF64E685A9B3651F779EF831FED617 /* UIView+Frame.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,9 +348,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31CEE6780CACA647844701AAADA2264D /* Build configuration list for PBXNativeTarget "RAMUtil" */;
 			buildPhases = (
-				13C5893A08176E84221C1A55872A982D /* Sources */,
+				03B51E28742EABB6B551A1268A48211F /* Sources */,
 				634C8E20E48242AC58DDC4C804B5AC43 /* Frameworks */,
-				C9EC505C6CF36958360A0F0BF16A1B2F /* Headers */,
+				9926EC449E6C2867A18BC3539F0EEF50 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -297,16 +406,17 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		13C5893A08176E84221C1A55872A982D /* Sources */ = {
+		03B51E28742EABB6B551A1268A48211F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC2939433024E59B81EE83157AD30B44 /* RAMCellData.m in Sources */,
-				CE46E53B481C923E7CF8AAA43A6BD525 /* RAMExport.m in Sources */,
-				3ABA3A48AD660ACEFC2D757848BB6BF2 /* RAMMustOverrider.m in Sources */,
-				6C087FB4DF8FF5A817B2D3E9ABEAEB30 /* RAMSafeCollection.m in Sources */,
-				A10D93E73B29936FD0D179894D83158F /* RAMUtil-dummy.m in Sources */,
-				ED89854BD3D1347B40587CDB6283B3C6 /* UIView+Frame.m in Sources */,
+				A1B60EA7BED04F27DF839DED3376236C /* RAMAdditionalLogger.m in Sources */,
+				E48A4AB5577E85DC80220B58740C0530 /* RAMCellData.m in Sources */,
+				1830085B714A021C0E19A9E50055B31A /* RAMExport.m in Sources */,
+				CB3B87E819356F8402B1292ABBA5907D /* RAMMustOverrider.m in Sources */,
+				054EE728E563531FEA23DD630FDFFBA6 /* RAMSafeCollection.m in Sources */,
+				904E861D5DE1995B6E67D972D47E8516 /* RAMUtil-dummy.m in Sources */,
+				324576055D920180DEB84D23C417D835 /* UIView+Frame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +463,7 @@
 		};
 		794FB5B6F798F3C4F07FE8862F2D984B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C9F4AC274A128E8F81856171CD1F177 /* RAMUtil.xcconfig */;
+			baseConfigurationReference = AD0C209D16EA8A9FEA083FC9B64E3CCF /* RAMUtil.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -394,7 +504,7 @@
 		};
 		94C1B4E37646C6D1C07AE3D9BF206F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C9F4AC274A128E8F81856171CD1F177 /* RAMUtil.xcconfig */;
+			baseConfigurationReference = AD0C209D16EA8A9FEA083FC9B64E3CCF /* RAMUtil.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

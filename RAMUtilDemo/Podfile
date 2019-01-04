@@ -3,6 +3,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
 target 'RAMUtilDemo' do
-    pod 'RAMUtil', :path => '/Users/qiujunyun/Documents/WorkSpace/github/RAMUtil', :branch => 'dev'
+    pod 'RAMUtil', :path => '/Users/qiujunyun/Documents/WorkSpace/github/RAMUtil' # :branch => 'dev'
 end
 
