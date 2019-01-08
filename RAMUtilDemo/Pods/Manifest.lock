@@ -14,15 +14,21 @@ PODS:
   - RAMUtil/RAMSafeCollection (1.0.0)
 
 DEPENDENCIES:
-  - RAMUtil (from `/Users/qiujunyun/Documents/WorkSpace/github/RAMUtil`)
+  - RAMUtil (from `https://github.com/RamboQiu/RAMUtil.git`, tag `1.0.0`)
 
 EXTERNAL SOURCES:
   RAMUtil:
-    :path: "/Users/qiujunyun/Documents/WorkSpace/github/RAMUtil"
+    :git: https://github.com/RamboQiu/RAMUtil.git
+    :tag: 1.0.0
+
+CHECKOUT OPTIONS:
+  RAMUtil:
+    :git: https://github.com/RamboQiu/RAMUtil.git
+    :tag: 1.0.0
 
 SPEC CHECKSUMS:
   RAMUtil: a964c4fa1802f56e761cdb57bccaf881be0959ae
 
-PODFILE CHECKSUM: 5de95980db6c046590718549e90f3fc1967126f3
+PODFILE CHECKSUM: d637663802ec76973ffee64499847fa102b05f56
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.5.3
