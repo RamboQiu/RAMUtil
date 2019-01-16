@@ -1,34 +1,32 @@
 PODS:
-  - RAMUtil (1.0.0):
-    - RAMUtil/RAMCellData (= 1.0.0)
-    - RAMUtil/RAMExport (= 1.0.0)
-    - RAMUtil/RAMFrame (= 1.0.0)
-    - RAMUtil/RAMLog (= 1.0.0)
-    - RAMUtil/RAMMustOverrider (= 1.0.0)
-    - RAMUtil/RAMSafeCollection (= 1.0.0)
-  - RAMUtil/RAMCellData (1.0.0)
-  - RAMUtil/RAMExport (1.0.0)
-  - RAMUtil/RAMFrame (1.0.0)
-  - RAMUtil/RAMLog (1.0.0)
-  - RAMUtil/RAMMustOverrider (1.0.0)
-  - RAMUtil/RAMSafeCollection (1.0.0)
+  - RAMUtil (1.0.1):
+    - RAMUtil/RAMCellData (= 1.0.1)
+    - RAMUtil/RAMColor (= 1.0.1)
+    - RAMUtil/RAMExport (= 1.0.1)
+    - RAMUtil/RAMFrame (= 1.0.1)
+    - RAMUtil/RAMImage (= 1.0.1)
+    - RAMUtil/RAMLog (= 1.0.1)
+    - RAMUtil/RAMMustOverrider (= 1.0.1)
+    - RAMUtil/RAMSafeCollection (= 1.0.1)
+  - RAMUtil/RAMCellData (1.0.1)
+  - RAMUtil/RAMColor (1.0.1)
+  - RAMUtil/RAMExport (1.0.1)
+  - RAMUtil/RAMFrame (1.0.1)
+  - RAMUtil/RAMImage (1.0.1)
+  - RAMUtil/RAMLog (1.0.1)
+  - RAMUtil/RAMMustOverrider (1.0.1)
+  - RAMUtil/RAMSafeCollection (1.0.1)
 
 DEPENDENCIES:
-  - RAMUtil (from `https://github.com/RamboQiu/RAMUtil.git`, tag `1.0.0`)
+  - RAMUtil (from `../`)
 
 EXTERNAL SOURCES:
   RAMUtil:
-    :git: https://github.com/RamboQiu/RAMUtil.git
-    :tag: 1.0.0
-
-CHECKOUT OPTIONS:
-  RAMUtil:
-    :git: https://github.com/RamboQiu/RAMUtil.git
-    :tag: 1.0.0
+    :path: "../"
 
 SPEC CHECKSUMS:
-  RAMUtil: a964c4fa1802f56e761cdb57bccaf881be0959ae
+  RAMUtil: 002a6b5b63232aeaa406320eb1fa4bb302f02783
 
-PODFILE CHECKSUM: d637663802ec76973ffee64499847fa102b05f56
+PODFILE CHECKSUM: b4ea6003b7a21631dd0af7b1b150d49f4c4e5b98
 
 COCOAPODS: 1.5.3

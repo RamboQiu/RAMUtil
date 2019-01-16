@@ -1,6 +1,6 @@
 {
   "name": "RAMUtil",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "This is a util",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/RamboQiu/RAMUtil.git",
@@ -13,11 +13,12 @@
   },
   "source": {
     "git": "https://github.com/RamboQiu/RAMUtil.git",
-    "tag": "1.0.0"
+    "tag": "1.0.1"
   },
   "platforms": {
     "ios": "8.0"
   },
+  "source_files": "RAMUtil/**/*",
   "subspecs": [
     {
       "name": "RAMExport",
@@ -48,6 +49,16 @@
       "name": "RAMCellData",
       "source_files": "RAMUtil/RAMCellData/*.{h,m}",
       "public_header_files": "RAMUtil/RAMCellData/*.h"
+    },
+    {
+      "name": "RAMColor",
+      "source_files": "RAMUtil/RAMColor/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMColor/*.h"
+    },
+    {
+      "name": "RAMImage",
+      "source_files": "RAMUtil/RAMImage/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMImage/*.h"
     }
   ]
 }

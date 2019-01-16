@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RAMUtil'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'This is a util'
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
@@ -12,7 +12,7 @@ TODO: Add long description of the pod here.
   s.author           = { 'RamboQiu' => '625217640@qq.com' }
   s.source           = { :git => 'https://github.com/RamboQiu/RAMUtil.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
-  # s.source_files = 'RAMUtil/**/*'
+  s.source_files = 'RAMUtil/**/*'
 
   s.subspec 'RAMExport' do |es|
     es.source_files  = "RAMUtil/RAMExport/*.{h,m}"
@@ -43,5 +43,16 @@ TODO: Add long description of the pod here.
     cs.source_files = "RAMUtil/RAMCellData/*.{h,m}"
     cs.public_header_files = "RAMUtil/RAMCellData/*.h"
   end
+  
+  s.subspec 'RAMColor' do |cos|
+      cos.source_files = "RAMUtil/RAMColor/*.{h,m}"
+      cos.public_header_files = "RAMUtil/RAMColor/*.h"
+  end
+  
+  s.subspec 'RAMImage' do |is|
+      is.source_files = "RAMUtil/RAMImage/*.{h,m}"
+      is.public_header_files = "RAMUtil/RAMImage/*.h"
+  end
+  
 end
 
