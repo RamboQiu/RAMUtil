@@ -54,5 +54,10 @@ TODO: Add long description of the pod here.
       is.public_header_files = "RAMUtil/RAMImage/*.h"
   end
   
+  s.subspec 'RAMMacros' do |ms|
+      ms.source_files = "RAMUtil/RAMMacros/*.{h,m}"
+      ms.public_header_files = "RAMUtil/RAMMacros/*.h"
+  end
+  
 end
 
