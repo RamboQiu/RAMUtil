@@ -14,6 +14,7 @@
 		353E4E3121CCBC3400A689DA /* RAMBlockA.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E4E3021CCBC3400A689DA /* RAMBlockA.m */; };
 		353E4E3421CCBC3F00A689DA /* RAMBlockB.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E4E3321CCBC3F00A689DA /* RAMBlockB.m */; };
 		353E4E3721CCD9CE00A689DA /* RAMData.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E4E3621CCD9CE00A689DA /* RAMData.m */; };
+		35497F0E2269FC4600D090E8 /* RAMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35497F0D2269FC4600D090E8 /* RAMTableViewController.m */; };
 		3588B08C21C0B7FC0085B8EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3588B08B21C0B7FC0085B8EE /* AppDelegate.m */; };
 		3588B08F21C0B7FC0085B8EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3588B08E21C0B7FC0085B8EE /* ViewController.m */; };
 		3588B09221C0B7FC0085B8EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3588B09021C0B7FC0085B8EE /* Main.storyboard */; };
@@ -43,6 +44,8 @@
 		353E4E3321CCBC3F00A689DA /* RAMBlockB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMBlockB.m; sourceTree = "<group>"; };
 		353E4E3521CCD9CE00A689DA /* RAMData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMData.h; sourceTree = "<group>"; };
 		353E4E3621CCD9CE00A689DA /* RAMData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMData.m; sourceTree = "<group>"; };
+		35497F0C2269FC4600D090E8 /* RAMTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMTableViewController.h; sourceTree = "<group>"; };
+		35497F0D2269FC4600D090E8 /* RAMTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMTableViewController.m; sourceTree = "<group>"; };
 		3588B08721C0B7FC0085B8EE /* RAMUtilDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RAMUtilDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3588B08A21C0B7FC0085B8EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3588B08B21C0B7FC0085B8EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -74,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35497F0B2269FC3600D090E8 /* RAMTestUI */ = {
+			isa = PBXGroup;
+			children = (
+				35497F0C2269FC4600D090E8 /* RAMTableViewController.h */,
+				35497F0D2269FC4600D090E8 /* RAMTableViewController.m */,
+			);
+			path = RAMTestUI;
+			sourceTree = "<group>";
+		};
 		3588B07E21C0B7FC0085B8EE = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +117,7 @@
 				352B854A21D0DD22008C0DE7 /* RAMCellModel.m */,
 				35E791E921C27E0C00312F75 /* RAMExportDemo */,
 				3588B0A321C10E9D0085B8EE /* RAMMustOverriderDemo */,
+				35497F0B2269FC3600D090E8 /* RAMTestUI */,
 				3588B09021C0B7FC0085B8EE /* Main.storyboard */,
 				3588B09321C0B7FD0085B8EE /* Assets.xcassets */,
 				3588B09521C0B7FD0085B8EE /* LaunchScreen.storyboard */,
@@ -265,6 +278,7 @@
 				353E4E3721CCD9CE00A689DA /* RAMData.m in Sources */,
 				3588B0A621C10EBA0085B8EE /* RAMSuperObject.m in Sources */,
 				35E791EC21C27E5700312F75 /* RAMStageA.m in Sources */,
+				35497F0E2269FC4600D090E8 /* RAMTableViewController.m in Sources */,
 				353E4E3421CCBC3F00A689DA /* RAMBlockB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
