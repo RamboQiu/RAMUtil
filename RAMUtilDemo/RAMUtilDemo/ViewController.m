@@ -13,6 +13,7 @@
 #import "RAMBaseTableViewCell.h"
 #import "RAMExportViewController.h"
 #import "RAMTableViewController.h"
+#import "RAMUIEventChainViewController.h"
 
 @interface ViewController () <
 UITableViewDelegate,
@@ -68,6 +69,16 @@ UITableViewDataSource>
     tableData.model = tableModel;
     [section2 addObject:tableData];
     
+    RAMCellModel *uiTouchChainModel = [[RAMCellModel alloc] initWithTitle:@"UI响应链测试"
+                                                               desc:@"iOS UI事件传递与响应者链"];
+    RAMCellData *chainData = RAMCellData.new;
+    chainData.cellClass = RAMBaseTableViewCell.class;
+    chainData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:tableModel];
+    chainData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    chainData.cellSelectSEL = @selector(selChainCellData:);
+    chainData.model = uiTouchChainModel;
+    [section2 addObject:chainData];
+    
     [self.staticData setObject:section2 forKey:@"测试类"];
     
     
@@ -98,6 +109,13 @@ UITableViewDataSource>
 
 - (void)selTableCellData:(RAMCellData *)data {
     RAMTableViewController *vc = [[RAMTableViewController alloc] init];
+    RAMCellModel *cellModel = data.didSelModel;
+    vc.titleText = cellModel.title;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)selChainCellData:(RAMCellData *)data {
+    RAMUIEventChainViewController *vc = [[RAMUIEventChainViewController alloc] init];
     RAMCellModel *cellModel = data.didSelModel;
     vc.titleText = cellModel.title;
     [self.navigationController pushViewController:vc animated:YES];
