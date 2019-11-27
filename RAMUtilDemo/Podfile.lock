@@ -1,21 +1,25 @@
 PODS:
-  - RAMUtil (1.0.2):
-    - RAMUtil/RAMCellData (= 1.0.2)
-    - RAMUtil/RAMColor (= 1.0.2)
-    - RAMUtil/RAMExport (= 1.0.2)
-    - RAMUtil/RAMFrame (= 1.0.2)
-    - RAMUtil/RAMImage (= 1.0.2)
-    - RAMUtil/RAMLog (= 1.0.2)
-    - RAMUtil/RAMMustOverrider (= 1.0.2)
-    - RAMUtil/RAMSafeCollection (= 1.0.2)
-  - RAMUtil/RAMCellData (1.0.2)
-  - RAMUtil/RAMColor (1.0.2)
-  - RAMUtil/RAMExport (1.0.2)
-  - RAMUtil/RAMFrame (1.0.2)
-  - RAMUtil/RAMImage (1.0.2)
-  - RAMUtil/RAMLog (1.0.2)
-  - RAMUtil/RAMMustOverrider (1.0.2)
-  - RAMUtil/RAMSafeCollection (1.0.2)
+  - RAMUtil (1.0.4):
+    - RAMUtil/RAMCellData (= 1.0.4)
+    - RAMUtil/RAMColor (= 1.0.4)
+    - RAMUtil/RAMExport (= 1.0.4)
+    - RAMUtil/RAMFrame (= 1.0.4)
+    - RAMUtil/RAMImage (= 1.0.4)
+    - RAMUtil/RAMJSCore (= 1.0.4)
+    - RAMUtil/RAMLog (= 1.0.4)
+    - RAMUtil/RAMMacros (= 1.0.4)
+    - RAMUtil/RAMMustOverrider (= 1.0.4)
+    - RAMUtil/RAMSafeCollection (= 1.0.4)
+  - RAMUtil/RAMCellData (1.0.4)
+  - RAMUtil/RAMColor (1.0.4)
+  - RAMUtil/RAMExport (1.0.4)
+  - RAMUtil/RAMFrame (1.0.4)
+  - RAMUtil/RAMImage (1.0.4)
+  - RAMUtil/RAMJSCore (1.0.4)
+  - RAMUtil/RAMLog (1.0.4)
+  - RAMUtil/RAMMacros (1.0.4)
+  - RAMUtil/RAMMustOverrider (1.0.4)
+  - RAMUtil/RAMSafeCollection (1.0.4)
 
 DEPENDENCIES:
   - RAMUtil (from `../`)
@@ -25,8 +29,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  RAMUtil: a9452acd71cab7856d18be44c191d75a9490fffe
+  RAMUtil: 91ceb093e30defea442a01a483ee6afead7051fa
 
 PODFILE CHECKSUM: b4ea6003b7a21631dd0af7b1b150d49f4c4e5b98
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.1.1

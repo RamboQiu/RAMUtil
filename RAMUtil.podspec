@@ -12,7 +12,7 @@ TODO: Add long description of the pod here.
   s.author           = { 'RamboQiu' => '625217640@qq.com' }
   s.source           = { :git => 'https://github.com/RamboQiu/RAMUtil.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
-  s.source_files = 'RAMUtil/**/*'
+  # s.source_files = 'RAMUtil/**/*'
 
   s.subspec 'RAMExport' do |es|
     es.source_files  = "RAMUtil/RAMExport/*.{h,m}"
@@ -57,6 +57,11 @@ TODO: Add long description of the pod here.
   s.subspec 'RAMMacros' do |ms|
       ms.source_files = "RAMUtil/RAMMacros/*.{h,m}"
       ms.public_header_files = "RAMUtil/RAMMacros/*.h"
+  end
+  
+  s.subspec 'RAMJSCore' do |jscore|
+      jscore.source_files = "RAMUtil/RAMJSCore/*.{h,m}"
+      jscore.public_header_files = "RAMUtil/RAMJSCore/*.h"
   end
   
 end

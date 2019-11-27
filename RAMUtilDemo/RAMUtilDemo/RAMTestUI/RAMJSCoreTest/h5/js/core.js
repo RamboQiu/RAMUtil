@@ -1,0 +1,1 @@
+log('hello,i am js side');

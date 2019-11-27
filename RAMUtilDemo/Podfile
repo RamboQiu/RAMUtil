@@ -4,5 +4,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 target 'RAMUtilDemo' do
     pod 'RAMUtil', :path => '../'  #:git => 'https://github.com/RamboQiu/RAMUtil.git', :tag => '1.0.0'
+    
 end
 

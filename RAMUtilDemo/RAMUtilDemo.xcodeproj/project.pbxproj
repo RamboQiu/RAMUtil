@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351C0F002275A589001174E2 /* RAMNativeJsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 351C0EF52275A589001174E2 /* RAMNativeJsViewController.m */; };
+		351C0F022275A5F0001174E2 /* core.js in Resources */ = {isa = PBXBuildFile; fileRef = 351C0F012275A5F0001174E2 /* core.js */; };
 		352B854521D0DC57008C0DE7 /* RAMExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352B854421D0DC57008C0DE7 /* RAMExportViewController.m */; };
 		352B854821D0DCA7008C0DE7 /* RAMBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 352B854721D0DCA7008C0DE7 /* RAMBaseTableViewCell.m */; };
 		352B854B21D0DD22008C0DE7 /* RAMCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 352B854A21D0DD22008C0DE7 /* RAMCellModel.m */; };
@@ -15,6 +17,7 @@
 		353E4E3421CCBC3F00A689DA /* RAMBlockB.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E4E3321CCBC3F00A689DA /* RAMBlockB.m */; };
 		353E4E3721CCD9CE00A689DA /* RAMData.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E4E3621CCD9CE00A689DA /* RAMData.m */; };
 		35497F0E2269FC4600D090E8 /* RAMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35497F0D2269FC4600D090E8 /* RAMTableViewController.m */; };
+		355EC72E2271E0470045725B /* RAMImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355EC72D2271E0470045725B /* RAMImageViewController.m */; };
 		3588B08C21C0B7FC0085B8EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3588B08B21C0B7FC0085B8EE /* AppDelegate.m */; };
 		3588B08F21C0B7FC0085B8EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3588B08E21C0B7FC0085B8EE /* ViewController.m */; };
 		3588B09221C0B7FC0085B8EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3588B09021C0B7FC0085B8EE /* Main.storyboard */; };
@@ -23,6 +26,10 @@
 		3588B09A21C0B7FD0085B8EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3588B09921C0B7FD0085B8EE /* main.m */; };
 		3588B0A621C10EBA0085B8EE /* RAMSuperObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3588B0A521C10EBA0085B8EE /* RAMSuperObject.m */; };
 		3588B0A921C10ECB0085B8EE /* RAMSubObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3588B0A821C10ECB0085B8EE /* RAMSubObject.m */; };
+		35AB59AC22CAF9990056C891 /* RAMTapGestureHackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AB59AB22CAF9990056C891 /* RAMTapGestureHackViewController.m */; };
+		35AB59AF22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AB59AE22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.m */; };
+		35AB59B222CAFAA00056C891 /* NSObject+NESRunTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AB59B122CAFAA00056C891 /* NSObject+NESRunTime.m */; };
+		35AB59B622CB3C790056C891 /* RAMRegTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AB59B522CB3C790056C891 /* RAMRegTestViewController.m */; };
 		35E791EC21C27E5700312F75 /* RAMStageA.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E791EB21C27E5700312F75 /* RAMStageA.m */; };
 		3CAAC7576767896BAFE4789A /* libPods-RAMUtilDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A395D7E6A7DE069A98AFD46 /* libPods-RAMUtilDemo.a */; };
 		411CD24C238E23970031791F /* RAMRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 411CD24B238E23970031791F /* RAMRuntimeViewController.m */; };
@@ -37,6 +44,9 @@
 /* Begin PBXFileReference section */
 		2A395D7E6A7DE069A98AFD46 /* libPods-RAMUtilDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RAMUtilDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7926A168C8164D77724228 /* Pods-RAMUtilDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAMUtilDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo.release.xcconfig"; sourceTree = "<group>"; };
+		351C0EF52275A589001174E2 /* RAMNativeJsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RAMNativeJsViewController.m; sourceTree = "<group>"; };
+		351C0EF62275A589001174E2 /* RAMNativeJsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RAMNativeJsViewController.h; sourceTree = "<group>"; };
+		351C0F012275A5F0001174E2 /* core.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = core.js; path = h5/js/core.js; sourceTree = "<group>"; };
 		352B854321D0DC57008C0DE7 /* RAMExportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMExportViewController.h; sourceTree = "<group>"; };
 		352B854421D0DC57008C0DE7 /* RAMExportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMExportViewController.m; sourceTree = "<group>"; };
 		352B854621D0DCA7008C0DE7 /* RAMBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMBaseTableViewCell.h; sourceTree = "<group>"; };
@@ -53,6 +63,8 @@
 		353E4E3621CCD9CE00A689DA /* RAMData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMData.m; sourceTree = "<group>"; };
 		35497F0C2269FC4600D090E8 /* RAMTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMTableViewController.h; sourceTree = "<group>"; };
 		35497F0D2269FC4600D090E8 /* RAMTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMTableViewController.m; sourceTree = "<group>"; };
+		355EC72C2271E0470045725B /* RAMImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMImageViewController.h; sourceTree = "<group>"; };
+		355EC72D2271E0470045725B /* RAMImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMImageViewController.m; sourceTree = "<group>"; };
 		3588B08721C0B7FC0085B8EE /* RAMUtilDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RAMUtilDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3588B08A21C0B7FC0085B8EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3588B08B21C0B7FC0085B8EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -67,6 +79,14 @@
 		3588B0A521C10EBA0085B8EE /* RAMSuperObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMSuperObject.m; sourceTree = "<group>"; };
 		3588B0A721C10ECB0085B8EE /* RAMSubObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMSubObject.h; sourceTree = "<group>"; };
 		3588B0A821C10ECB0085B8EE /* RAMSubObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMSubObject.m; sourceTree = "<group>"; };
+		35AB59AA22CAF9990056C891 /* RAMTapGestureHackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMTapGestureHackViewController.h; sourceTree = "<group>"; };
+		35AB59AB22CAF9990056C891 /* RAMTapGestureHackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMTapGestureHackViewController.m; sourceTree = "<group>"; };
+		35AB59AD22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITapGestureRecognizer+NESRecordEvent.h"; sourceTree = "<group>"; };
+		35AB59AE22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITapGestureRecognizer+NESRecordEvent.m"; sourceTree = "<group>"; };
+		35AB59B022CAFAA00056C891 /* NSObject+NESRunTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NESRunTime.h"; sourceTree = "<group>"; };
+		35AB59B122CAFAA00056C891 /* NSObject+NESRunTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NESRunTime.m"; sourceTree = "<group>"; };
+		35AB59B422CB3C790056C891 /* RAMRegTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMRegTestViewController.h; sourceTree = "<group>"; };
+		35AB59B522CB3C790056C891 /* RAMRegTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMRegTestViewController.m; sourceTree = "<group>"; };
 		35E791EA21C27E5700312F75 /* RAMStageA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMStageA.h; sourceTree = "<group>"; };
 		35E791EB21C27E5700312F75 /* RAMStageA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMStageA.m; sourceTree = "<group>"; };
 		411CD24A238E23970031791F /* RAMRuntimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMRuntimeViewController.h; sourceTree = "<group>"; };
@@ -98,6 +118,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		351C0EE62275A589001174E2 /* RAMJSCoreTest */ = {
+			isa = PBXGroup;
+			children = (
+				351C0F012275A5F0001174E2 /* core.js */,
+				351C0EF52275A589001174E2 /* RAMNativeJsViewController.m */,
+				351C0EF62275A589001174E2 /* RAMNativeJsViewController.h */,
+			);
+			path = RAMJSCoreTest;
+			sourceTree = "<group>";
+		};
 		35497F0B2269FC3600D090E8 /* RAMTestUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +140,11 @@
 				411CD24A238E23970031791F /* RAMRuntimeViewController.h */,
 				411CD24B238E23970031791F /* RAMRuntimeViewController.m */,
 				4121D286238CC5790038F2F1 /* RAMDemoObject */,
+				355EC72C2271E0470045725B /* RAMImageViewController.h */,
+				355EC72D2271E0470045725B /* RAMImageViewController.m */,
+				351C0EE62275A589001174E2 /* RAMJSCoreTest */,
+				35AB59A922CAF9690056C891 /* RAMTapGestureHack */,
+				35AB59B322CB3C560056C891 /* RAMRegTest */,
 			);
 			path = RAMTestUI;
 			sourceTree = "<group>";
@@ -164,6 +199,28 @@
 				3588B0A821C10ECB0085B8EE /* RAMSubObject.m */,
 			);
 			path = RAMMustOverriderDemo;
+			sourceTree = "<group>";
+		};
+		35AB59A922CAF9690056C891 /* RAMTapGestureHack */ = {
+			isa = PBXGroup;
+			children = (
+				35AB59AA22CAF9990056C891 /* RAMTapGestureHackViewController.h */,
+				35AB59AB22CAF9990056C891 /* RAMTapGestureHackViewController.m */,
+				35AB59AD22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.h */,
+				35AB59AE22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.m */,
+				35AB59B022CAFAA00056C891 /* NSObject+NESRunTime.h */,
+				35AB59B122CAFAA00056C891 /* NSObject+NESRunTime.m */,
+			);
+			path = RAMTapGestureHack;
+			sourceTree = "<group>";
+		};
+		35AB59B322CB3C560056C891 /* RAMRegTest */ = {
+			isa = PBXGroup;
+			children = (
+				35AB59B422CB3C790056C891 /* RAMRegTestViewController.h */,
+				35AB59B522CB3C790056C891 /* RAMRegTestViewController.m */,
+			);
+			path = RAMRegTest;
 			sourceTree = "<group>";
 		};
 		35E791E921C27E0C00312F75 /* RAMExportDemo */ = {
@@ -228,6 +285,8 @@
 				3588B08321C0B7FC0085B8EE /* Sources */,
 				3588B08421C0B7FC0085B8EE /* Frameworks */,
 				3588B08521C0B7FC0085B8EE /* Resources */,
+				23E2B0BA835E19FEEE99D82D /* [CP] Embed Pods Frameworks */,
+				CC5C483F3CAB54CAF5729698 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,12 +337,28 @@
 				3588B09721C0B7FD0085B8EE /* LaunchScreen.storyboard in Resources */,
 				3588B09421C0B7FD0085B8EE /* Assets.xcassets in Resources */,
 				3588B09221C0B7FC0085B8EE /* Main.storyboard in Resources */,
+				351C0F022275A5F0001174E2 /* core.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		23E2B0BA835E19FEEE99D82D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BD2049713418389378FE079D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,7 +374,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CC5C483F3CAB54CAF5729698 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -317,19 +407,25 @@
 				3588B0A921C10ECB0085B8EE /* RAMSubObject.m in Sources */,
 				353E4E2E21CC952D00A689DA /* RAMStageB.m in Sources */,
 				4121D27F238CC49D0038F2F1 /* RAMDemoObject.m in Sources */,
+				35AB59B622CB3C790056C891 /* RAMRegTestViewController.m in Sources */,
+				35AB59B222CAFAA00056C891 /* NSObject+NESRunTime.m in Sources */,
 				3588B08C21C0B7FC0085B8EE /* AppDelegate.m in Sources */,
 				4121D27C238CC3EB0038F2F1 /* RAMLoadInitializeViewController.m in Sources */,
 				352B854821D0DCA7008C0DE7 /* RAMBaseTableViewCell.m in Sources */,
 				352B854B21D0DD22008C0DE7 /* RAMCellModel.m in Sources */,
 				4121D28F238D68AE0038F2F1 /* RAMSubSubDemoObject.m in Sources */,
 				416A8423238B81EE0031BCF3 /* RAMUIEventChainViewController.m in Sources */,
+				351C0F002275A589001174E2 /* RAMNativeJsViewController.m in Sources */,
 				353E4E3721CCD9CE00A689DA /* RAMData.m in Sources */,
 				3588B0A621C10EBA0085B8EE /* RAMSuperObject.m in Sources */,
+				35AB59AF22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.m in Sources */,
 				35E791EC21C27E5700312F75 /* RAMStageA.m in Sources */,
 				4121D282238CC5080038F2F1 /* RAMSubDemoObject.m in Sources */,
 				35497F0E2269FC4600D090E8 /* RAMTableViewController.m in Sources */,
 				411CD24C238E23970031791F /* RAMRuntimeViewController.m in Sources */,
+				35AB59AC22CAF9990056C891 /* RAMTapGestureHackViewController.m in Sources */,
 				353E4E3421CCBC3F00A689DA /* RAMBlockB.m in Sources */,
+				355EC72E2271E0470045725B /* RAMImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

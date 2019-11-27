@@ -1,6 +1,6 @@
 {
   "name": "RAMUtil",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "summary": "This is a util",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/RamboQiu/RAMUtil.git",
@@ -13,12 +13,11 @@
   },
   "source": {
     "git": "https://github.com/RamboQiu/RAMUtil.git",
-    "tag": "1.0.2"
+    "tag": "1.0.4"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "RAMUtil/**/*",
   "subspecs": [
     {
       "name": "RAMExport",
@@ -59,6 +58,16 @@
       "name": "RAMImage",
       "source_files": "RAMUtil/RAMImage/*.{h,m}",
       "public_header_files": "RAMUtil/RAMImage/*.h"
+    },
+    {
+      "name": "RAMMacros",
+      "source_files": "RAMUtil/RAMMacros/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMMacros/*.h"
+    },
+    {
+      "name": "RAMJSCore",
+      "source_files": "RAMUtil/RAMJSCore/*.{h,m}",
+      "public_header_files": "RAMUtil/RAMJSCore/*.h"
     }
   ]
 }
