@@ -28,6 +28,8 @@
         _descLabel.textColor = [UIColor grayColor];
         _descLabel.numberOfLines = 0;
         [self.contentView addSubview:_descLabel];
+        
+        
     }
     return self;
 }
@@ -58,19 +60,25 @@
 }
 
 + (CGFloat)cellHeightWithModel:(RAMCellModel *)model {
-    CGFloat height = 20;
-    UILabel *descTmp = UILabel.new;
-    descTmp.font = [UIFont systemFontOfSize:14];
-    descTmp.text = model.title?:@"";
-    [descTmp sizeToFit];
-    height += descTmp.height;
+    CGFloat height = 10;
+    UILabel *descTitleTmp = UILabel.new;
+    descTitleTmp.font = [UIFont systemFontOfSize:14];
+    descTitleTmp.text = model.title?:@"";
+    descTitleTmp.width = [UIScreen mainScreen].bounds.size.width - 30;
+    [descTitleTmp sizeToFit];
+    height += descTitleTmp.height;
     
-    descTmp.numberOfLines = 0;
-    descTmp.font = [UIFont systemFontOfSize:12];
-    descTmp.text = model.desc?:@"";
-    descTmp.width = [UIScreen mainScreen].bounds.size.width - 30;
-    [descTmp sizeToFit];
-    height += descTmp.height;
+    height +=5;
+    
+    UILabel *descDescTmp = UILabel.new;
+    descDescTmp.numberOfLines = 0;
+    descDescTmp.font = [UIFont systemFontOfSize:12];
+    descDescTmp.text = model.desc?:@"";
+    descDescTmp.width = [UIScreen mainScreen].bounds.size.width - 30;
+    [descDescTmp sizeToFit];
+    height += descDescTmp.height;
+    
+    height +=10;
     
     return height;
 }

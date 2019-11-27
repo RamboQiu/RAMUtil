@@ -15,6 +15,7 @@
 #import "RAMTableViewController.h"
 #import "RAMUIEventChainViewController.h"
 #import "RAMLoadInitializeViewController.h"
+#import "RAMRuntimeViewController.h"
 
 @interface ViewController () <
 UITableViewDelegate,
@@ -34,7 +35,7 @@ UITableViewDataSource>
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:self.tableView];
     
     [self refreshTableView];
@@ -74,7 +75,7 @@ UITableViewDataSource>
                                                                desc:@"iOS UI事件传递与响应者链\nApplication->Window->last subview->..."];
     RAMCellData *chainData = RAMCellData.new;
     chainData.cellClass = RAMBaseTableViewCell.class;
-    chainData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:tableModel];
+    chainData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:uiTouchChainModel];
     chainData.cellCustomSEL = @selector(cusNormalCell:withData:);
     chainData.cellSelectSEL = @selector(selChainCellData:);
     chainData.model = uiTouchChainModel;
@@ -84,11 +85,21 @@ UITableViewDataSource>
                                                                desc:@"load不会被覆盖，执行顺序 类 -> 子类 ->分类\ninitialize会被覆盖（分类->子类->类），懒加载(第一次被用到时)"];
     RAMCellData *loadInitializeData = RAMCellData.new;
     loadInitializeData.cellClass = RAMBaseTableViewCell.class;
-    loadInitializeData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:tableModel];
+    loadInitializeData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:loadInitializeModel];
     loadInitializeData.cellCustomSEL = @selector(cusNormalCell:withData:);
     loadInitializeData.cellSelectSEL = @selector(selLoadInitCellData:);
     loadInitializeData.model = loadInitializeModel;
     [section2 addObject:loadInitializeData];
+    
+    RAMCellModel *runtimeModel = [[RAMCellModel alloc] initWithTitle:@"runtime调研"
+                                                               desc:@""];
+    RAMCellData *runtimeData = RAMCellData.new;
+    runtimeData.cellClass = RAMBaseTableViewCell.class;
+    runtimeData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:runtimeModel];
+    runtimeData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    runtimeData.cellSelectSEL = @selector(selRuntimeCellData:);
+    runtimeData.model = runtimeModel;
+    [section2 addObject:runtimeData];
     
     [self.staticData setObject:section2 forKey:@"测试类"];
     
@@ -134,6 +145,13 @@ UITableViewDataSource>
 
 - (void)selLoadInitCellData:(RAMCellData *)data {
     RAMLoadInitializeViewController *vc = [[RAMLoadInitializeViewController alloc] init];
+    RAMCellModel *cellModel = data.didSelModel;
+    vc.titleText = cellModel.title;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)selRuntimeCellData:(RAMCellData *)data {
+    RAMRuntimeViewController *vc = [[RAMRuntimeViewController alloc] init];
     RAMCellModel *cellModel = data.didSelModel;
     vc.titleText = cellModel.title;
     [self.navigationController pushViewController:vc animated:YES];
