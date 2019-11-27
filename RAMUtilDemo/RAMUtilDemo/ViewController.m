@@ -14,6 +14,7 @@
 #import "RAMExportViewController.h"
 #import "RAMTableViewController.h"
 #import "RAMUIEventChainViewController.h"
+#import "RAMLoadInitializeViewController.h"
 
 @interface ViewController () <
 UITableViewDelegate,
@@ -70,7 +71,7 @@ UITableViewDataSource>
     [section2 addObject:tableData];
     
     RAMCellModel *uiTouchChainModel = [[RAMCellModel alloc] initWithTitle:@"UI响应链测试"
-                                                               desc:@"iOS UI事件传递与响应者链"];
+                                                               desc:@"iOS UI事件传递与响应者链\nApplication->Window->last subview->..."];
     RAMCellData *chainData = RAMCellData.new;
     chainData.cellClass = RAMBaseTableViewCell.class;
     chainData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:tableModel];
@@ -78,6 +79,16 @@ UITableViewDataSource>
     chainData.cellSelectSEL = @selector(selChainCellData:);
     chainData.model = uiTouchChainModel;
     [section2 addObject:chainData];
+    
+    RAMCellModel *loadInitializeModel = [[RAMCellModel alloc] initWithTitle:@"load方法和initialize方法的异同"
+                                                               desc:@"load不会被覆盖，执行顺序 类 -> 子类 ->分类\ninitialize会被覆盖（分类->子类->类），懒加载(第一次被用到时)"];
+    RAMCellData *loadInitializeData = RAMCellData.new;
+    loadInitializeData.cellClass = RAMBaseTableViewCell.class;
+    loadInitializeData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:tableModel];
+    loadInitializeData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    loadInitializeData.cellSelectSEL = @selector(selLoadInitCellData:);
+    loadInitializeData.model = loadInitializeModel;
+    [section2 addObject:loadInitializeData];
     
     [self.staticData setObject:section2 forKey:@"测试类"];
     
@@ -121,6 +132,12 @@ UITableViewDataSource>
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)selLoadInitCellData:(RAMCellData *)data {
+    RAMLoadInitializeViewController *vc = [[RAMLoadInitializeViewController alloc] init];
+    RAMCellModel *cellModel = data.didSelModel;
+    vc.titleText = cellModel.title;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark -
 
