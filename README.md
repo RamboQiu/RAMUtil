@@ -41,4 +41,4 @@ RAMLOG_INFO("I'm a test message.");
 
 没找到方法直接调用demo里面的runtime的源码工程，只能把想测试的runtime代码，copy到objc项目中去单独跑，然后看源码实现
 
-![image-20191128173217662](/Users/qiujunyun/Library/Application Support/typora-user-images/image-20191128173217662.png)
+![image-20191128173217662](https://github.com/RamboQiu/RAMUtil/blob/master/RAMUtilDemo/RAMUtilDemo/RAMTestUI/RAMRuntime/debug.png?raw=true)
