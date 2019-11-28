@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:objc4-750.1/objc.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:RAMUtilDemo.xcodeproj">
    </FileRef>
    <FileRef

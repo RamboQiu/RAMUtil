@@ -30,8 +30,13 @@
 		35AB59AF22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AB59AE22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.m */; };
 		35AB59B222CAFAA00056C891 /* NSObject+NESRunTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AB59B122CAFAA00056C891 /* NSObject+NESRunTime.m */; };
 		35AB59B622CB3C790056C891 /* RAMRegTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AB59B522CB3C790056C891 /* RAMRegTestViewController.m */; };
+		35CA1636238F629000A32058 /* UIViewController+RAMSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CA1635238F629000A32058 /* UIViewController+RAMSwizzling.m */; };
+		35CA1639238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CA1638238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.m */; };
+		35E65943238FC9DB0064EF96 /* RAMDemoObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4121D27D238CC49D0038F2F1 /* RAMDemoObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35E65944238FC9DE0064EF96 /* RAMSubDemoObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4121D280238CC5080038F2F1 /* RAMSubDemoObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35E65945238FC9E10064EF96 /* RAMSubSubDemoObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4121D28D238D68AE0038F2F1 /* RAMSubSubDemoObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35E65946238FC9E60064EF96 /* RAMSubDemoObject+RAMDemoCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4121D283238CC5490038F2F1 /* RAMSubDemoObject+RAMDemoCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E791EC21C27E5700312F75 /* RAMStageA.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E791EB21C27E5700312F75 /* RAMStageA.m */; };
-		3CAAC7576767896BAFE4789A /* libPods-RAMUtilDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A395D7E6A7DE069A98AFD46 /* libPods-RAMUtilDemo.a */; };
 		411CD24C238E23970031791F /* RAMRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 411CD24B238E23970031791F /* RAMRuntimeViewController.m */; };
 		4121D27C238CC3EB0038F2F1 /* RAMLoadInitializeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4121D27B238CC3EB0038F2F1 /* RAMLoadInitializeViewController.m */; };
 		4121D27F238CC49D0038F2F1 /* RAMDemoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4121D27E238CC49D0038F2F1 /* RAMDemoObject.m */; };
@@ -42,7 +47,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A395D7E6A7DE069A98AFD46 /* libPods-RAMUtilDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RAMUtilDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7926A168C8164D77724228 /* Pods-RAMUtilDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAMUtilDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo.release.xcconfig"; sourceTree = "<group>"; };
 		351C0EF52275A589001174E2 /* RAMNativeJsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RAMNativeJsViewController.m; sourceTree = "<group>"; };
 		351C0EF62275A589001174E2 /* RAMNativeJsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RAMNativeJsViewController.h; sourceTree = "<group>"; };
@@ -87,6 +91,10 @@
 		35AB59B122CAFAA00056C891 /* NSObject+NESRunTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NESRunTime.m"; sourceTree = "<group>"; };
 		35AB59B422CB3C790056C891 /* RAMRegTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMRegTestViewController.h; sourceTree = "<group>"; };
 		35AB59B522CB3C790056C891 /* RAMRegTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMRegTestViewController.m; sourceTree = "<group>"; };
+		35CA1634238F629000A32058 /* UIViewController+RAMSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RAMSwizzling.h"; sourceTree = "<group>"; };
+		35CA1635238F629000A32058 /* UIViewController+RAMSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RAMSwizzling.m"; sourceTree = "<group>"; };
+		35CA1637238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RAMPointerSwizzling.h"; sourceTree = "<group>"; };
+		35CA1638238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RAMPointerSwizzling.m"; sourceTree = "<group>"; };
 		35E791EA21C27E5700312F75 /* RAMStageA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMStageA.h; sourceTree = "<group>"; };
 		35E791EB21C27E5700312F75 /* RAMStageA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMStageA.m; sourceTree = "<group>"; };
 		411CD24A238E23970031791F /* RAMRuntimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMRuntimeViewController.h; sourceTree = "<group>"; };
@@ -111,7 +119,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CAAC7576767896BAFE4789A /* libPods-RAMUtilDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,11 +144,10 @@
 				416A8422238B81EE0031BCF3 /* RAMUIEventChainViewController.m */,
 				4121D27A238CC3EB0038F2F1 /* RAMLoadInitializeViewController.h */,
 				4121D27B238CC3EB0038F2F1 /* RAMLoadInitializeViewController.m */,
-				411CD24A238E23970031791F /* RAMRuntimeViewController.h */,
-				411CD24B238E23970031791F /* RAMRuntimeViewController.m */,
-				4121D286238CC5790038F2F1 /* RAMDemoObject */,
 				355EC72C2271E0470045725B /* RAMImageViewController.h */,
 				355EC72D2271E0470045725B /* RAMImageViewController.m */,
+				35CA1633238F626F00A32058 /* RAMRuntime */,
+				4121D286238CC5790038F2F1 /* RAMDemoObject */,
 				351C0EE62275A589001174E2 /* RAMJSCoreTest */,
 				35AB59A922CAF9690056C891 /* RAMTapGestureHack */,
 				35AB59B322CB3C560056C891 /* RAMRegTest */,
@@ -223,6 +229,19 @@
 			path = RAMRegTest;
 			sourceTree = "<group>";
 		};
+		35CA1633238F626F00A32058 /* RAMRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				411CD24A238E23970031791F /* RAMRuntimeViewController.h */,
+				411CD24B238E23970031791F /* RAMRuntimeViewController.m */,
+				35CA1634238F629000A32058 /* UIViewController+RAMSwizzling.h */,
+				35CA1635238F629000A32058 /* UIViewController+RAMSwizzling.m */,
+				35CA1637238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.h */,
+				35CA1638238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.m */,
+			);
+			path = RAMRuntime;
+			sourceTree = "<group>";
+		};
 		35E791E921C27E0C00312F75 /* RAMExportDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,7 +279,6 @@
 		B5E9ECF6C2CC63F934798635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2A395D7E6A7DE069A98AFD46 /* libPods-RAMUtilDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,17 +294,30 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		35E65940238FC9B30064EF96 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35E65946238FC9E60064EF96 /* RAMSubDemoObject+RAMDemoCategory.h in Headers */,
+				35E65945238FC9E10064EF96 /* RAMSubSubDemoObject.h in Headers */,
+				35E65944238FC9DE0064EF96 /* RAMSubDemoObject.h in Headers */,
+				35E65943238FC9DB0064EF96 /* RAMDemoObject.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		3588B08621C0B7FC0085B8EE /* RAMUtilDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3588B09D21C0B7FD0085B8EE /* Build configuration list for PBXNativeTarget "RAMUtilDemo" */;
 			buildPhases = (
 				BD2049713418389378FE079D /* [CP] Check Pods Manifest.lock */,
+				35E65940238FC9B30064EF96 /* Headers */,
 				3588B08321C0B7FC0085B8EE /* Sources */,
 				3588B08421C0B7FC0085B8EE /* Frameworks */,
 				3588B08521C0B7FC0085B8EE /* Resources */,
-				23E2B0BA835E19FEEE99D82D /* [CP] Embed Pods Frameworks */,
-				CC5C483F3CAB54CAF5729698 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -344,21 +375,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		23E2B0BA835E19FEEE99D82D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BD2049713418389378FE079D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -374,22 +390,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CC5C483F3CAB54CAF5729698 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -414,6 +415,7 @@
 				352B854821D0DCA7008C0DE7 /* RAMBaseTableViewCell.m in Sources */,
 				352B854B21D0DD22008C0DE7 /* RAMCellModel.m in Sources */,
 				4121D28F238D68AE0038F2F1 /* RAMSubSubDemoObject.m in Sources */,
+				35CA1636238F629000A32058 /* UIViewController+RAMSwizzling.m in Sources */,
 				416A8423238B81EE0031BCF3 /* RAMUIEventChainViewController.m in Sources */,
 				351C0F002275A589001174E2 /* RAMNativeJsViewController.m in Sources */,
 				353E4E3721CCD9CE00A689DA /* RAMData.m in Sources */,
@@ -424,6 +426,7 @@
 				35497F0E2269FC4600D090E8 /* RAMTableViewController.m in Sources */,
 				411CD24C238E23970031791F /* RAMRuntimeViewController.m in Sources */,
 				35AB59AC22CAF9990056C891 /* RAMTapGestureHackViewController.m in Sources */,
+				35CA1639238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.m in Sources */,
 				353E4E3421CCBC3F00A689DA /* RAMBlockB.m in Sources */,
 				355EC72E2271E0470045725B /* RAMImageViewController.m in Sources */,
 			);
@@ -568,6 +571,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MEEVZF39DJ;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/RAMUtil\"",
+				);
 				INFOPLIST_FILE = RAMUtilDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -586,6 +594,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MEEVZF39DJ;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/RAMUtil\"",
+				);
 				INFOPLIST_FILE = RAMUtilDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

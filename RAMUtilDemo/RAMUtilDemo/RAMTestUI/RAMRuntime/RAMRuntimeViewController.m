@@ -8,8 +8,12 @@
 
 #import "RAMRuntimeViewController.h"
 #import <objc/runtime.h>
+#import "UIViewController+RAMSwizzling.h"
+#import <RAMUtil/UIView+Frame.h>
+#import "UIViewController+RAMPointerSwizzling.h"
 
 @interface RAMRuntimeViewController ()
+@property (nonatomic, strong) UIButton *button;
 
 @end
 
@@ -19,6 +23,11 @@
     [super viewDidLoad];
     self.title = self.titleText?:@"";
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.button setTitle:@"点我点我" forState:UIControlStateNormal];
+    [self.button addTarget:self action:@selector(testAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.button];
     
     
     id lengderClass = object_getClass(@"UIView");
@@ -57,6 +66,33 @@
     free(methodList);
     free(protocolList);
     free(properties);
+    
+    [self performSelector:@selector(fun)];
 }
 
++ (BOOL)resolveInstanceMethod:(SEL)sel {
+    if (sel == @selector(fun)) {
+        class_addMethod([self class], sel, (IMP)funMethod, "v@:");
+        return YES;
+    }
+    return [super resolveInstanceMethod:sel];
+}
+
+void funMethod(id obj, SEL _cmd) {
+    NSLog(@"funMethod"); //新的 fun 函数
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    self.button.width = 100;
+    self.button.height = 50;
+    self.button.middleX = self.view.width / 2;
+    self.button.middleY = self.view.height / 2;
+}
+
+- (void)testAction:(id)sender {
+    [self originalFunction];
+    [self originalFunc:@"arg1"];
+}
 @end
