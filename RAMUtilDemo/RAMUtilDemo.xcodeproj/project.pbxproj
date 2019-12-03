@@ -32,6 +32,10 @@
 		35AB59B622CB3C790056C891 /* RAMRegTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AB59B522CB3C790056C891 /* RAMRegTestViewController.m */; };
 		35CA1636238F629000A32058 /* UIViewController+RAMSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CA1635238F629000A32058 /* UIViewController+RAMSwizzling.m */; };
 		35CA1639238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CA1638238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.m */; };
+		35CBC7D32396401C00CAF953 /* RAMWsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 35CBC7D12396401C00CAF953 /* RAMWsViewController.h */; };
+		35CBC7D42396401C00CAF953 /* RAMWsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBC7D22396401C00CAF953 /* RAMWsViewController.m */; };
+		35CBC7D72396630A00CAF953 /* RAMMacroViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 35CBC7D52396630A00CAF953 /* RAMMacroViewController.h */; };
+		35CBC7D82396630A00CAF953 /* RAMMacroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBC7D62396630A00CAF953 /* RAMMacroViewController.m */; };
 		35E65943238FC9DB0064EF96 /* RAMDemoObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4121D27D238CC49D0038F2F1 /* RAMDemoObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E65944238FC9DE0064EF96 /* RAMSubDemoObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4121D280238CC5080038F2F1 /* RAMSubDemoObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E65945238FC9E10064EF96 /* RAMSubSubDemoObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4121D28D238D68AE0038F2F1 /* RAMSubSubDemoObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -95,6 +99,10 @@
 		35CA1635238F629000A32058 /* UIViewController+RAMSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RAMSwizzling.m"; sourceTree = "<group>"; };
 		35CA1637238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RAMPointerSwizzling.h"; sourceTree = "<group>"; };
 		35CA1638238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RAMPointerSwizzling.m"; sourceTree = "<group>"; };
+		35CBC7D12396401C00CAF953 /* RAMWsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMWsViewController.h; sourceTree = "<group>"; };
+		35CBC7D22396401C00CAF953 /* RAMWsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMWsViewController.m; sourceTree = "<group>"; };
+		35CBC7D52396630A00CAF953 /* RAMMacroViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMMacroViewController.h; sourceTree = "<group>"; };
+		35CBC7D62396630A00CAF953 /* RAMMacroViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMMacroViewController.m; sourceTree = "<group>"; };
 		35E791EA21C27E5700312F75 /* RAMStageA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMStageA.h; sourceTree = "<group>"; };
 		35E791EB21C27E5700312F75 /* RAMStageA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMStageA.m; sourceTree = "<group>"; };
 		411CD24A238E23970031791F /* RAMRuntimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMRuntimeViewController.h; sourceTree = "<group>"; };
@@ -146,6 +154,10 @@
 				4121D27B238CC3EB0038F2F1 /* RAMLoadInitializeViewController.m */,
 				355EC72C2271E0470045725B /* RAMImageViewController.h */,
 				355EC72D2271E0470045725B /* RAMImageViewController.m */,
+				35CBC7D12396401C00CAF953 /* RAMWsViewController.h */,
+				35CBC7D22396401C00CAF953 /* RAMWsViewController.m */,
+				35CBC7D52396630A00CAF953 /* RAMMacroViewController.h */,
+				35CBC7D62396630A00CAF953 /* RAMMacroViewController.m */,
 				35CA1633238F626F00A32058 /* RAMRuntime */,
 				4121D286238CC5790038F2F1 /* RAMDemoObject */,
 				351C0EE62275A589001174E2 /* RAMJSCoreTest */,
@@ -300,9 +312,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				35E65946238FC9E60064EF96 /* RAMSubDemoObject+RAMDemoCategory.h in Headers */,
+				35CBC7D32396401C00CAF953 /* RAMWsViewController.h in Headers */,
 				35E65945238FC9E10064EF96 /* RAMSubSubDemoObject.h in Headers */,
 				35E65944238FC9DE0064EF96 /* RAMSubDemoObject.h in Headers */,
 				35E65943238FC9DB0064EF96 /* RAMDemoObject.h in Headers */,
+				35CBC7D72396630A00CAF953 /* RAMMacroViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +418,7 @@
 				352B854521D0DC57008C0DE7 /* RAMExportViewController.m in Sources */,
 				3588B09A21C0B7FD0085B8EE /* main.m in Sources */,
 				353E4E3121CCBC3400A689DA /* RAMBlockA.m in Sources */,
+				35CBC7D82396630A00CAF953 /* RAMMacroViewController.m in Sources */,
 				4121D285238CC5490038F2F1 /* RAMSubDemoObject+RAMDemoCategory.m in Sources */,
 				3588B0A921C10ECB0085B8EE /* RAMSubObject.m in Sources */,
 				353E4E2E21CC952D00A689DA /* RAMStageB.m in Sources */,
@@ -411,6 +426,7 @@
 				35AB59B622CB3C790056C891 /* RAMRegTestViewController.m in Sources */,
 				35AB59B222CAFAA00056C891 /* NSObject+NESRunTime.m in Sources */,
 				3588B08C21C0B7FC0085B8EE /* AppDelegate.m in Sources */,
+				35CBC7D42396401C00CAF953 /* RAMWsViewController.m in Sources */,
 				4121D27C238CC3EB0038F2F1 /* RAMLoadInitializeViewController.m in Sources */,
 				352B854821D0DCA7008C0DE7 /* RAMBaseTableViewCell.m in Sources */,
 				352B854B21D0DD22008C0DE7 /* RAMCellModel.m in Sources */,

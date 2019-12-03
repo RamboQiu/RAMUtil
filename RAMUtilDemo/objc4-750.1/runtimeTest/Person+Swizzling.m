@@ -11,16 +11,16 @@
 typedef IMP *IMPPointer;
 
 // 替换方法
-static void MethodSwizzle(id self, SEL _cmd, id arg1, id arg2);
+static void MethodSwizzle(id self, SEL _cmd, id arg1);
 // 原始方法函数指针
 static void (*MethodOriginal)(id self, SEL _cmd, id arg1, id arg2);
 
 // 交换方法函数
-static void MethodSwizzle(id self, SEL _cmd, id arg1, id arg2) {
+static void MethodSwizzle(id self, SEL _cmd, id arg1) {
     // 在这里添加 交换方法的相关代码
     NSLog(@"swizzledFunc");
-    
-    MethodOriginal(self, _cmd, arg1, arg2);
+    NSString *s = @"1";
+    MethodOriginal(self, _cmd, arg1, s);
 }
 
 BOOL class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMPPointer store) {
@@ -44,7 +44,7 @@ BOOL class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMP
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self swizzle:@selector(originalFunc:) with:(IMP)MethodSwizzle store:(IMP *)&MethodOriginal];
+        [self swizzle:@selector(originalFunc::) with:(IMP)MethodSwizzle store:(IMP *)&MethodOriginal];
     });
 }
 
@@ -52,7 +52,7 @@ BOOL class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMP
     return class_swizzleMethodAndStore(self, original, replacement, store);
 }
 
-- (void)originalFunc:(NSString *)arg1 {
+- (void)originalFunc:(NSString *)arg1 :(NSString *)arg2 {
     NSLog(@"originalFunc");
 }
 @end

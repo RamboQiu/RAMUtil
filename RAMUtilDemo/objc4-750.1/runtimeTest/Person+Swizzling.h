@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Person (Swizzling)
-- (void)originalFunc:(NSString *)arg1;
+- (void)originalFunc:(NSString *)arg1 :(NSString *)arg2;
 @end
 
 NS_ASSUME_NONNULL_END

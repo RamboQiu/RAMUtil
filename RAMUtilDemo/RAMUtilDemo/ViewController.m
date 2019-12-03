@@ -11,15 +11,6 @@
 #import <RAMUtil/RAMSafeCollection.h>
 #import <RAMUtil/RAMMustOverrider.h>
 #import "RAMBaseTableViewCell.h"
-#import "RAMExportViewController.h"
-#import "RAMTableViewController.h"
-#import "RAMUIEventChainViewController.h"
-#import "RAMLoadInitializeViewController.h"
-#import "RAMRuntimeViewController.h"
-#import "RAMImageViewController.h"
-#import "RAMNativeJsViewController.h"
-#import "RAMTapGestureHackViewController.h"
-#import "RAMRegTestViewController.h"
 
 @interface ViewController () <
 UITableViewDelegate,
@@ -52,11 +43,12 @@ UITableViewDataSource>
     
     RAMCellModel *exportModel = [[RAMCellModel alloc] initWithTitle:@"__attribute__ 应用实例"
                                                                desc:@"对section部分的配置表信息存储理解实现的一些简单的数据存储提取"];
+    exportModel.classStr = @"RAMExportViewController";
     RAMCellData *exportData = RAMCellData.new;
     exportData.cellClass = RAMBaseTableViewCell.class;
     exportData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:exportModel];
     exportData.cellCustomSEL = @selector(cusNormalCell:withData:);
-    exportData.cellSelectSEL = @selector(selExportCellData:);
+    exportData.cellSelectSEL = @selector(selNormalCellData:);
     exportData.model = exportModel;
     [section1 addObject:exportData];
     
@@ -67,41 +59,45 @@ UITableViewDataSource>
     
     RAMCellModel *tableModel = [[RAMCellModel alloc] initWithTitle:@"tableView滚动测试"
                                                                desc:@"主要对scrollview的delegate的一些研究"];
+    tableModel.classStr = @"RAMTableViewController";
     RAMCellData *tableData = RAMCellData.new;
     tableData.cellClass = RAMBaseTableViewCell.class;
     tableData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:tableModel];
     tableData.cellCustomSEL = @selector(cusNormalCell:withData:);
-    tableData.cellSelectSEL = @selector(selTableCellData:);
+    tableData.cellSelectSEL = @selector(selNormalCellData:);
     tableData.model = tableModel;
     [section2 addObject:tableData];
 
     RAMCellModel *uiTouchChainModel = [[RAMCellModel alloc] initWithTitle:@"UI响应链测试"
                                                                desc:@"iOS UI事件传递与响应者链\nApplication->Window->last subview->..."];
+    uiTouchChainModel.classStr = @"RAMUIEventChainViewController";
     RAMCellData *chainData = RAMCellData.new;
     chainData.cellClass = RAMBaseTableViewCell.class;
     chainData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:uiTouchChainModel];
     chainData.cellCustomSEL = @selector(cusNormalCell:withData:);
-    chainData.cellSelectSEL = @selector(selChainCellData:);
+    chainData.cellSelectSEL = @selector(selNormalCellData:);
     chainData.model = uiTouchChainModel;
     [section2 addObject:chainData];
     
     RAMCellModel *loadInitializeModel = [[RAMCellModel alloc] initWithTitle:@"load方法和initialize方法的异同"
                                                                desc:@"load不会被覆盖，执行顺序 类 -> 子类 ->分类\ninitialize会被覆盖（分类->子类->类），懒加载(第一次被用到时)"];
+    loadInitializeModel.classStr = @"RAMLoadInitializeViewController";
     RAMCellData *loadInitializeData = RAMCellData.new;
     loadInitializeData.cellClass = RAMBaseTableViewCell.class;
     loadInitializeData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:loadInitializeModel];
     loadInitializeData.cellCustomSEL = @selector(cusNormalCell:withData:);
-    loadInitializeData.cellSelectSEL = @selector(selLoadInitCellData:);
+    loadInitializeData.cellSelectSEL = @selector(selNormalCellData:);
     loadInitializeData.model = loadInitializeModel;
     [section2 addObject:loadInitializeData];
     
     RAMCellModel *runtimeModel = [[RAMCellModel alloc] initWithTitle:@"runtime调研"
                                                                desc:@""];
+    runtimeModel.classStr = @"RAMRuntimeViewController";
     RAMCellData *runtimeData = RAMCellData.new;
     runtimeData.cellClass = RAMBaseTableViewCell.class;
     runtimeData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:runtimeModel];
     runtimeData.cellCustomSEL = @selector(cusNormalCell:withData:);
-    runtimeData.cellSelectSEL = @selector(selRuntimeCellData:);
+    runtimeData.cellSelectSEL = @selector(selNormalCellData:);
     runtimeData.model = runtimeModel;
     [section2 addObject:runtimeData];
     
@@ -111,39 +107,64 @@ UITableViewDataSource>
     imageViewData.cellClass = RAMBaseTableViewCell.class;
     imageViewData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:imageViewModel];
     imageViewData.cellCustomSEL = @selector(cusNormalCell:withData:);
-    imageViewData.cellSelectSEL = @selector(selTableCellData:);
+    imageViewData.cellSelectSEL = @selector(selNormalCellData:);
     imageViewData.model = imageViewModel;
-    [section2 addObject:imageViewData];
+//    [section2 addObject:imageViewData];
     
     RAMCellModel *nativetojsModel = [[RAMCellModel alloc] initWithTitle:@"native js通信调研"
                                                                   desc:@"主要是jscore的一些应用实践"];
+    nativetojsModel.classStr = @"RAMNativeJsViewController";
     RAMCellData *nativetojsData = RAMCellData.new;
     nativetojsData.cellClass = RAMBaseTableViewCell.class;
     nativetojsData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:nativetojsModel];
     nativetojsData.cellCustomSEL = @selector(cusNormalCell:withData:);
-    nativetojsData.cellSelectSEL = @selector(selJSCoreCellData:);
+    nativetojsData.cellSelectSEL = @selector(selNormalCellData:);
     nativetojsData.model = nativetojsModel;
     [section2 addObject:nativetojsData];
     
     RAMCellModel *tapGestureHackModel = [[RAMCellModel alloc] initWithTitle:@"tap gesture hack的调研"
                                                                    desc:@"为统计全埋的"];
+    tapGestureHackModel.classStr = @"RAMTapGestureHackViewController";
     RAMCellData *tapGestureHackData = RAMCellData.new;
     tapGestureHackData.cellClass = RAMBaseTableViewCell.class;
     tapGestureHackData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:tapGestureHackModel];
     tapGestureHackData.cellCustomSEL = @selector(cusNormalCell:withData:);
-    tapGestureHackData.cellSelectSEL = @selector(selTapGestureHackCellData:);
+    tapGestureHackData.cellSelectSEL = @selector(selNormalCellData:);
     tapGestureHackData.model = tapGestureHackModel;
     [section2 addObject:tapGestureHackData];
     
     RAMCellModel *regModel = [[RAMCellModel alloc] initWithTitle:@"正则测试"
                                                             desc:@"正则匹配的一些简单验证"];
+    regModel.classStr = @"RAMRegTestViewController";
     RAMCellData *regData = RAMCellData.new;
     regData.cellClass = RAMBaseTableViewCell.class;
     regData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:regModel];
     regData.cellCustomSEL = @selector(cusNormalCell:withData:);
-    regData.cellSelectSEL = @selector(selRegCellData:);
+    regData.cellSelectSEL = @selector(selNormalCellData:);
     regData.model = regModel;
     [section2 addObject:regData];
+    
+    RAMCellModel *wsModel = [[RAMCellModel alloc] initWithTitle:@"weakify(self);strongify(self);"
+                                                            desc:@""];
+    wsModel.classStr = @"RAMWsViewController";
+    RAMCellData *wsData = RAMCellData.new;
+    wsData.cellClass = RAMBaseTableViewCell.class;
+    wsData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:wsModel];
+    wsData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    wsData.cellSelectSEL = @selector(selNormalCellData:);
+    wsData.model = wsModel;
+    [section2 addObject:wsData];
+    
+    RAMCellModel *defineModel = [[RAMCellModel alloc] initWithTitle:@"宏的使用"
+                                                            desc:@"define宏定义中的#，##，@#及/符号"];
+    defineModel.classStr = @"RAMMacroViewController";
+    RAMCellData *defineData = RAMCellData.new;
+    defineData.cellClass = RAMBaseTableViewCell.class;
+    defineData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:defineModel];
+    defineData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    defineData.cellSelectSEL = @selector(selNormalCellData:);
+    defineData.model = defineModel;
+    [section2 addObject:defineData];
     
     [self.staticData setObject:section2 forKey:@"测试类"];
     
@@ -166,59 +187,16 @@ UITableViewDataSource>
     cell.model = data.model;
 }
 
-- (void)selExportCellData:(RAMCellData *)data {
-    RAMExportViewController *vc = [[RAMExportViewController alloc] init];
+- (void)selNormalCellData:(RAMCellData *)data {
     RAMCellModel *cellModel = data.didSelModel;
-    vc.titleText = cellModel.title;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)selTableCellData:(RAMCellData *)data {
-    RAMTableViewController *vc = [[RAMTableViewController alloc] init];
-    RAMCellModel *cellModel = data.didSelModel;
-    vc.titleText = cellModel.title;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)selChainCellData:(RAMCellData *)data {
-    RAMUIEventChainViewController *vc = [[RAMUIEventChainViewController alloc] init];
-    RAMCellModel *cellModel = data.didSelModel;
-    vc.titleText = cellModel.title;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)selJSCoreCellData:(RAMCellData *)data {
-    RAMNativeJsViewController *vc = [[RAMNativeJsViewController alloc] init];
-    RAMCellModel *cellModel = data.didSelModel;
-    vc.titleText = cellModel.title;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)selLoadInitCellData:(RAMCellData *)data {
-    RAMLoadInitializeViewController *vc = [[RAMLoadInitializeViewController alloc] init];
-    RAMCellModel *cellModel = data.didSelModel;
-    vc.titleText = cellModel.title;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-- (void)selTapGestureHackCellData:(RAMCellData *)data {
-    RAMTapGestureHackViewController *vc = [[RAMTapGestureHackViewController alloc] init];
-    RAMCellModel *cellModel = data.didSelModel;
-    vc.titleText = cellModel.title;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)selRuntimeCellData:(RAMCellData *)data {
-    RAMRuntimeViewController *vc = [[RAMRuntimeViewController alloc] init];
-    RAMCellModel *cellModel = data.didSelModel;
-    vc.titleText = cellModel.title;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-    
-- (void)selRegCellData:(RAMCellData *)data {
-    RAMRegTestViewController *vc = [[RAMRegTestViewController alloc] init];
-    RAMCellModel *cellModel = data.didSelModel;
-    vc.titleText = cellModel.title;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (cellModel.classStr.length > 0) {
+        Class cl = NSClassFromString(cellModel.classStr);
+        UIViewController *vc = [[cl alloc] init];
+        if ([vc respondsToSelector:@selector(setTitleText:)]) {
+            [vc performSelector:@selector(setTitleText:) withObject:cellModel.title];
+        }
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark -

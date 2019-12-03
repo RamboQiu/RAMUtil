@@ -11,6 +11,7 @@
 @interface RAMCellModel : NSObject
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *desc;
+@property (nonatomic, strong) NSString *classStr;
 
 - (instancetype)initWithTitle:(NSString *)title
                          desc:(NSString *)desc;

@@ -27,7 +27,7 @@ int main(int argc, const char * argv[]) {
         // insert code here...
         Person *p = [[Person alloc] init];
 //        [p fly];
-        [p originalFunc:@"参数1"];
+        [p originalFunc:@"参数1" :@"参数2"];
 
         Class pcls = [Person class];
         NSLog(@"p address = %p",pcls);
