@@ -37,8 +37,9 @@
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    NSLog(@"%@-hitTest",self.title.text);
     UIView *bo = [super hitTest:point withEvent:event];
-    NSLog(@"%@:%@:%@",self.title.text, bo, NSStringFromSelector(_cmd));
+    NSLog(@"%@-hitTestView:%@",self.title.text,bo);
     return bo;
 }
 
@@ -48,8 +49,9 @@
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    NSLog(@"%@-pointInside",self.title.text);
     BOOL bo = [super pointInside:point withEvent:event];
-    NSLog(@"%@:%@:%@",self.title.text, bo?@"YES":@"NO", NSStringFromSelector(_cmd));
+    NSLog(@"%@-pointInside:%@",self.title.text,bo?@"YES":@"NO");
     return bo;
 }
 
@@ -81,9 +83,9 @@
     
     RAMDemoView *view2 = RAMDemoView.new;
     view2.title.text = @"B";
-    [self.view addSubview:view2];
-    view2.x = 150;
-    view2.y = 150;
+    [view1 addSubview:view2];
+    view2.x = 50;
+    view2.y = 50;
     view2.width = 100;
     view2.height = 100;
     
@@ -99,9 +101,9 @@
     
     RAMDemoView *view3 = RAMDemoView.new;
     view3.title.text = @"C";
-    [self.view addSubview:view3];
-    view3.x = 150;
-    view3.y = 260;
+    [view1 addSubview:view3];
+    view3.x = 50;
+    view3.y = 160;
     view3.width = 100;
     view3.height = 100;
     
@@ -121,6 +123,14 @@
     view32.y = 50;
     view32.width = 100;
     view32.height = 100;
+    
+    RAMDemoView *view4 = RAMDemoView.new;
+    view4.title.text = @"D";
+    [self.view addSubview:view4];
+    view4.x = 100;
+    view4.y = 500;
+    view4.width = 200;
+    view4.height = 300;
     
     
 }

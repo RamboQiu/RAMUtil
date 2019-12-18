@@ -69,7 +69,7 @@ UITableViewDataSource>
     [section2 addObject:tableData];
 
     RAMCellModel *uiTouchChainModel = [[RAMCellModel alloc] initWithTitle:@"UI响应链测试"
-                                                               desc:@"iOS UI事件传递与响应者链\nApplication->Window->last subview->..."];
+                                                               desc:@"iOS UI事件传递与响应者链\nApplication->Window->last subview->...\npointInside(YES)->遍历子集（无子集hitTest返回本身）\npointInside(NO)->hitTest返回null"];
     uiTouchChainModel.classStr = @"RAMUIEventChainViewController";
     RAMCellData *chainData = RAMCellData.new;
     chainData.cellClass = RAMBaseTableViewCell.class;
@@ -165,6 +165,31 @@ UITableViewDataSource>
     defineData.cellSelectSEL = @selector(selNormalCellData:);
     defineData.model = defineModel;
     [section2 addObject:defineData];
+    
+    RAMCellModel *blockModel = [[RAMCellModel alloc] initWithTitle:@"Block"
+                                                            desc:@"1. block的原理是怎样的？本质是什么？\n"
+                                                                  "2. __block的作用是什么？有什么使用注意点？\n"
+                                                                  "3. block的属性修饰词为什么是copy？使用block有哪些使用注意？\n"
+                                                                  "4. block在修改NSMutableArray，需不需要添加__block？\n"];
+    blockModel.classStr = @"RAMBlockViewController";
+    RAMCellData *blockData = RAMCellData.new;
+    blockData.cellClass = RAMBaseTableViewCell.class;
+    blockData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:blockModel];
+    blockData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    blockData.cellSelectSEL = @selector(selNormalCellData:);
+    blockData.model = blockModel;
+    [section2 addObject:blockData];
+    
+    RAMCellModel *fbModel = [[RAMCellModel alloc] initWithTitle:@"frame bounds"
+                                                            desc:@"frame和bounds的区别"];
+    fbModel.classStr = @"RAMFrameBoundsController";
+    RAMCellData *fbData = RAMCellData.new;
+    fbData.cellClass = RAMBaseTableViewCell.class;
+    fbData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:fbModel];
+    fbData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    fbData.cellSelectSEL = @selector(selNormalCellData:);
+    fbData.model = fbModel;
+    [section2 addObject:fbData];
     
     [self.staticData setObject:section2 forKey:@"测试类"];
     
