@@ -55,13 +55,33 @@
 //}
 //static struct IMAGE_INFO { unsigned version; unsigned flag; } _OBJC_IMAGE_INFO = { 0, 2 };
 
+typedef void(^Block)(NSString *);
+
 @interface TestDemoObj : NSObject
-@property (nonatomic, assign) int intDemo;
-@property (nonatomic, strong) NSString *stringDemo;
+@property (nonatomic, strong) Block blk;
 @end
 
 @implementation TestDemoObj
+- (instancetype)initWithBlock:(Block)block {
+    if (self = [super init]) {
+        _blk = block;
+    }
+    return self;
+}
 
+- (void)Block:(Block)block {
+    _blk = block;
+    NSLog(@"====%@",block);
+}
+
+
+- (void)execute {
+    _blk(@"回调数据");
+}
+
+-(void)dealloc {
+    NSLog(@"TestDemoObj释放了");
+}
 @end
 
 int c = 12;

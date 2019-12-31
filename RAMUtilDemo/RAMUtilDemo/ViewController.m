@@ -180,6 +180,27 @@ UITableViewDataSource>
     blockData.model = blockModel;
     [section2 addObject:blockData];
     
+    RAMCellModel *gcdModel = [[RAMCellModel alloc] initWithTitle:@"GCD"
+                                                            desc:@"1 GCD 栅栏方法：dispatch_barrier_async\n"
+                                                                  "2 GCD 延时执行方法：dispatch_after\n"
+                                                                  "3 GCD 一次性代码（只执行一次）：dispatch_once\n"
+                                                                  "4 GCD 快速迭代方法：dispatch_apply\n"
+                                                                  "5 GCD 队列组：dispatch_group\n"
+                                                                  "5.1 dispatch_group_notify\n"
+                                                                  "5.2 dispatch_group_wait\n"
+                                                                  "5.3 dispatch_group_enter、dispatch_group_leave\n"
+                                                                  "6 GCD 信号量：dispatch_semaphore\n"
+                                                                  "6.1 Dispatch Semaphore 线程同步\n"
+                                                                  "6.2 Dispatch Semaphore 线"];
+    gcdModel.classStr = @"RAMGCDViewController";
+    RAMCellData *gcdData = RAMCellData.new;
+    gcdData.cellClass = RAMBaseTableViewCell.class;
+    gcdData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:gcdModel];
+    gcdData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    gcdData.cellSelectSEL = @selector(selNormalCellData:);
+    gcdData.model = gcdModel;
+    [section2 addObject:gcdData];
+    
     RAMCellModel *fbModel = [[RAMCellModel alloc] initWithTitle:@"frame bounds"
                                                             desc:@"frame和bounds的区别"];
     fbModel.classStr = @"RAMFrameBoundsController";
