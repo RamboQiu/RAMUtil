@@ -13,7 +13,7 @@
 
 @implementation UITapGestureRecognizer (NESRecordEvent)
 + (void)load {
-    [self nes_swizzleInstanceMethod:@selector(initWithTarget:action:) to:@selector(nes_initWithTarget:action:)];
+//    [self nes_swizzleInstanceMethod:@selector(initWithTarget:action:) to:@selector(nes_initWithTarget:action:)];
 //    [self nes_swizzleInstanceMethod:@selector(setDelegate:) to:@selector(nes_setDelegate:)];
 }
 

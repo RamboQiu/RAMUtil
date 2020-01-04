@@ -9,6 +9,49 @@
 #import "RAMUIEventChainViewController.h"
 #import <RAMUtil/UIView+Frame.h>
 #import <RAMUtil/UIColor+RAMHEX.h>
+#import <RAMUtil/UIImage+RAMColor.h>
+
+@interface RAMDemoButton : UIButton
+
+@end
+
+@implementation RAMDemoButton
+
+- (instancetype)init {
+    if (self = [super init]) {
+        [self setBackgroundImage:[UIImage imageWithColor:[UIColor randomRGBColor]] forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor randomRGBColor] forState:UIControlStateNormal];
+        self.titleLabel.font = [UIFont systemFontOfSize:12];
+    }
+    return self;
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    NSLog(@"%@-hitTest",self.titleLabel.text);
+    UIView *bo = [super hitTest:point withEvent:event];
+    NSLog(@"%@-hitTestView:%@",self.titleLabel.text,bo);
+    return bo;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"%@:%@",self.titleLabel.text, NSStringFromSelector(_cmd));
+    [super touchesBegan:touches withEvent:event];
+    // 优先响应的target之后，touch就不会透传到下一个响应者了，但是不会阻挡响应链的往下透传
+//    [self.nextResponder touchesBegan:touches withEvent:event];
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    NSLog(@"%@-pointInside",self.titleLabel.text);
+    BOOL bo = [super pointInside:point withEvent:event];
+    NSLog(@"%@-pointInside:%@",self.titleLabel.text,bo?@"YES":@"NO");
+    return bo;
+}
+
+- (NSString *)description {
+    return self.titleLabel.text;
+}
+
+@end
 
 @interface RAMDemoView : UIView
 @property (nonatomic, strong) UILabel *title;
@@ -22,7 +65,7 @@
     if (self) {
         _title = UILabel.new;
         _title.font = [UIFont systemFontOfSize:12];
-        _title.textColor = [UIColor grayColor];
+        _title.textColor = [UIColor randomRGBColor];
         [self addSubview:_title];
         
         self.backgroundColor = [UIColor randomRGBColor];
@@ -101,6 +144,8 @@
     
     RAMDemoView *view3 = RAMDemoView.new;
     view3.title.text = @"C";
+    UITapGestureRecognizer *tapc = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    [view3 addGestureRecognizer:tapc];
     [view1 addSubview:view3];
     view3.x = 50;
     view3.y = 160;
@@ -118,11 +163,37 @@
     
     RAMDemoView *view32 = RAMDemoView.new;
     view32.title.text = @"C2";
+//    view32.userInteractionEnabled = NO;
+    UITapGestureRecognizer *tapc2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+//    [view32 addGestureRecognizer:tapc2];
     [view3 addSubview:view32];
     view32.x = 50;
     view32.y = 50;
     view32.width = 100;
     view32.height = 100;
+    
+    RAMDemoButton *c21Btn = [[RAMDemoButton alloc] init];
+    [c21Btn setTitle:@"C21" forState:UIControlStateNormal];
+//    [c21Btn addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
+    UITapGestureRecognizer *tapc21 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+//    tapc21.cancelsTouchesInView = NO;
+//    [c21Btn addGestureRecognizer:tapc21];
+    c21Btn.width = 30;
+    c21Btn.height = 30;
+    c21Btn.x = 20;
+    c21Btn.y = 20;
+    [view32 addSubview:c21Btn];
+    
+    RAMDemoView *view211 = RAMDemoView.new;
+    view211.title.text = @"C211";
+    view211.userInteractionEnabled = NO;
+    UITapGestureRecognizer *tapc211 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+//    [view211 addGestureRecognizer:tapc211];
+    [c21Btn addSubview:view211];
+    view211.x = 10;
+    view211.y = 0;
+    view211.width = 10;
+    view211.height = 10;
     
     RAMDemoView *view4 = RAMDemoView.new;
     view4.title.text = @"D";
@@ -135,5 +206,11 @@
     
 }
 
+- (void)tapAction:(UITapGestureRecognizer *)sender {
+    NSLog(@"%@-Action",sender.view);
+}
 
+- (void)clickAction {
+    NSLog(@"C21-clickAction");
+}
 @end

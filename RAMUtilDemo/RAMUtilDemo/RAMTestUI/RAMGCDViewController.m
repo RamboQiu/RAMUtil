@@ -14,6 +14,7 @@
 
 @interface RAMGCDViewController ()
 @property (nonatomic, strong) dispatch_queue_t mainQueue;
+@property (nonatomic, strong) dispatch_source_t myGCDTimer;
 @end
 
 @implementation RAMGCDViewController
@@ -84,6 +85,21 @@
 //        NSLog(@"%@----",[NSThread currentThread]);
 //        NSLog(@"\n\n");
 //    }
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+    if (timer) {
+        self.myGCDTimer = timer;
+        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1 * NSEC_PER_SEC, 1ull * NSEC_PER_SEC);
+        dispatch_source_set_event_handler(timer, ^ {
+            NSLog(@"doSomething");
+        });
+        dispatch_resume(timer);
+    }
+}
+- (void)dealloc {
+    if (_myGCDTimer) {
+        dispatch_cancel(_myGCDTimer);
+    }
+    NSLog(@"MyViewController dealloc");
 }
 
 //区别 1『异步执行+并发队列』嵌套『同一个并发队列』 2『同步执行+并发队列』嵌套『同一个并发队列』3『异步执行+串行队列』嵌套『同一个串行队列』4『同步执行+串行队列』嵌套『同一个串行队列』
