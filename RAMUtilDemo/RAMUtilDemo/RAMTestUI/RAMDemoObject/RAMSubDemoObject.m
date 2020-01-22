@@ -10,10 +10,10 @@
 
 @implementation RAMSubDemoObject
 + (void)load {
-    NSLog(@"a1 sub %@", NSStringFromSelector(_cmd));
+    NSLog(@"a sub %@", NSStringFromSelector(_cmd));
 }
 
 + (void)initialize {
-    NSLog(@"a1 sub %@", NSStringFromSelector(_cmd));
+    NSLog(@"a sub %@", NSStringFromSelector(_cmd));
 }
 @end

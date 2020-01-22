@@ -53,8 +53,13 @@
 		4121D285238CC5490038F2F1 /* RAMSubDemoObject+RAMDemoCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4121D284238CC5490038F2F1 /* RAMSubDemoObject+RAMDemoCategory.m */; };
 		4121D28F238D68AE0038F2F1 /* RAMSubSubDemoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4121D28E238D68AE0038F2F1 /* RAMSubSubDemoObject.m */; };
 		416A8423238B81EE0031BCF3 /* RAMUIEventChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A8422238B81EE0031BCF3 /* RAMUIEventChainViewController.m */; };
+		41F7EAF423C2139F00E8E408 /* RAMDemo2Object.h in Headers */ = {isa = PBXBuildFile; fileRef = 41F7EAF223C2139F00E8E408 /* RAMDemo2Object.h */; };
+		41F7EAF523C2139F00E8E408 /* RAMDemo2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7EAF323C2139F00E8E408 /* RAMDemo2Object.m */; };
+		41F7EAF823C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.h in Headers */ = {isa = PBXBuildFile; fileRef = 41F7EAF623C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.h */; };
+		41F7EAF923C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7EAF723C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.m */; };
 		41FF691A23BB072E0096E852 /* RAMGCDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 41FF691823BB072E0096E852 /* RAMGCDViewController.h */; };
 		41FF691B23BB072E0096E852 /* RAMGCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FF691923BB072E0096E852 /* RAMGCDViewController.m */; };
+		E6948FDC35244DA70C242964 /* libPods-RAMUtilDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FE2B658334F68A9E1F2E68 /* libPods-RAMUtilDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,9 +136,14 @@
 		4121D28E238D68AE0038F2F1 /* RAMSubSubDemoObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMSubSubDemoObject.m; sourceTree = "<group>"; };
 		416A8421238B81EE0031BCF3 /* RAMUIEventChainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMUIEventChainViewController.h; sourceTree = "<group>"; };
 		416A8422238B81EE0031BCF3 /* RAMUIEventChainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMUIEventChainViewController.m; sourceTree = "<group>"; };
+		41F7EAF223C2139F00E8E408 /* RAMDemo2Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMDemo2Object.h; sourceTree = "<group>"; };
+		41F7EAF323C2139F00E8E408 /* RAMDemo2Object.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMDemo2Object.m; sourceTree = "<group>"; };
+		41F7EAF623C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RAMSubDemoObject+RAMDemoCategory2.h"; sourceTree = "<group>"; };
+		41F7EAF723C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RAMSubDemoObject+RAMDemoCategory2.m"; sourceTree = "<group>"; };
 		41FF691823BB072E0096E852 /* RAMGCDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMGCDViewController.h; sourceTree = "<group>"; };
 		41FF691923BB072E0096E852 /* RAMGCDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMGCDViewController.m; sourceTree = "<group>"; };
 		B3AD32EE145FD47046E4259D /* Pods-RAMUtilDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAMUtilDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		B7FE2B658334F68A9E1F2E68 /* libPods-RAMUtilDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RAMUtilDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6948FDC35244DA70C242964 /* libPods-RAMUtilDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,12 +318,16 @@
 			children = (
 				4121D27D238CC49D0038F2F1 /* RAMDemoObject.h */,
 				4121D27E238CC49D0038F2F1 /* RAMDemoObject.m */,
+				41F7EAF223C2139F00E8E408 /* RAMDemo2Object.h */,
+				41F7EAF323C2139F00E8E408 /* RAMDemo2Object.m */,
 				4121D280238CC5080038F2F1 /* RAMSubDemoObject.h */,
 				4121D281238CC5080038F2F1 /* RAMSubDemoObject.m */,
 				4121D28D238D68AE0038F2F1 /* RAMSubSubDemoObject.h */,
 				4121D28E238D68AE0038F2F1 /* RAMSubSubDemoObject.m */,
 				4121D283238CC5490038F2F1 /* RAMSubDemoObject+RAMDemoCategory.h */,
 				4121D284238CC5490038F2F1 /* RAMSubDemoObject+RAMDemoCategory.m */,
+				41F7EAF623C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.h */,
+				41F7EAF723C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.m */,
 			);
 			path = RAMDemoObject;
 			sourceTree = "<group>";
@@ -320,6 +335,7 @@
 		B5E9ECF6C2CC63F934798635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7FE2B658334F68A9E1F2E68 /* libPods-RAMUtilDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -340,11 +356,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41F7EAF423C2139F00E8E408 /* RAMDemo2Object.h in Headers */,
 				35E65946238FC9E60064EF96 /* RAMSubDemoObject+RAMDemoCategory.h in Headers */,
 				41FF691A23BB072E0096E852 /* RAMGCDViewController.h in Headers */,
 				35CBC7D32396401C00CAF953 /* RAMWsViewController.h in Headers */,
 				35EB716223A9BFAF00F1E0D1 /* RAMFrameBoundsController.h in Headers */,
 				35E65945238FC9E10064EF96 /* RAMSubSubDemoObject.h in Headers */,
+				41F7EAF823C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.h in Headers */,
 				35E65944238FC9DE0064EF96 /* RAMSubDemoObject.h in Headers */,
 				35E65943238FC9DB0064EF96 /* RAMDemoObject.h in Headers */,
 				352E9A1F2397E6D8009531D1 /* RAMBlockViewController.h in Headers */,
@@ -451,6 +469,8 @@
 				3588B09A21C0B7FD0085B8EE /* main.m in Sources */,
 				353E4E3121CCBC3400A689DA /* RAMBlockA.m in Sources */,
 				35CBC7D82396630A00CAF953 /* RAMMacroViewController.m in Sources */,
+				41F7EAF523C2139F00E8E408 /* RAMDemo2Object.m in Sources */,
+				41F7EAF923C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.m in Sources */,
 				4121D285238CC5490038F2F1 /* RAMSubDemoObject+RAMDemoCategory.m in Sources */,
 				3588B0A921C10ECB0085B8EE /* RAMSubObject.m in Sources */,
 				353E4E2E21CC952D00A689DA /* RAMStageB.m in Sources */,

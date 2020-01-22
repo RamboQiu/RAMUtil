@@ -8,7 +8,7 @@ project 'RAMUtilDemo.xcodeproj'
 target 'RAMUtilDemo' do
     platform :ios, '8.0'
     pod 'RAMUtil', :path => '../'  #:git => 'https://github.com/RamboQiu/RAMUtil.git', :tag => '1.0.0'
-    
+    pod 'YYKit'
 end
 
 #  platform :ios, '8.0'

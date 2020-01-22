@@ -57,6 +57,8 @@
 
 typedef void(^Block)(NSString *);
 
+#define MAXA(A,B) A>B?A:B
+
 @interface TestDemoObj : NSObject
 @property (nonatomic, strong) Block blk;
 @end
@@ -72,6 +74,7 @@ typedef void(^Block)(NSString *);
 - (void)Block:(Block)block {
     _blk = block;
     NSLog(@"====%@",block);
+    int a = MAXA(10, 20);
 }
 
 

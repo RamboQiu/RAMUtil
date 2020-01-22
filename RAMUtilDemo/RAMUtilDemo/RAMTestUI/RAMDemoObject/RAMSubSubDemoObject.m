@@ -11,11 +11,11 @@
 @implementation RAMSubSubDemoObject
 
 //+ (void)load {
-//    NSLog(@"a1 sub sub %@", NSStringFromSelector(_cmd));
+//    NSLog(@"a sub sub %@", NSStringFromSelector(_cmd));
 //}
 
 + (void)initialize {
-    NSLog(@"a1 sub sub %@", NSStringFromSelector(_cmd));
+    NSLog(@"a sub sub %@", NSStringFromSelector(_cmd));
 }
 
 @end

@@ -10,10 +10,10 @@
 
 @implementation RAMSubDemoObject (RAMDemoCategory)
 + (void)load {
-    NSLog(@"a2 sub catogory %@", NSStringFromSelector(_cmd));
+    NSLog(@"a sub catogory %@", NSStringFromSelector(_cmd));
 }
 
 +(void)initialize {
-    NSLog(@"a2 sub catogory %@", NSStringFromSelector(_cmd));
+    NSLog(@"a sub catogory %@", NSStringFromSelector(_cmd));
 }
 @end

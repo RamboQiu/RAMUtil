@@ -11,10 +11,11 @@
 #import <RAMUtil/UIColor+RAMHEX.h>
 #import "RAMDemoObject/RAMDemoObject.h"
 #import "RAMDemoObject/RAMSubDemoObject.h"
+#import "RAMDemoObject/RAMDemo2Object.h"
 
 @interface RAMLoadInitializeViewController ()
 @property (nonatomic, strong) UIButton *button;
-@property (nonatomic, strong) RAMDemoObject *test;
+//@property (nonatomic, strong) RAMDemoObject *test;
 @property (nonatomic, strong) RAMSubDemoObject *subTest;
 @end
 
@@ -44,8 +45,8 @@
 }
 
 - (void)testAction:(id)sender {
-//    RAMDemoObject *test = RAMDemoObject.new;
-    [self.test test];
+    RAMDemo2Object *test = RAMDemo2Object.new;
+//    [self.test test];
 }
 
 @end

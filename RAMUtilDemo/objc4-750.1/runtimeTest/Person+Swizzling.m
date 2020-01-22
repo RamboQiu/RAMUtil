@@ -55,4 +55,5 @@ BOOL class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMP
 - (void)originalFunc:(NSString *)arg1 :(NSString *)arg2 {
     NSLog(@"originalFunc");
 }
+
 @end
