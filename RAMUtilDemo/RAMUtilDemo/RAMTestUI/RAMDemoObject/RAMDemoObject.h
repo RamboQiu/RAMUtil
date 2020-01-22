@@ -13,8 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RAMDemoObject : NSObject
 
 @property (nonatomic, strong) NSString *testProperty;
+@property (nonatomic, assign) int type;
 
 - (void)test;
+
++ (instancetype)initWithType:(int)type;
 @end
 
 NS_ASSUME_NONNULL_END

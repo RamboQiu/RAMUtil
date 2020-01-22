@@ -57,6 +57,9 @@
 		41F7EAF523C2139F00E8E408 /* RAMDemo2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7EAF323C2139F00E8E408 /* RAMDemo2Object.m */; };
 		41F7EAF823C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.h in Headers */ = {isa = PBXBuildFile; fileRef = 41F7EAF623C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.h */; };
 		41F7EAF923C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7EAF723C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.m */; };
+		41B45A6F23D6DB4B00C03139 /* RAMSwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B45A6E23D6DB4B00C03139 /* RAMSwiftViewController.swift */; };
+		41B45A7123D6DC4000C03139 /* RAMSwiftObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B45A7023D6DC4000C03139 /* RAMSwiftObject.swift */; };
+		41B45A7323D6E80600C03139 /* RAMSwiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B45A7223D6E80600C03139 /* RAMSwiftView.swift */; };
 		41FF691A23BB072E0096E852 /* RAMGCDViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 41FF691823BB072E0096E852 /* RAMGCDViewController.h */; };
 		41FF691B23BB072E0096E852 /* RAMGCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FF691923BB072E0096E852 /* RAMGCDViewController.m */; };
 		E6948FDC35244DA70C242964 /* libPods-RAMUtilDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FE2B658334F68A9E1F2E68 /* libPods-RAMUtilDemo.a */; };
@@ -140,6 +143,10 @@
 		41F7EAF323C2139F00E8E408 /* RAMDemo2Object.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMDemo2Object.m; sourceTree = "<group>"; };
 		41F7EAF623C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RAMSubDemoObject+RAMDemoCategory2.h"; sourceTree = "<group>"; };
 		41F7EAF723C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RAMSubDemoObject+RAMDemoCategory2.m"; sourceTree = "<group>"; };
+		41B45A6D23D6DB4B00C03139 /* RAMUtilDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RAMUtilDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		41B45A6E23D6DB4B00C03139 /* RAMSwiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMSwiftViewController.swift; sourceTree = "<group>"; };
+		41B45A7023D6DC4000C03139 /* RAMSwiftObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMSwiftObject.swift; sourceTree = "<group>"; };
+		41B45A7223D6E80600C03139 /* RAMSwiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMSwiftView.swift; sourceTree = "<group>"; };
 		41FF691823BB072E0096E852 /* RAMGCDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMGCDViewController.h; sourceTree = "<group>"; };
 		41FF691923BB072E0096E852 /* RAMGCDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMGCDViewController.m; sourceTree = "<group>"; };
 		B3AD32EE145FD47046E4259D /* Pods-RAMUtilDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAMUtilDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +194,7 @@
 				35EB716123A9BFAE00F1E0D1 /* RAMFrameBoundsController.m */,
 				41FF691823BB072E0096E852 /* RAMGCDViewController.h */,
 				41FF691923BB072E0096E852 /* RAMGCDViewController.m */,
+				41B45A6C23D6DB2400C03139 /* RAMSwift */,
 				35E1A703239946CF0023AA3B /* RAMBlock */,
 				35CA1633238F626F00A32058 /* RAMRuntime */,
 				4121D286238CC5790038F2F1 /* RAMDemoObject */,
@@ -332,6 +340,17 @@
 			path = RAMDemoObject;
 			sourceTree = "<group>";
 		};
+		41B45A6C23D6DB2400C03139 /* RAMSwift */ = {
+			isa = PBXGroup;
+			children = (
+				41B45A6E23D6DB4B00C03139 /* RAMSwiftViewController.swift */,
+				41B45A7023D6DC4000C03139 /* RAMSwiftObject.swift */,
+				41B45A7223D6E80600C03139 /* RAMSwiftView.swift */,
+				41B45A6D23D6DB4B00C03139 /* RAMUtilDemo-Bridging-Header.h */,
+			);
+			path = RAMSwift;
+			sourceTree = "<group>";
+		};
 		B5E9ECF6C2CC63F934798635 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +422,7 @@
 				TargetAttributes = {
 					3588B08621C0B7FC0085B8EE = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1120;
 					};
 				};
 			};
@@ -473,6 +493,7 @@
 				41F7EAF923C2143300E8E408 /* RAMSubDemoObject+RAMDemoCategory2.m in Sources */,
 				4121D285238CC5490038F2F1 /* RAMSubDemoObject+RAMDemoCategory.m in Sources */,
 				3588B0A921C10ECB0085B8EE /* RAMSubObject.m in Sources */,
+				41B45A6F23D6DB4B00C03139 /* RAMSwiftViewController.swift in Sources */,
 				353E4E2E21CC952D00A689DA /* RAMStageB.m in Sources */,
 				4121D27F238CC49D0038F2F1 /* RAMDemoObject.m in Sources */,
 				41FF691B23BB072E0096E852 /* RAMGCDViewController.m in Sources */,
@@ -490,9 +511,11 @@
 				351C0F002275A589001174E2 /* RAMNativeJsViewController.m in Sources */,
 				353E4E3721CCD9CE00A689DA /* RAMData.m in Sources */,
 				3588B0A621C10EBA0085B8EE /* RAMSuperObject.m in Sources */,
+				41B45A7123D6DC4000C03139 /* RAMSwiftObject.swift in Sources */,
 				35AB59AF22CAFA780056C891 /* UITapGestureRecognizer+NESRecordEvent.m in Sources */,
 				35E791EC21C27E5700312F75 /* RAMStageA.m in Sources */,
 				4121D282238CC5080038F2F1 /* RAMSubDemoObject.m in Sources */,
+				41B45A7323D6E80600C03139 /* RAMSwiftView.swift in Sources */,
 				35EB716323A9BFAF00F1E0D1 /* RAMFrameBoundsController.m in Sources */,
 				35497F0E2269FC4600D090E8 /* RAMTableViewController.m in Sources */,
 				411CD24C238E23970031791F /* RAMRuntimeViewController.m in Sources */,
@@ -641,7 +664,9 @@
 			baseConfigurationReference = B3AD32EE145FD47046E4259D /* Pods-RAMUtilDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = MEEVZF39DJ;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -655,6 +680,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rambo.RAMUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RAMUtilDemo/RAMTestUI/RAMSwift/RAMUtilDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -664,7 +692,9 @@
 			baseConfigurationReference = 2C7926A168C8164D77724228 /* Pods-RAMUtilDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = MEEVZF39DJ;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -678,6 +708,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rambo.RAMUtilDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RAMUtilDemo/RAMTestUI/RAMSwift/RAMUtilDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -20,4 +20,14 @@
 + (void)initialize {
     NSLog(@"a father %@", NSStringFromSelector(_cmd));
 }
+
++ (instancetype)initWithType:(int)type {
+    RAMDemoObject *tmp = RAMDemoObject.new;
+    tmp.type = type;
+    return tmp;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%d",self.type];
+}
 @end

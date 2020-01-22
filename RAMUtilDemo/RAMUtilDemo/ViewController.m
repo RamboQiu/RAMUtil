@@ -11,6 +11,7 @@
 #import <RAMUtil/RAMSafeCollection.h>
 #import <RAMUtil/RAMMustOverrider.h>
 #import "RAMBaseTableViewCell.h"
+#import "RAMUtilDemo-Swift.h"
 
 @interface ViewController () <
 UITableViewDelegate,
@@ -56,6 +57,17 @@ UITableViewDataSource>
     
     
     NSMutableArray<RAMCellData *> *section2 = [NSMutableArray array];
+    
+    RAMCellModel *swiftModel = [[RAMCellModel alloc] initWithTitle:@"Swift学习"
+                                                            desc:@"cnswift.org"];
+    swiftModel.classStr = @"RAMUtilDemo.RAMSwiftViewController";
+    RAMCellData *swiftData = RAMCellData.new;
+    swiftData.cellClass = RAMBaseTableViewCell.class;
+    swiftData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:swiftModel];
+    swiftData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    swiftData.cellSelectSEL = @selector(selNormalCellData:);
+    swiftData.model = swiftModel;
+    [section2 addObject:swiftData];
     
     RAMCellModel *tableModel = [[RAMCellModel alloc] initWithTitle:@"tableView滚动测试"
                                                                desc:@"主要对scrollview的delegate的一些研究"];

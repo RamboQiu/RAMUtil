@@ -10,6 +10,7 @@
 #import <RAMUtil/UIView+Frame.h>
 #import <RAMUtil/UIColor+RAMHEX.h>
 #import <RAMUtil/UIImage+RAMColor.h>
+#import "RAMDemoObject.h"
 
 @interface RAMDemoButton : UIButton
 
@@ -105,7 +106,7 @@
 @end
 
 @interface RAMUIEventChainViewController ()
-
+@property (nonatomic, strong) NSMutableArray<RAMDemoObject *> *list;
 @end
 
 @implementation RAMUIEventChainViewController
@@ -174,7 +175,7 @@
     
     RAMDemoButton *c21Btn = [[RAMDemoButton alloc] init];
     [c21Btn setTitle:@"C21" forState:UIControlStateNormal];
-//    [c21Btn addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
+    [c21Btn addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
     UITapGestureRecognizer *tapc21 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
 //    tapc21.cancelsTouchesInView = NO;
 //    [c21Btn addGestureRecognizer:tapc21];
@@ -203,7 +204,13 @@
     view4.width = 200;
     view4.height = 300;
     
-    
+//    self.list = [NSMutableArray array];
+//    [self.list addObject:[RAMDemoObject initWithType:1]];
+//    [self.list addObject:[RAMDemoObject initWithType:2]];
+//    [self.list addObject:[RAMDemoObject initWithType:3]];
+//    [self.list addObject:[RAMDemoObject initWithType:4]];
+//    [self.list addObject:[RAMDemoObject initWithType:5]];
+//    [self.list addObject:[RAMDemoObject initWithType:6]];
 }
 
 - (void)tapAction:(UITapGestureRecognizer *)sender {
@@ -212,5 +219,15 @@
 
 - (void)clickAction {
     NSLog(@"C21-clickAction");
+    
+//    for (int i = 0; i < self.list.count; i ++) {
+//        RAMDemoObject *tmp = [self.list objectAtIndex:i];
+//        if (tmp.type == 2) {
+//            [self.list removeObjectAtIndex:i];
+//            [self.list insertObject:tmp atIndex:3];
+//            break;
+//        }
+//    }
+//    NSLog(@"%@",self.list);
 }
 @end
