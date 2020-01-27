@@ -21,6 +21,8 @@ class RAMSwiftViewController: UIViewController {
         
         var object = RAMSwiftObject();
         object.test();
+//        print(object.greet());
+        
         
     }
     
