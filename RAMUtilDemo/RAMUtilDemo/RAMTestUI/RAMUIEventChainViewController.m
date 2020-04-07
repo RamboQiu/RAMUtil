@@ -181,7 +181,7 @@
 //    [c21Btn addGestureRecognizer:tapc21];
     c21Btn.width = 30;
     c21Btn.height = 30;
-    c21Btn.x = 20;
+//    c21Btn.x = 20;
     c21Btn.y = 20;
     [view32 addSubview:c21Btn];
     

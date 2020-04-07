@@ -23,6 +23,13 @@ class RAMSwiftViewController: UIViewController {
         object.test();
 //        print(object.greet());
         
+//        var object = RAMSwiftObject();
+//        object.test();
+        
+//        var subview1 = RAMSwiftView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+////        subview1.frame
+//        self.view.addSubview(view: subview1);
+//        subview1.fra
         
     }
     

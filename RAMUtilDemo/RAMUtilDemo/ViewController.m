@@ -69,6 +69,17 @@ UITableViewDataSource>
     swiftData.model = swiftModel;
     [section2 addObject:swiftData];
     
+    RAMCellModel *animateModel = [[RAMCellModel alloc] initWithTitle:@"animate学习"
+                                                            desc:@""];
+    animateModel.classStr = @"RAMUtilDemo.RAMAnimateController";
+    RAMCellData *animateData = RAMCellData.new;
+    animateData.cellClass = RAMBaseTableViewCell.class;
+    animateData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:animateModel];
+    animateData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    animateData.cellSelectSEL = @selector(selNormalCellData:);
+    animateData.model = animateModel;
+    [section2 addObject:animateData];
+    
     RAMCellModel *tableModel = [[RAMCellModel alloc] initWithTitle:@"tableView滚动测试"
                                                                desc:@"主要对scrollview的delegate的一些研究"];
     tableModel.classStr = @"RAMTableViewController";
