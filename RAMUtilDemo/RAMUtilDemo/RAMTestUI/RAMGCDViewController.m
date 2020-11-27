@@ -15,6 +15,8 @@
 @interface RAMGCDViewController ()
 @property (nonatomic, strong) dispatch_queue_t mainQueue;
 @property (nonatomic, strong) dispatch_source_t myGCDTimer;
+@property (nonatomic, assign) long long lastTimestamp;
+@property (nonatomic, strong) NSString *testString;
 @end
 
 @implementation RAMGCDViewController
@@ -23,6 +25,10 @@
     [super viewDidLoad];
     self.title = self.titleText?:@"";
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"1");
+    });
     
 
     self.mainQueue = dispatch_queue_create("test.main", DISPATCH_QUEUE_CONCURRENT);
@@ -58,7 +64,9 @@
 //    [self testSyncSeQueue_async];
     
     
-    [self test];
+//    [self test];
+//    [self test2];
+//    [self test3];
 }
 
 - (void)test {
@@ -163,16 +171,16 @@
 
 // 3s 死锁
 - (void)testAsyncSeQueue_sync {
-//    dispatch_queue_t syncQueue = dispatch_queue_create("test.queue5", DISPATCH_QUEUE_SERIAL);
-//    dispatch_async(syncQueue, ^{    // 异步执行 + 串行队列
-//        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
-//        NSLog(@"3s---%@",[NSThread currentThread]);
-//        dispatch_sync(syncQueue, ^{  // 同步执行 + 当前串行队列
-//            // 追加任务 1
-//            [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
-//            NSLog(@"3s---%@",[NSThread currentThread]);      // 打印当前线程
-//        });
-//    });
+    dispatch_queue_t syncQueue = dispatch_queue_create("test.queue5", DISPATCH_QUEUE_SERIAL);
+    dispatch_sync(syncQueue, ^{    // 异步执行 + 串行队列
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"3s---%@",[NSThread currentThread]);
+        dispatch_sync(syncQueue, ^{  // 同步执行 + 当前串行队列
+            // 追加任务 1
+            [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+            NSLog(@"3s---%@",[NSThread currentThread]);      // 打印当前线程
+        });
+    });
 }
 // 3a
 - (void)testAsyncSeQueue_async {
@@ -338,5 +346,57 @@
     
 }
 
+- (void)test2 {
+    dispatch_async(dispatch_queue_create("test.11", DISPATCH_QUEUE_CONCURRENT), ^{
+        for (int i = 0; i < 1000; i ++) {
+            long long t = [self uniqueTimestamp];
+            NSLog(@"+%lld", t);
+        }
+    });
+    dispatch_async(dispatch_queue_create("test.22", DISPATCH_QUEUE_CONCURRENT), ^{
+        for (int i = 0; i < 1000; i ++) {
+            long long t = [self uniqueTimestamp];
+            NSLog(@"-%lld", t);
+        }
+    });
+}
+
+- (NSTimeInterval)uniqueTimestamp {
+//    long long now = floor(NSDate.date.timeIntervalSince1970 * 1000);
+//
+//    if (now <= self.lastTimestamp)
+        self.lastTimestamp ++;
+//    else
+//        self.lastTimestamp = now;
+    
+    return self.lastTimestamp;
+}
+
+- (void)test3 {
+    dispatch_queue_t asyncQueue1 = dispatch_queue_create("test.queue1", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(asyncQueue1, ^{    // 异步执行 + 并发队列
+        for (int i = 0; i < 2000; i ++) {
+//            @synchronized (self) {
+                self.testString = [NSString stringWithFormat:@"测试%d", i];
+//            }
+        }
+    });
+    
+    dispatch_queue_t asyncQueue2 = dispatch_queue_create("test.queue2", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(asyncQueue2, ^{    // 异步执行 + 并发队列
+        for (int i = 0; i < 2000; i ++) {
+//            @synchronized (self) {
+                self.testString = [NSString stringWithFormat:@"赋值%d", i];
+//            }
+        }
+    });
+    
+    dispatch_queue_t asyncQueue3 = dispatch_queue_create("test.queue3", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(asyncQueue3, ^{    // 异步执行 + 并发队列
+        for (int i = 0; i < 2000; i ++) {
+            NSLog(@"%@", self.testString);
+        }
+    });
+}
 
 @end
