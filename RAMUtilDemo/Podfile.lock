@@ -1,4 +1,6 @@
 PODS:
+  - FBRetainCycleDetector (0.1.4)
+  - MLeaksFinder (1.0.0)
   - RAMUtil (1.0.4):
     - RAMUtil/RAMCellData (= 1.0.4)
     - RAMUtil/RAMColor (= 1.0.4)
@@ -25,21 +27,28 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
+  - FBRetainCycleDetector
+  - MLeaksFinder (from `/Users/rambo/Documents/MyProject/objcio/MLeaksFinder`)
   - RAMUtil (from `../`)
   - YYKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - FBRetainCycleDetector
     - YYKit
 
 EXTERNAL SOURCES:
+  MLeaksFinder:
+    :path: "/Users/rambo/Documents/MyProject/objcio/MLeaksFinder"
   RAMUtil:
     :path: "../"
 
 SPEC CHECKSUMS:
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
+  MLeaksFinder: 89eb3142bf1bbd0a3d1849543b629399c5da74c5
   RAMUtil: 91ceb093e30defea442a01a483ee6afead7051fa
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 3124dd49fbdd05613c5ce1255fb915dc8fc3b1c7
+PODFILE CHECKSUM: 5e7c3ced19b5e2f53b5f5760995f6947cec0ff9f
 
 COCOAPODS: 1.7.2
