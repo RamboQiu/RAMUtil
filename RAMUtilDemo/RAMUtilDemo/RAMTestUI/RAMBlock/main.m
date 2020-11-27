@@ -10,6 +10,7 @@
 
 /// xcrun -sdk iphoneos clang -arch arm64 -rewrite-objc main.m
 /// 生成main.cpp文件
+/// clang -rewrite-objc -fobjc-arc -stdlib=libc++ -mmacosx-version-min=10.7 -fobjc-runtime=macosx-10.7 -Wno-deprecated-declarations main.m
 
 //struct __block_impl {
 //  void *isa;

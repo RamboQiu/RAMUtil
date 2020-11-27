@@ -7,3 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+
+//int main(){
+//    NSObject *obj = [[NSObject alloc] init];
+//    id __weak obj1 = obj;
+//}
