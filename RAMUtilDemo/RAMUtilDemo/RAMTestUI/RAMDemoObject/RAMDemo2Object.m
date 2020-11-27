@@ -7,6 +7,7 @@
 //
 
 #import "RAMDemo2Object.h"
+#import "RAMDemoObject.h"
 
 @implementation RAMDemo2Object
 
@@ -16,6 +17,7 @@
 
 + (void)load {
     NSLog(@"b father %@", NSStringFromSelector(_cmd));
+    RAMDemoObject *obj = RAMDemoObject.new;
 }
 
 + (void)initialize {
