@@ -25,7 +25,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.button = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.button setTitle:@"点我点我" forState:UIControlStateNormal];
+    [self.button setTitle:@"点我点我，详细查看项目中的objc源码" forState:UIControlStateNormal];
     [self.button addTarget:self action:@selector(testAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.button];
     

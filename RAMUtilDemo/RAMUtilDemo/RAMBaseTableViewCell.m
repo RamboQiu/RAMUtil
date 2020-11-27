@@ -20,7 +20,16 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _titleLabel = UILabel.new;
         _titleLabel.font = [UIFont systemFontOfSize:14];
-        _titleLabel.textColor = [UIColor blackColor];
+        
+        if (@available(iOS 12.0, *)) {
+            if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                _titleLabel.textColor = [UIColor whiteColor];
+            } else {
+                _titleLabel.textColor = [UIColor blackColor];
+            }
+        } else {
+            _titleLabel.textColor = [UIColor blackColor];
+        }
         [self.contentView addSubview:_titleLabel];
         
         _descLabel = UILabel.new;
