@@ -53,10 +53,32 @@ UITableViewDataSource>
     exportData.model = exportModel;
     [section1 addObject:exportData];
     
+    RAMCellModel *mutalScrollModel = [[RAMCellModel alloc] initWithTitle:@"scrollView的嵌套顺畅上下滑动应用实例"
+                                                               desc:@"例如淘宝首页的整体是一个上下滑动view，底下猜你喜欢是支持上下滑动又支持左右滑动的view，做到顺滑衔接滑动"];
+    mutalScrollModel.classStr = @"RAMUtilDemo.RAMNestScrollViewController";
+    RAMCellData *mutalScrollData = RAMCellData.new;
+    mutalScrollData.cellClass = RAMBaseTableViewCell.class;
+    mutalScrollData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:mutalScrollModel];
+    mutalScrollData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    mutalScrollData.cellSelectSEL = @selector(selNormalCellData:);
+    mutalScrollData.model = mutalScrollModel;
+    [section1 addObject:mutalScrollData];
+    
     [self.staticData setObject:section1 forKey:@"工具类"];
     
     
     NSMutableArray<RAMCellData *> *section2 = [NSMutableArray array];
+    
+    RAMCellModel *codeModel = [[RAMCellModel alloc] initWithTitle:@"代码测试"
+                                                            desc:@"任意需要点击操作的代码段测试"];
+    codeModel.classStr = @"RAMCodeTestViewController";
+    RAMCellData *codeData = RAMCellData.new;
+    codeData.cellClass = RAMBaseTableViewCell.class;
+    codeData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:codeModel];
+    codeData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    codeData.cellSelectSEL = @selector(selNormalCellData:);
+    codeData.model = codeModel;
+    [section2 addObject:codeData];
     
     RAMCellModel *swiftModel = [[RAMCellModel alloc] initWithTitle:@"Swift学习"
                                                             desc:@"cnswift.org"];

@@ -7,8 +7,11 @@
 //
 
 #import "RAMWebViewController.h"
+#import <WebKit/WebKit.h>
+#import <RAMUtil/RAMMacros.h>
 
 @interface RAMWebViewController ()
+@property (nonatomic, strong) WKWebView *wkWebview;
 
 @end
 
@@ -17,6 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.wkWebview = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, RAMScreenWidth, RAMScreenHeight)];
+    [self.view addSubview:self.wkWebview];
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.url]];
+    [self.wkWebview loadRequest:request];
 }
 
 /*
