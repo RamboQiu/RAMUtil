@@ -141,6 +141,7 @@ static SEL __sel_registerName(const char *name, bool shouldLock, bool copy)
     if (shouldLock) selLock.assertUnlocked();
     else selLock.assertLocked();
 
+    // name  为空直接返回 0
     if (!name) return (SEL)0;
 
     result = search_builtins(name);
@@ -148,6 +149,7 @@ static SEL __sel_registerName(const char *name, bool shouldLock, bool copy)
     
     conditional_mutex_locker_t lock(selLock, shouldLock);
     if (namedSelectors) {
+        // 到全局的表中去找
         result = (SEL)NXMapGet(namedSelectors, name);
     }
     if (result) return result;
@@ -159,6 +161,7 @@ static SEL __sel_registerName(const char *name, bool shouldLock, bool copy)
                                           (unsigned)SelrefCount);
     }
     if (!result) {
+        // 创建一个 SEL
         result = sel_alloc(name, copy);
         // fixme choose a better container (hash not map for starters)
         NXMapInsert(namedSelectors, sel_getName(result), result);

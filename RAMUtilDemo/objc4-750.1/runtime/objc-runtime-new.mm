@@ -4890,7 +4890,9 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
     bool triedResolver = NO;
 
     runtimeLock.assertUnlocked();
-
+    
+    // 检查是否添加缓存锁，如果没有进行缓存查询。
+    // 查到便返回IMP指针
     // Optimistic cache lookup
     if (cache) {
         imp = cache_getImp(cls, sel);
@@ -4908,7 +4910,8 @@ IMP lookUpImpOrForward(Class cls, SEL sel, id inst,
 
     runtimeLock.lock();
     checkIsKnownClass(cls);
-
+    
+    // 通过调用realizeClass方法，分配可读写`class_rw_t`的空间
     if (!cls->isRealized()) {
         realizeClass(cls);
     }
@@ -6543,7 +6546,8 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
     bool hasCxxCtor = cls->hasCxxCtor();
     bool hasCxxDtor = cls->hasCxxDtor();
     bool fast = cls->canAllocNonpointer();
-
+    
+    // 实例变量内存大小，实例大小 instanceSize 会存储在类的 isa_t 结构体中，经过对齐最后返回
     size_t size = cls->instanceSize(extraBytes);
     if (outAllocatedSize) *outAllocatedSize = size;
 
@@ -6557,6 +6561,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
         if (zone) {
             obj = (id)malloc_zone_calloc ((malloc_zone_t *)zone, 1, size);
         } else {
+            // 给对象申请内存空间
             obj = (id)calloc(1, size);
         }
         if (!obj) return nil;
@@ -6566,6 +6571,7 @@ _class_createInstanceFromZone(Class cls, size_t extraBytes, void *zone,
 
         // Use raw pointer isa on the assumption that they might be 
         // doing something weird with the zone or RR.
+        // 初始化 isa
         obj->initIsa(cls);
     }
 

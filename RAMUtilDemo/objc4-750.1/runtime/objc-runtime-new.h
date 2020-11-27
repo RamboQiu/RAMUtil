@@ -554,23 +554,24 @@ static_assert(FAST_IS_SWIFT_STABLE == 2, "resistance is futile");
 struct class_ro_t {
     uint32_t flags;
     uint32_t instanceStart;
+    // 实例变量大小，决定对象创建时要分配的内存
     uint32_t instanceSize;
 #ifdef __LP64__
     uint32_t reserved;
 #endif
 
     const uint8_t * ivarLayout;
-    
+    // 类名
     const char * name;
-    // 方法列表
+    // （编译时确定的）方法列表
     method_list_t * baseMethodList;
-    // 协议列表
+    // (编译时确定的）所属协议列表
     protocol_list_t * baseProtocols;
-    // 变量列表
+    //（编译时确定的）实例变量列表
     const ivar_list_t * ivars;
 
     const uint8_t * weakIvarLayout;
-    // 属性列表
+    // （编译时确定的）属性列表
     property_list_t *baseProperties;
 
     method_list_t *baseMethods() const {
@@ -833,7 +834,7 @@ struct class_rw_t {
     // Be warned that Symbolication knows the layout of this structure.
     uint32_t flags;
     uint32_t version;
-
+    // class_ro_t结构体存储了类在编译期就已经确定的属性、方法以及遵循的协议
     const class_ro_t *ro;
     
     // 方法信息

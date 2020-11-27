@@ -92,6 +92,10 @@
 // field as an index into a class table.
 // Note, keep this in sync with any .s files which also define it.
 // Be sure to edit objc-abi.h as well.
+// SUPPORT_INDEXED_ISA = 1 的平台将类在全局 class table 中的 index 和其他数据一起存储在 isa 的字段中，
+// 把 isa 作为一个 maskable pointer。（并通过掩码的方式读取 isa 保存的不同的内容）
+
+// 注意，与任何定义它的 .s 文件保持同步。确保同时编辑 objc-abi.h 文件。
 #if __ARM_ARCH_7K__ >= 2  ||  (__arm64__ && !__LP64__)
 #   define SUPPORT_INDEXED_ISA 1
 #else
@@ -100,6 +104,8 @@
 
 // Define SUPPORT_PACKED_ISA=1 on platforms that store the class in the isa 
 // field as a maskable pointer with other data around it.
+// SUPPORT_PACKED_ISA = 1 的平台将类信息与其他数据一起存储在 isa 的字段中，
+// 把 isa 作为一个 maskable pointer。（并通过掩码的方式读取 isa 保存的不同的内容）
 #if (!__LP64__  ||  TARGET_OS_WIN32  ||  \
      (TARGET_OS_SIMULATOR && !TARGET_OS_IOSMAC))
 #   define SUPPORT_PACKED_ISA 0
@@ -109,6 +115,8 @@
 
 // Define SUPPORT_NONPOINTER_ISA=1 on any platform that may store something
 // in the isa field that is not a raw pointer.
+// SUPPORT_NONPOINTER_ISA = 1 的平台表示在 isa 的字段中保存非原始指针的内容。
+// (优化后的 isa （union isa_t 类型）)
 #if !SUPPORT_INDEXED_ISA  &&  !SUPPORT_PACKED_ISA
 #   define SUPPORT_NONPOINTER_ISA 0
 #else

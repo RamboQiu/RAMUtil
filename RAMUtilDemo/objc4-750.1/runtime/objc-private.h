@@ -70,15 +70,28 @@ union isa_t {
     uintptr_t bits;
 #if defined(ISA_BITFIELD)
     // 这里的定义在isa.h中，如下(注意uintptr_t实际上就是unsigned long)
+    // 表示 isa 中只是存放的 Class cls 指针还是包含更多信息的 bits
 //    uintptr_t nonpointer        : 1;                                         \
+    // 标记该对象是否有关联对象，如果没有的话对象能更快的销毁，
+    // 如果有的话销毁前会调用 _object_remove_assocations 函数根据关联策略循环释放每个关联对象
 //    uintptr_t has_assoc         : 1;                                         \
+    // 标记该对象所属类是否有 C++ 析构函数，如果没有的话对象能更快销毁，
+    // 如果有的话对象销毁前会调用 object_cxxDestruct 函数去执行该类的析构函数
 //    uintptr_t has_cxx_dtor      : 1;                                         \
+    // isa & ISA_MASK 得出该实例对象所属的的类的地址
 //    uintptr_t shiftcls          : 44; /*MACH_VM_MAX_ADDRESS 0x7fffffe00000*/ \
+    // 用于调试器判断当前对象是真的对象还是没有初始化的空间
 //    uintptr_t magic             : 6;                                         \
+    // 标记该对象是否有弱引用，如果没有的话对象能更快销毁，
+    // 如果有的话对象销毁前会调用 weak_clear_no_lock 函数把该对象的弱引用置为 nil，
+    // 并调用 weak_entry_remove 把对象的 entry 从 weak_table 中移除
 //    uintptr_t weakly_referenced : 1;                                         \
+    // 标记该对象是否正在执行销毁
 //    uintptr_t deallocating      : 1;                                         \
-//    uintptr_t has_sidetable_rc  : 1;                                         \
-//    uintptr_t extra_rc          : 8
+    // 标记 refcnts 中是否也有保存实例对象的引用计数，当 extra_rc 溢出时会把一部分引用计数保存到 refcnts 中去，
+//    uintptr_t has_sidetable_rc  : 1;                                         \     
+    // 保存该对象的引用计数 -1 的值（未溢出之前）
+//    uintptr_t extra_rc          : 8 // 最大保存 2^20 - 1，觉得这个值很大呀,  mac 下是 2^8 - 1 = 255
     
     struct {
         ISA_BITFIELD;  // defined in isa.h
