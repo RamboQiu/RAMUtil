@@ -9,9 +9,9 @@ target 'RAMUtilDemo' do
     platform :ios, '12.0'
     pod 'RAMUtil', :path => '../'  #:git => 'https://github.com/RamboQiu/RAMUtil.git', :tag => '1.0.0'
     pod 'YYKit'
-    pod 'MLeaksFinder', :path => '/Users/rambo/Documents/MyProject/objcio/MLeaksFinder'
+    pod 'MLeaksFinder', :git => 'https://github.com/Tencent/MLeaksFinder.git' #:path => '/Users/rambo/Documents/MyProject/objcio/MLeaksFinder'
     pod 'FBRetainCycleDetector'
-    pod "Apollo", :path => '/Users/rambo/Documents/MyProject/objcio/apollo-ios', :subspecs=>['SQLite', 'WebSocket'], :tag => 'v0.3.0' # :git => 'https://github.com/apollographql/apollo-ios.git'
+    pod "Apollo", :git => 'https://github.com/apollographql/apollo-ios.git' #, :subspecs=>['SQLite', 'WebSocket'], :tag => 'v0.3.0' # :git => 'https://github.com/apollographql/apollo-ios.git' #:path => '/Users/rambo/Documents/MyProject/objcio/apollo-ios'
 end
 
 #  platform :ios, '8.0'

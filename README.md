@@ -49,6 +49,7 @@ RAMLOG_INFO("I'm a test message.");
 
 ```bash
 RAMUtilDemo|graphql⚡ ⇒cd fullstack-tutoria/start/server
+server|graphql⚡ ⇒rm node_modules
 server|graphql⚡ ⇒npm install
 server|graphql⚡ ⇒npm start
 server|graphql⚡ ⇒ npm start
