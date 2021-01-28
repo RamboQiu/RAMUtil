@@ -1,9 +1,13 @@
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/YYKit/Vendor"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FBRetainCycleDetector" "${PODS_ROOT}/Headers/Public/MLeaksFinder" "${PODS_ROOT}/Headers/Public/RAMUtil" "${PODS_ROOT}/Headers/Public/YYKit"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FBRetainCycleDetector" "${PODS_CONFIGURATION_BUILD_DIR}/MLeaksFinder" "${PODS_CONFIGURATION_BUILD_DIR}/RAMUtil" "${PODS_CONFIGURATION_BUILD_DIR}/YYKit"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"FBRetainCycleDetector" -l"MLeaksFinder" -l"RAMUtil" -l"YYKit" -l"c++" -l"sqlite3" -l"z" -framework "Accelerate" -framework "AssetsLibrary" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreImage" -framework "CoreText" -framework "Foundation" -framework "ImageIO" -framework "MobileCoreServices" -framework "QuartzCore" -framework "SystemConfiguration" -framework "UIKit" -framework "WebP"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FBRetainCycleDetector" "${PODS_ROOT}/Headers/Public/MLeaksFinder" "${PODS_ROOT}/Headers/Public/RAMUtil" "${PODS_ROOT}/Headers/Public/SQLite.swift" "${PODS_ROOT}/Headers/Public/YYKit"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Apollo" "${PODS_CONFIGURATION_BUILD_DIR}/FBRetainCycleDetector" "${PODS_CONFIGURATION_BUILD_DIR}/MLeaksFinder" "${PODS_CONFIGURATION_BUILD_DIR}/RAMUtil" "${PODS_CONFIGURATION_BUILD_DIR}/SQLite.swift" "${PODS_CONFIGURATION_BUILD_DIR}/Starscream" "${PODS_CONFIGURATION_BUILD_DIR}/YYKit"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Apollo/Apollo.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/SQLite.swift/SQLite.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Starscream/Starscream.modulemap"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"Apollo" -l"FBRetainCycleDetector" -l"MLeaksFinder" -l"RAMUtil" -l"SQLite.swift" -l"Starscream" -l"YYKit" -l"c++" -l"sqlite3" -l"z" -framework "Accelerate" -framework "AssetsLibrary" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreImage" -framework "CoreText" -framework "Foundation" -framework "ImageIO" -framework "MobileCoreServices" -framework "QuartzCore" -framework "SystemConfiguration" -framework "UIKit" -framework "WebP"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Apollo/Apollo.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/SQLite.swift/SQLite.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Starscream/Starscream.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
+SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Apollo" "${PODS_CONFIGURATION_BUILD_DIR}/SQLite.swift" "${PODS_CONFIGURATION_BUILD_DIR}/Starscream"

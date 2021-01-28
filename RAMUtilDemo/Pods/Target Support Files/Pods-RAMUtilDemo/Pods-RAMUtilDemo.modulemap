@@ -1,0 +1,6 @@
+module Pods_RAMUtilDemo {
+  umbrella header "Pods-RAMUtilDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

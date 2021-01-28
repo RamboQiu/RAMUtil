@@ -7,41 +7,51 @@
 //
 
 import UIKit
-//import RAMSwiftObject
+import Apollo
 
 class RAMSwiftViewController: UIViewController {
+    
+    var launches = [LaunchListQuery.Data.Launchess.Launch]()
+    private var lastConnection: LaunchListQuery.Data.Launchess?
+    private var activeRequest: Cancellable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "test";
         self.view.backgroundColor = UIColor.white;
+        
+        self.loadMoreLaunches();
 
-        // Do any additional setup after loading the view.
-        
-        var object = RAMSwiftObject();
-        object.test();
-//        print(object.greet());
-        
-//        var object = RAMSwiftObject();
-//        object.test();
-        
-//        var subview1 = RAMSwiftView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-////        subview1.frame
-//        self.view.addSubview(view: subview1);
-//        subview1.fra
-        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func loadMoreLaunches() {
+        self.activeRequest = Network.shared.apollo.fetch(query: LaunchListQuery()) { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            
+            self.activeRequest = nil
+            
+            switch result {
+            case .success(let graphQLResult):
+                if let launchConnection = graphQLResult.data?.launchess {
+                    self.lastConnection = launchConnection
+                    self.launches.append(contentsOf: launchConnection.launches.compactMap { $0 })
+                }
+                for launch in self.launches {
+                    print("launch mission name: \(launch.mission?.name ?? "")")
+                    print("launch site: \(launch.site ?? "")")
+                }
+                
+                if let errors = graphQLResult.errors {
+                    self.showAlertForErrors(errors)
+                }
+            case .failure(let error):
+                self.showAlert(title: "Network Error",
+                               message: error.localizedDescription)
+            }
+        }
     }
-    */
 
 }

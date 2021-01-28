@@ -1,4 +1,11 @@
 PODS:
+  - Apollo/Core (0.40.0)
+  - Apollo/SQLite (0.40.0):
+    - Apollo/Core
+    - SQLite.swift (~> 0.12.2)
+  - Apollo/WebSocket (0.40.0):
+    - Apollo/Core
+    - Starscream (~> 3.1.1)
   - FBRetainCycleDetector (0.1.4)
   - MLeaksFinder (1.0.0)
   - RAMUtil (1.0.4):
@@ -22,11 +29,17 @@ PODS:
   - RAMUtil/RAMMacros (1.0.4)
   - RAMUtil/RAMMustOverrider (1.0.4)
   - RAMUtil/RAMSafeCollection (1.0.4)
+  - SQLite.swift (0.12.2):
+    - SQLite.swift/standard (= 0.12.2)
+  - SQLite.swift/standard (0.12.2)
+  - Starscream (3.1.1)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
+  - Apollo/SQLite (from `/Users/rambo/Documents/MyProject/objcio/apollo-ios`)
+  - Apollo/WebSocket (from `/Users/rambo/Documents/MyProject/objcio/apollo-ios`)
   - FBRetainCycleDetector
   - MLeaksFinder (from `/Users/rambo/Documents/MyProject/objcio/MLeaksFinder`)
   - RAMUtil (from `../`)
@@ -35,20 +48,28 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FBRetainCycleDetector
+    - SQLite.swift
+    - Starscream
     - YYKit
 
 EXTERNAL SOURCES:
+  Apollo:
+    :path: "/Users/rambo/Documents/MyProject/objcio/apollo-ios"
+    :tag: v0.3.0
   MLeaksFinder:
     :path: "/Users/rambo/Documents/MyProject/objcio/MLeaksFinder"
   RAMUtil:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Apollo: 9fb70b598511a6212a81a34c00fa9bf8bac19a23
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   MLeaksFinder: 89eb3142bf1bbd0a3d1849543b629399c5da74c5
   RAMUtil: 91ceb093e30defea442a01a483ee6afead7051fa
+  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 5e7c3ced19b5e2f53b5f5760995f6947cec0ff9f
+PODFILE CHECKSUM: 629e7f1673c5d6353a343ce3c00314a420085539
 
 COCOAPODS: 1.7.2
