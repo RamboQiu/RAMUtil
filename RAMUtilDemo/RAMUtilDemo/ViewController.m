@@ -80,8 +80,8 @@ UITableViewDataSource>
     codeData.model = codeModel;
     [section2 addObject:codeData];
     
-    RAMCellModel *swiftModel = [[RAMCellModel alloc] initWithTitle:@"Swift学习"
-                                                            desc:@"cnswift.org"];
+    RAMCellModel *swiftModel = [[RAMCellModel alloc] initWithTitle:@"GraphQL演示"
+                                                            desc:@"https://www.apollographql.com/docs/ios/tutorial/tutorial-execute-query/"];
     swiftModel.classStr = @"RAMUtilDemo.RAMSwiftViewController";
     RAMCellData *swiftData = RAMCellData.new;
     swiftData.cellClass = RAMBaseTableViewCell.class;
