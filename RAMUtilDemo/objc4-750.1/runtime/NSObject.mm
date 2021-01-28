@@ -73,9 +73,14 @@ void _objc_setBadAllocHandler(id(*newHandler)(Class))
 namespace {
 
 // The order of these bits is important.
+// 第一个 bit 表示该对象是否有过 weak 对象，如果没有，在析构释放内存时可以更快
 #define SIDE_TABLE_WEAKLY_REFERENCED (1UL<<0)
+// 第二个 bit 表示该对象是否正在析构
 #define SIDE_TABLE_DEALLOCATING      (1UL<<1)  // MSB-ward of weak bit
+// 第三个 bit 开始才是存储引用计数数值的地方,，所以sidetable取值出来需要右移2位（SIDE_TABLE_RC_SHIFT）
+// 对引用计数的 +1 和 -1 可以使用 SIDE_TABLE_RC_ONE
 #define SIDE_TABLE_RC_ONE            (1UL<<2)  // MSB-ward of deallocating bit
+// 用 SIDE_TABLE_RC_PINNED 来判断是否引用计数值有可能溢出
 #define SIDE_TABLE_RC_PINNED         (1UL<<(WORD_BITS-1))
 
 #define SIDE_TABLE_RC_SHIFT 2
@@ -90,8 +95,11 @@ enum HaveOld { DontHaveOld = false, DoHaveOld = true };
 enum HaveNew { DontHaveNew = false, DoHaveNew = true };
 
 struct SideTable {
+    /// 保证原子操作的自选锁
     spinlock_t slock;
+    /// 保存引用计数的散列表
     RefcountMap refcnts;
+    /// 保存 weak 引用的全局散列表
     weak_table_t weak_table;
 
     SideTable() {
@@ -1524,11 +1532,13 @@ objc_object::sidetable_tryRetain()
 uintptr_t
 objc_object::sidetable_retainCount()
 {
+    // 从 SideTable 的静态方法获取当前实例对应的 SideTable 对象
     SideTable& table = SideTables()[this];
 
     size_t refcnt_result = 1;
     
     table.lock();
+    // refcnts 属性就是存储引用计数的散列表
     RefcountMap::iterator it = table.refcnts.find(this);
     if (it != table.refcnts.end()) {
         // this is valid for SIDE_TABLE_RC_PINNED too
@@ -1594,6 +1604,7 @@ objc_object::sidetable_setWeaklyReferenced_nolock()
 // rdar://20206767
 // return uintptr_t instead of bool so that the various raw-isa 
 // -release paths all return zero in eax
+/// 看到这里知道为什么在存储引用计数时总是真正的引用计数值减一了吧。因为 release 本来是要将引用计数减一，所以存储引用计数时先预留了个“一”，在减一之前先看看存储的引用计数值是否为 0 （it->second < SIDE_TABLE_DEALLOCATING），如果是，那就将对象标记为“正在析构”（it->second |= SIDE_TABLE_DEALLOCATING）,并发送 dealloc 消息，返回 YES；否则就将引用计数减一（it->second -= SIDE_TABLE_RC_ONE）。这样做避免了负数的产生。
 uintptr_t
 objc_object::sidetable_release(bool performDealloc)
 {
@@ -1741,6 +1752,7 @@ _objc_rootAutorelease(id obj)
     return obj->rootAutorelease();
 }
 
+// 不能够完全信任这个 _objc_rootRetainCount(id obj) 函数，对于已释放的对象以及不正确的对象地址，有时也返回 “1”。它所返回的引用计数只是某个给定时间点上的值，该方法并未考虑到系统稍后会把自动释放吃池清空，因而不会将后续的释放操作从返回值里减去。clang 会尽可能把 NSString 实现成单例对象，其引用计数会很大。如果使用了 TaggedPointer，NSNumber 的内容有可能就不再放到堆中，而是直接写在宽敞的64位栈指针值里。其看上去和真正的 NSNumber 对象一样，只是使用 TaggedPointer 优化了下，但其引用计数可能不准确
 uintptr_t
 _objc_rootRetainCount(id obj)
 {

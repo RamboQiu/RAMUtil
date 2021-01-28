@@ -480,6 +480,7 @@ objc_object::rootTryRetain()
     return rootRetain(true, false) ? true : false;
 }
 
+/// 先是看是否支持 TaggedPointer（毕竟数据存在栈指针而不是堆中，栈的管理本来就是自动的），否则去操作 SideTable 中的 refcnts 属性，这与获取引用计数策略类似。sidetable_retain() 将 引用计数加一后返回对象
 ALWAYS_INLINE id 
 objc_object::rootRetain(bool tryRetain, bool handleOverflow)
 {
@@ -723,11 +724,14 @@ objc_object::rootAutorelease()
 inline uintptr_t 
 objc_object::rootRetainCount()
 {
+    /// http://yulingtianxia.com/blog/2015/12/06/The-Principle-of-Refenrence-Counting/
+    // 如果是tag pointer 当前指针就是引用计数
     if (isTaggedPointer()) return (uintptr_t)this;
 
     sidetable_lock();
     isa_t bits = LoadExclusive(&isa.bits);
     ClearExclusive(&isa.bits);
+    // isa 指针（NONPOINTER_ISA）
     if (bits.nonpointer) {
         uintptr_t rc = 1 + bits.extra_rc;
         if (bits.has_sidetable_rc) {
@@ -738,6 +742,7 @@ objc_object::rootRetainCount()
     }
 
     sidetable_unlock();
+    // sidetable存储
     return sidetable_retainCount();
 }
 
