@@ -114,8 +114,126 @@
     });
 }
 
-- (void)test3 {
-    
+- (void)test33 {
+    NSArray<NSNumber *> *arcArr = @[@(75), @(25)];
+    NSArray<UIColor *> *colorArr = @[[UIColor colorWithRed:0 green:0 blue:255.0f alpha:1], [UIColor greenColor]];
+    CGFloat startAngle = - M_PI_2;
+    CGFloat radius = 100;
+    CGPoint center = CGPointMake(200, 300);
+    for (NSInteger i = 0; i < arcArr.count; i++) {
+        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        shapeLayer.fillColor = colorArr[i].CGColor;
+        CGFloat value = [arcArr[i] floatValue];
+        CGFloat angle = value/100*2*M_PI;
+        
+        UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+        [bezierPath moveToPoint:center];
+        CGPoint startPoint = CGPointMake(center.x + radius*cos(startAngle), center.y + radius*sin(startAngle));
+        [bezierPath addLineToPoint:startPoint];
+        [bezierPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:angle+startAngle clockwise:YES];
+        [bezierPath closePath];
+        shapeLayer.path = bezierPath.CGPath;
+        [self.view.layer addSublayer:shapeLayer];
+
+        startAngle += angle;
+    }
 }
 
+- (void)test3 {
+    CGFloat radius = 100;
+    CGFloat innerRadius = radius/2.61803f;
+    CGFloat startAngle = - M_PI_2;
+    CGPoint center = CGPointMake(200, 300);
+    CGFloat offsetAngle = M_PI / 5;
+    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+    
+    CGPoint startPoint = CGPointMake(center.x + radius*cos(startAngle), center.y + radius*sin(startAngle));
+    [bezierPath moveToPoint:startPoint];
+    for (int i = 1; i < 10; i ++) {
+        CGFloat tmpRadius = i % 2 == 0 ? radius : innerRadius;
+        startAngle += offsetAngle;
+        CGPoint point = CGPointMake(center.x + tmpRadius*cos(startAngle), center.y + tmpRadius*sin(startAngle));
+        [bezierPath addLineToPoint:point];
+    }
+
+    [bezierPath closePath];
+
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.lineWidth = 1;
+    shapeLayer.path = bezierPath.CGPath;
+    shapeLayer.fillColor = UIColor.clearColor.CGColor;
+    shapeLayer.strokeColor = UIColor.redColor.CGColor;
+    [self.view.layer addSublayer:shapeLayer];
+    
+    NSLog(@"%ld", (long)[self test:@[@(-5),@(-2),@(1),@(-4)]]);
+}
+
+- (NSInteger)test:(NSArray<NSNumber *> *)nums {
+    NSAssert(nums.count != 0, @"");
+    NSInteger sum = 0;
+    NSInteger max = NSIntegerMin;
+    for (NSNumber *num in nums) {
+        sum += [num integerValue];
+        if (max < sum) {
+            max = sum;
+        }
+        if (sum < 0) {
+            sum = 0;
+        }
+    }
+    return max;
+}
+
+
+// 给出一个含有正负数的数组，找到其中和最大的一段数据
+
+//int maxSubArray(int[] nums) {
+//    int sum = 0;
+//    int max = Integer.MIN_VALUE;
+//    for (int num : nums) {
+//        sum += num;
+//
+//        if (max < sum) {
+//            max = sum;
+//        }
+//
+//        if (sum < 0) {
+//            sum = 0;
+//        }
+//
+//
+//    }
+//    return max;
+//}
+
+//public static int findGreatestSumOfSubArray(int[] arr) {
+//        // 参数校验
+//        if (arr == null || arr.length < 1) {
+//            throw new IllegalArgumentException("Array must contain an element");
+//        }
+//
+//        // 记录最大的子数组和，开始时是最小的整数
+//        int max = Integer.MIN_VALUE;
+//        // 当前的和
+//        int curMax = 0;
+//        // 数组遍历
+//        for (int i : arr) {
+//            // 如果当前和小于等于0，就重新设置当前和
+//            if (curMax <= 0) {
+//                curMax = i;
+//            }
+//            // 如果当前和大于0，累加当前和
+//            else {
+//                curMax += i;
+//            }
+//
+//            // 更新记录到的最在的子数组和
+//            if (max < curMax) {
+//                max = curMax;
+//            }
+//        }
+//
+//
+//        return max;
+//    }
 @end
