@@ -31,7 +31,9 @@
     [self.father tegotherEat];
     [self.son tegotherEat];
     [self.son sonEat];
-    
+    NSLog(@"----------华丽的分割线----------");
+    [self.son drinkWater];
+    NSLog(@"%@", self.son.test);
 }
 
 

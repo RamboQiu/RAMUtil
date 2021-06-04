@@ -7,10 +7,12 @@
 //
 
 #import "RAMCategoryFather.h"
-
+#import "RAMCategoryProtocol.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RAMCategoryFather (RAMFatherCategory)
+@interface RAMCategoryFather (RAMFatherCategory) <
+RAMCategoryProtocol
+>
 
 @end
 

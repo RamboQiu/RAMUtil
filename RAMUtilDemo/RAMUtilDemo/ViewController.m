@@ -136,7 +136,7 @@ UITableViewDataSource>
     [section2 addObject:loadInitializeData];
     
     RAMCellModel *categoryModel = [[RAMCellModel alloc] initWithTitle:@"category和主类中方法的异同"
-                                                               desc:@"分类同名方法会覆盖主类的方法\n子类的分类方法不会覆盖父类的同名方法"];
+                                                               desc:@"1. 分类同名方法会覆盖主类的方法， 子类的分类方法不会覆盖父类的同名方法 \n2. 父类的分类实现的方法和属性，子类可以用super的形式进行调用"];
     categoryModel.classStr = @"RAMCategoryViewController";
     RAMCellData *categoryData = RAMCellData.new;
     categoryData.cellClass = RAMBaseTableViewCell.class;
