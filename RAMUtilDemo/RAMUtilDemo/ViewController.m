@@ -135,6 +135,17 @@ UITableViewDataSource>
     loadInitializeData.model = loadInitializeModel;
     [section2 addObject:loadInitializeData];
     
+    RAMCellModel *categoryModel = [[RAMCellModel alloc] initWithTitle:@"category和主类中方法的异同"
+                                                               desc:@"分类同名方法会覆盖主类的方法\n子类的分类方法不会覆盖父类的同名方法"];
+    categoryModel.classStr = @"RAMCategoryViewController";
+    RAMCellData *categoryData = RAMCellData.new;
+    categoryData.cellClass = RAMBaseTableViewCell.class;
+    categoryData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:categoryModel];
+    categoryData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    categoryData.cellSelectSEL = @selector(selNormalCellData:);
+    categoryData.model = categoryModel;
+    [section2 addObject:categoryData];
+    
     RAMCellModel *runtimeModel = [[RAMCellModel alloc] initWithTitle:@"runtime调研"
                                                                desc:@""];
     runtimeModel.classStr = @"RAMRuntimeViewController";
