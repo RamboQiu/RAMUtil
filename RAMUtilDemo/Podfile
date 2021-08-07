@@ -6,11 +6,9 @@ workspace 'RAMUtilDemo.xcworkspace'
 project 'RAMUtilDemo.xcodeproj'
 
 target 'RAMUtilDemo' do
-    platform :ios, '8.0'
+    platform :ios, '9.0'
     pod 'RAMUtil', :path => '../'  #:git => 'https://github.com/RamboQiu/RAMUtil.git', :tag => '1.0.0'
-#    pod 'YYKit'
-#    pod 'MLeaksFinder', :path => '/Users/rambo/Documents/MyProject/objcio/MLeaksFinder'
-#    pod 'FBRetainCycleDetector'
+    pod 'WeexSDK', '0.30.0' #:path => '/Users/rambo/Documents/MyProject/objcio/weex'
 end
 
 #  platform :ios, '8.0'

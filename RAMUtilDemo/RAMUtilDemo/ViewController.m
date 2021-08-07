@@ -80,6 +80,17 @@ UITableViewDataSource>
     codeData.model = codeModel;
     [section2 addObject:codeData];
     
+    RAMCellModel *weexModel = [[RAMCellModel alloc] initWithTitle:@"weex学习"
+                                                            desc:@"http://doc.weex.io/"];
+    weexModel.classStr = @"RAMWeexViewController";
+    RAMCellData *weexData = RAMCellData.new;
+    weexData.cellClass = RAMBaseTableViewCell.class;
+    weexData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:weexModel];
+    weexData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    weexData.cellSelectSEL = @selector(selNormalCellData:);
+    weexData.model = weexModel;
+    [section2 addObject:weexData];
+    
     RAMCellModel *swiftModel = [[RAMCellModel alloc] initWithTitle:@"Swift学习"
                                                             desc:@"cnswift.org"];
     swiftModel.classStr = @"RAMUtilDemo.RAMSwiftViewController";

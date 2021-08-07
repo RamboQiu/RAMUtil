@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <WeexSDK/WeexSDK.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    // App configuration
+    [WXAppConfiguration setAppGroup:@"rambo"];
+    [WXAppConfiguration setAppName:@"RAMUtilDemo"];
+    [WXAppConfiguration setAppVersion:@"1.0.0"];
+    
+    //Initialize WeexSDK
+    [WXSDKEngine initSDKEnvironment];
+
+    //Register custom modules and components, optional.
+//    [WXSDKEngine registerComponent:@"myview" withClass:[MyViewComponent class]];
+//    [WXSDKEngine registerModule:@"mymodule" withClass:[MyWeexModule class]];
+
+    //Register the implementation of protocol, optional.
+//    [WXSDKEngine registerHandler:[WXAppNavigationImpl new] withProtocol:@protocol(WXNavigationProtocol)];
+
+    //Set the log level, optional
+    [WXLog setLogLevel: WXLogLevelWarning];
     return YES;
 }
 

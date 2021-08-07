@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-RAMUtilDemo/Pods-RAMUtilDemo-resources.sh
+${PODS_ROOT}/WeexSDK/pre-build/native-bundle-main.js
+${PODS_ROOT}/WeexSDK/pre-build/weex-main-jsfm.js
+${PODS_ROOT}/WeexSDK/pre-build/weex-polyfill.js
+${PODS_ROOT}/WeexSDK/pre-build/weex-rax-api.js
+${PODS_ROOT}/WeexSDK/ios/sdk/WeexSDK/Resources/wx_load_error@3x.png
