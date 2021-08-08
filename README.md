@@ -16,7 +16,7 @@ NSArray *arr = @[@"1"];
 [arr at:0];
 ```
 ## 4. \_\_attribute\_\_ section - RAMExport
-[点击查看](https://github.com/RamboQiu/RAMUtil/blob/dev/RAMUtil/RAMExport/README.md)
+[点击查看](https://github.com/RamboQiu/RAMUtil/tree/master/RAMUtil/RAMExport)
 
 ## 5. log日志中间件 - RAMLog
 可以在自己的模块或是sdk中接入，然后调用主程序的日志输出，例如，自己的skd里面么有接入DDLog，但是项目中都是封装了使用ddlog来写入日志的，这个时候可以在项目中调用如下，进行sdk中的日志中转即可
