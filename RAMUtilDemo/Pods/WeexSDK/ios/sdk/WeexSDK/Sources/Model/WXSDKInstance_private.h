@@ -19,35 +19,27 @@
 
 #import <Foundation/Foundation.h>
 #import "WXSDKInstance.h"
+#import "WXComponentManager.h"
 #import "WXModuleMethod.h"
 #import "WXThreadSafeMutableDictionary.h"
-#import "WXUnicornRenderProtocol.h"
 #import <JavaScriptCore/JavaScriptCore.h>
-#import <WeexSDK/WXEaglePlugin.h>
 
 @interface WXSDKInstance ()
 
-@property (nonatomic, assign) CGFloat viewportWidth; // view port width this instance is using
-@property (nonatomic, assign) CGSize screenSize; // screen size this instance is using
+@property (nonatomic, assign) CGFloat viewportWidth;
 
 @property (nonatomic, strong) WXThreadSafeMutableDictionary *moduleInstances;
 @property (nonatomic, strong) NSMutableDictionary *naviBarStyles;
 @property (nonatomic, strong) NSMutableDictionary *styleConfigs;
 @property (nonatomic, strong) NSMutableDictionary *attrConfigs;
 @property (nonatomic, strong) NSString *mainBundleString;
-@property (nonatomic, weak) id <WXEaglePlugin> renderPlugin;
-
-@property (nonatomic, assign) BOOL useReactor;
-
-@property (nonatomic, strong) id<WXUnicornRenderProtocol> unicornRender;
 
 // add monitor information
 @property (nonatomic, strong) NSString *callCreateInstanceContext;
 @property (nonatomic, strong) NSString *createInstanceContextResult;
 @property (nonatomic, strong) NSString *executeRaxApiResult;
 
-@property (nonatomic, assign) WXAutoInvertingBehavior autoInvertingBehavior;
-@property (atomic, strong) NSString* schemeName;
+@property (nonatomic, readonly, strong) WXComponentManager *componentManager;
 
 - (void)addModuleEventObservers:(NSString*)event callback:(NSString*)callbackId option:(NSDictionary*)option moduleClassName:(NSString*)moduleClassName;
 - (void)_addModuleEventObserversWithModuleMethod:(WXModuleMethod*)method;

@@ -47,20 +47,19 @@ static WXSDKManager *_sharedInstance = nil;
 - (instancetype)init
 {
     if (self = [super init]){
-        _bridgeMgr = [WXBridgeManager sharedManager];
+        
     }
     return self;
 }
 
 + (WXBridgeManager *)bridgeMgr
 {
-    WXBridgeManager* result = [self sharedInstance].bridgeMgr;
-    if (result == nil) {
-        // devtool may invoke "unload" and set bridgeMgr to nil
-        result = [WXBridgeManager sharedManager];
-        [self sharedInstance].bridgeMgr = result;
+    WXBridgeManager *bridgeMgr = [self sharedInstance].bridgeMgr;
+    if (!bridgeMgr) {
+        bridgeMgr = [[WXBridgeManager alloc] init];
+        [self sharedInstance].bridgeMgr = bridgeMgr;
     }
-    return result;
+    return bridgeMgr;
 }
 
 + (id)instanceForID:(NSString *)identifier

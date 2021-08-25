@@ -20,7 +20,7 @@
 #ifndef __WX_DEFINE_H__
 #define __WX_DEFINE_H__
 
-#define WX_SDK_VERSION @"0.28.0"
+#define WX_SDK_VERSION @"0.24.0"
 
 #if defined(__cplusplus)
 #define WX_EXTERN extern "C" __attribute__((visibility("default")))
@@ -78,9 +78,6 @@ parts = [parts subarrayWithRange:(NSRange){0, parts.count - 1}];\
 #define WX_APPLICATION_DID_BECOME_ACTIVE @"WXApplicationDidBecomeActiveEvent"
 
 #define WX_INSTANCE_NOTIFICATION_UPDATE_STATE @"WXInstUpdateState"
-#define WX_INSTANCE_NOTIFICATION_UPDATE_STATE_INTERNAL @"WXInstUpdateStateInternal"
-
-#define WX_INSTANCE_NOTIFICATION_CHANGE_VISIBILITY_INTERNAL @"WXInstChangeVisibilityInternal"
 
 #define WX_COMPONENT_NOTIFICATION_VIEW_LOADED    @"WXComponentViewLoaded"
 
@@ -92,8 +89,6 @@ parts = [parts subarrayWithRange:(NSRange){0, parts.count - 1}];\
 
 #define WX_BRIDGE_THREAD_NAME @"com.taobao.weex.bridge"
 
-#define WX_BACKUP_BRIDGE_THREAD_NAME @"com.taobao.weex.backup.bridge"
-
 #define WX_FONT_DOWNLOAD_DIR [[WXUtility cacheDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"wxdownload"]]
 
 #define WX_EXPORT_METHOD_INTERNAL(method, token) \
@@ -103,7 +98,6 @@ parts = [parts subarrayWithRange:(NSRange){0, parts.count - 1}];\
 
 #define WX_MODULE_EVENT_FIRE_NOTIFICATION  @"WX_MODULE_EVENT_FIRE_NOTIFICATION"
 #define WX_ICONFONT_DOWNLOAD_NOTIFICATION  @"WX_ICONFONT_DOWNLOAD_FINISH_NOTIFICATION"
-#define WX_ICONFONT_READY_NOTIFICATION     @"WX_ICONFONT_READY_NOTIFICATION"
 
 #define WX_INSTANCE_JSCONTEXT_CREATE_NOTIFICATION @"WX_INSTANCE_JSCONTEXT_CREATE_NOTIFICATION"
 

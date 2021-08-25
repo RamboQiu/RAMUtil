@@ -17,9 +17,7 @@
  * under the License.
  */
 
-#import <WeexSDK/WXComponent.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import "WXComponent.h"
 
 #define  REFRESH_DISTANCE_Y                 @"dy"
 #define  REFRESH_PULLINGDISTANCE            @"pullingDistance"
@@ -35,8 +33,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setIndicatorHidden:(BOOL)hidden;
 
-- (void)setDisplay;
-
 @end
-
-NS_ASSUME_NONNULL_END

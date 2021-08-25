@@ -20,15 +20,22 @@ PODS:
   - RAMUtil/RAMMacros (1.0.4)
   - RAMUtil/RAMMustOverrider (1.0.4)
   - RAMUtil/RAMSafeCollection (1.0.4)
-  - WeexSDK (0.30.0)
+  - SocketRocket (0.5.1)
+  - WeexSDK (0.24.0)
+  - WXDevtool (0.24.0):
+    - SocketRocket
+    - WeexSDK
 
 DEPENDENCIES:
   - RAMUtil (from `../`)
-  - WeexSDK (= 0.30.0)
+  - WeexSDK (= 0.24.0)
+  - WXDevtool (= 0.24.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - SocketRocket
     - WeexSDK
+    - WXDevtool
 
 EXTERNAL SOURCES:
   RAMUtil:
@@ -36,8 +43,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   RAMUtil: 91ceb093e30defea442a01a483ee6afead7051fa
-  WeexSDK: 8e01e33244f51cb11f9f000b5200d93de5f4fa97
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  WeexSDK: 5bd35be9c035c67c84d1ba15712360bb0d0ba6b5
+  WXDevtool: 95b70c73c06fc3299d65bd53ba4b3e0b0087f3cb
 
-PODFILE CHECKSUM: 1bfe70f4f133ab60209a9327ecf7977f43dfdf64
+PODFILE CHECKSUM: 5a71073eb2f41b8f528b057acaa3483be7476e3e
 
 COCOAPODS: 1.10.1

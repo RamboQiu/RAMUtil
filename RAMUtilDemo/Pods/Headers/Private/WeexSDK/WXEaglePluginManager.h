@@ -1,1 +1,0 @@
-../../../WeexSDK/ios/sdk/WeexSDK/Sources/Plugin/WXEaglePluginManager.h

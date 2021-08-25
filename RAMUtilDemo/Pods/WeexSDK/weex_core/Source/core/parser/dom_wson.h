@@ -25,25 +25,18 @@
 
 #include <vector>
 #include <string>
-#include <functional>
+
 
 namespace WeexCore {
 
     class RenderObject;
     class RenderPage;
 
-    RenderObject *Wson2RenderObject(const char *data, const std::string &pageId, bool reserveStyles);
+    RenderObject *Wson2RenderObject(const char *data, const std::string &pageId);
     std::vector<std::pair<std::string, std::string>> *Wson2Pairs(const char *data);
-    
-    typedef std::function<void (const std::string& ref,
-                                const std::string& type,
-                                const std::string& parentRef,
-                                std::map<std::string, std::string>* styles,
-                                std::map<std::string, std::string>* attrs,
-                                std::set<std::string>* events,
-                                int index)> WsonObjectGenerator;
-    
-    void WsonGenerate(const char* data, const std::string& parentRef, int index, const WsonObjectGenerator& genObject);
 }
+
+
+
 
 #endif //WEEX_PROJECT_WSON_PARSER_H

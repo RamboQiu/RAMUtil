@@ -18,9 +18,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WXSDKInstance.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import "WXSDKInstance.h"
 
 #define WX_ERROR_GROUP_NATIVE   @"NATIVE"
 #define WX_ERROR_GROUP_JS       @"JS"
@@ -32,26 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 #define WX_ERROR_TYPE_RENDER    @"RENDER_ERROR"
 #define WX_ERROR_TYPE_DOWNLOAD  @"DOWN_LOAD_ERROR"
 
-typedef NS_ENUM(int, WXSDKUniversalErrCode)
-{
-    WX_UNI_KEY_EXCEPTION_DEGRADE = -1000,
-    WX_UNI_KEY_EXCEPTION_DEGRADE_CHECK_CONTENT_LENGTH_FAILED = -1003,
-    WX_UNI_KEY_EXCEPTION_DEGRADE_BUNDLE_CONTENTTYPE_ERROR = -1004,
-    WX_UNI_KEY_EXCEPTION_DEGRADE_OTHER_CAUSE = -1005,
-    WX_UNI_KEY_EXCEPTION_DEGRADE_EAGLE_RENDER_ERROR = -1007,
-    WX_UNI_KEY_EXCEPTION_DEGRADE_NET_CODE_CAUSE = -1008,
-};
 
-/* For legacy usage.
- Defines all error codes only for iOS platform which may be different from Android error codes.
- For monitor uploads, we will remap the error code to WXSDKUniversalErrCode above if an
- error code is declared having a remapped value.
- 
- You could either use WXSDKUniversalErrCode or WXSDKErrCode when committing an error.
- */
 typedef NS_ENUM(int, WXSDKErrCode)
 {
-    // No use
     WX_ERR_JSFRAMEWORK_START = -1001,
     WX_ERR_JSFRAMEWORK_LOAD = -1002,
     WX_ERR_JSFRAMEWORK_EXECUTE = -1003,
@@ -63,7 +44,7 @@ typedef NS_ENUM(int, WXSDKErrCode)
     WX_ERR_JS_EXECUTE = -2013,
     WX_ERR_JSBRIDGE_END = -2099,
     
-    WX_ERR_RENDER_START = -2120,
+    WX_ERR_RENDER_START = -2100,
     WX_ERR_RENDER_CREATEBODY = -2100,
     WX_ERR_RENDER_UPDATTR = -2101,
     WX_ERR_RENDER_UPDSTYLE = -2102,
@@ -88,33 +69,20 @@ typedef NS_ENUM(int, WXSDKErrCode)
     WX_KEY_EXCEPTION_JS_DOWNLOAD =-9200,
     WX_KEY_EXCEPTION_DOM = -9300,
     WX_KEY_EXCEPTION_WXBRIDGE=-9400,
-    WX_KEY_EXCEPTION_JS_THREAD_BLOCK=-9401,
-    WX_KEY_EXCEPTION_JS_TIMER_TIMEOUT_NAN=-9402,
-    WX_KEY_EXCEPTION_JS_TIMER_REPEAT_HIGH_FREQUENCY=-9403,
     
-    // The following error codes have a remapped value defined in WXSDKUniversalErrCode
     WX_KEY_EXCEPTION_DEGRADE = -9500,
     WX_KEY_EXCEPTION_DEGRADE_CHECK_CONTENT_LENGTH_FAILED = -9501,
     WX_KEY_EXCEPTION_DEGRADE_BUNDLE_CONTENTTYPE_ERROR = -9502,
     WX_KEY_EXCEPTION_DEGRADE_OTHER_CAUSE = -9503,
     WX_KEY_EXCEPTION_DEGRADE_NET_CODE_CAUSE = -9504,
-    WX_KEY_EXCEPTION_DEGRADE_EAGLE_RENDER_ERROR = -9505,
     
-    // No use
     WX_KEY_EXCEPTION_ABILITY_DOWN = -9600,
     WX_KEY_EXCEPTION_ABILITY_DOWN_IMAGE = -9601,
     WX_KEY_EXCEPTION_ABILITY_DOWN_TOH5 = -9602,
     WX_KEY_EXCEPTION_ABILITY_DOWN_ = -9603,
     
     WX_KEY_EXCEPTION_EMPTY_SCREEN_JS = -9700,
-    WX_KEY_EXCEPTION_EMPTY_SCREEN_NATIVE = -9701,
-    
-    WX_KEY_EXCEPTION_NO_BUNDLE_TYPE = -9801,
-    WX_KEY_EXCEPTION_INVALID_JSON_OBJECT = -9802,
-    
-    WX_KEY_EXCEPTION_HERON_ERROR = -9900,
-    WX_KEY_EXCEPTION_HERON_RENDER_ERROR = -9901,
-    
+    WX_KEY_EXCEPTION_EMPTY_SCREEN_NATIVE = -9701
 };
 
 typedef NS_ENUM (NSInteger,WXSDKErrorType)
@@ -138,8 +106,6 @@ typedef NS_ENUM (NSInteger,WXSDKErrorGroup){
 + (WXSDKErrorGroup) getErrorGroupByCode:(WXSDKErrCode) code;
 + (NSString *) convertGroupToStringName:(WXSDKErrorGroup) group;
 + (NSString *) convertTypeToStringName:(WXSDKErrorType)type;
-+ (NSString *) convertToUniversalCode:(WXSDKErrCode)code;
 
 @end
 
-NS_ASSUME_NONNULL_END

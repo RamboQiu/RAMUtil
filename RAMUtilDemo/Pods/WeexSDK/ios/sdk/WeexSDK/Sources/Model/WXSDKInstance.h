@@ -18,50 +18,16 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <WeexSDK/WXComponent.h>
-#import <WeexSDK/WXJSExceptionInfo.h>
-#import <WeexSDK/WXResourceResponse.h>
-#import <WeexSDK/WXResourceRequest.h>
-#import <WeexSDK/WXBridgeProtocol.h>
-#import <WeexSDK/WXApmForInstance.h>
-#import <WeexSDK/WXComponentManager.h>
-
-@protocol WXDarkSchemeProtocol;
-
-NS_ASSUME_NONNULL_BEGIN
+#import "WXComponent.h"
+#import "WXJSExceptionInfo.h"
+#import "WXResourceResponse.h"
+#import "WXResourceRequest.h"
+#import "WXBridgeProtocol.h"
+#import "WXApmForInstance.h"
 
 extern NSString *const bundleUrlOptionKey;
 
-typedef BOOL (^WXModuleInterceptCallback)(NSString *moduleName, NSString *methodName, NSArray *arguments, NSDictionary *options);
-
 @interface WXSDKInstance : NSObject
-
-/**
- * Init instance and render it using iOS native views.
- * It is the same as initWithRenderType:@"platform"
- **/
-- (instancetype)init;
-
-/**
- * Init instance with custom render type.
- **/
-- (instancetype)initWithRenderType:(NSString*)renderType;
-
-/**
- * The render type. Default is "platform"
- **/
-@property (nonatomic, strong, readonly) NSString* renderType;
-
-/**
- * Returns YES when self.renderType != "platform"
- **/
-@property (nonatomic, assign, readonly) BOOL isCustomRenderType;
-
-/*
- * For weex containers in view controller(main containers), we may need to release render buffer
- * of custom render type page to save memory.
- */
-@property (nonatomic, assign) BOOL isMainContainerStack;
 
 /**
  * The viewControler which the weex bundle is rendered in.
@@ -84,11 +50,6 @@ typedef BOOL (^WXModuleInterceptCallback)(NSString *moduleName, NSString *method
  * Which indicates current instance needs to be validated or not to load,default value is false.
  **/
 @property (nonatomic, assign) BOOL needValidate;
-
-/**
- * Which indicates current instance use backup JS thread run,default value is false.
- **/
-@property (nonatomic, assign) BOOL useBackupJsThread;
 
 /**
  * The scriptURL of weex bundle.
@@ -121,19 +82,9 @@ typedef BOOL (^WXModuleInterceptCallback)(NSString *moduleName, NSString *method
 @property (nonatomic, strong) NSDictionary* containerInfo;
 
 /**
-* Params for Canal
-**/
-@property (nonatomic, strong) NSMutableDictionary* canalParams;
-
-/**
  * Whether this instance is rendered or not. Please MUST not render an instance twice even if you have called destroyInstance.
  **/
 @property (nonatomic, assign, readonly) BOOL isRendered;
-
-/**
- * Get component manager of this instance. You can manipulate components then.
- **/
-@property (nonatomic, readonly, strong) WXComponentManager *componentManager;
 
 /**
  * The state of current instance.
@@ -161,11 +112,6 @@ typedef NS_ENUM(NSInteger, WXErrorCode) {//error.code
     DeviceModelErrorCode,
     FrameworkVersionErrorCode,
 };
-
-typedef enum : NSUInteger {
-    WXScrollerComponentCreatedCallback,
-    WXTabbarComponentCreatedCallback
-} WXSDKInstanceCallbackType;
 
 
 @property (nonatomic, assign) WXState state;
@@ -202,6 +148,16 @@ typedef enum : NSUInteger {
  * bundleType is the DSL type
  */
 @property (nonatomic, strong) NSString * bundleType;
+
+/**
+ *  Which decide whether to use data render,default value is false
+ */
+@property (nonatomic, assign, readonly) BOOL dataRender;
+
+/**
+ *  Which decide whether to use binary code render, default value is false
+ */
+@property (nonatomic, assign, readonly) BOOL wlasmRender;
     
 /**
  *  The callback triggered when the instance fails to render.
@@ -232,15 +188,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) void (^onScroll)(CGPoint contentOffset);
 
 /**
- *  The callback of the instance
- *
- *  When the callbackType is WXScrollerComponentCreatedCallback, the result type is WXScrollerComponent.
- *
- *  @return A block that takes instance, callbackType and a result.
- **/
-@property (nonatomic, copy) void (^instanceCallback)(WXSDKInstance* instance, WXSDKInstanceCallbackType callbackType, id result);
-
-/**
  * the callback to be run repeatedly while the instance is rendering.
  *
  * @return A block that takes a CGRect argument, which is the rect rendered
@@ -251,13 +198,13 @@ typedef enum : NSUInteger {
  * The callback triggered when the bundleJS request finished in the renderWithURL.
  * @return A block that takes response which the server response,request which send to server,data which the server returned and an error
  */
-@property (nonatomic, copy) void(^onJSDownloadedFinish)(WXResourceResponse *response,WXResourceRequest *request,NSData* _Nullable data, NSError* _Nullable error);
+@property (nonatomic, copy) void(^onJSDownloadedFinish)(WXResourceResponse *response,WXResourceRequest *request,NSData *data, NSError* error);
 
 /**
  * The callback triggered when the bundleJS request finished in the renderWithURL. If the callback returns YES, the render process will terminate.
  * @return A block that takes response which the server response,request which send to server,data which the server returned and an error
  */
-@property (nonatomic, copy) BOOL (^onRenderTerminateWhenJSDownloadedFinish)(WXResourceResponse *response,WXResourceRequest *request,NSData* _Nullable data, NSError* _Nullable error);
+@property (nonatomic, copy) BOOL (^onRenderTerminateWhenJSDownloadedFinish)(WXResourceResponse *response,WXResourceRequest *request,NSData *data, NSError* error);
 
 @property(nonatomic,strong) NSDictionary* continerInfo;
 
@@ -296,7 +243,7 @@ typedef enum : NSUInteger {
  *
  * @param data The data the bundle needs when rendered.  Defalut is nil.
  **/
-- (void)renderWithURL:(NSURL *)url options:(NSDictionary * _Nullable)options data:(id _Nullable)data;
+- (void)renderWithURL:(NSURL *)url options:(NSDictionary *)options data:(id)data;
 
 ///**
 // * Renders weex view with resource request.
@@ -316,7 +263,7 @@ typedef enum : NSUInteger {
  *
  * @param data The data the bundle needs when rendered. Defalut is nil.
  **/
-- (void)renderView:(id)source options:(NSDictionary * _Nullable)options data:(id _Nullable)data;
+- (void)renderView:(id)source options:(NSDictionary *)options data:(id)data;
 
 /**
  * Reload the js bundle from the current URL and rerender.
@@ -325,11 +272,6 @@ typedef enum : NSUInteger {
  *
  **/
 - (void)reload:(BOOL)forcedReload;
-
-/**
- * Refreshes current instance components' layout after setting custom view port/device width.
- **/
-- (void)reloadLayout;
 
 /**
  * Refreshes current instance with data.
@@ -380,12 +322,12 @@ typedef enum : NSUInteger {
  * @param eventName the event name
  * @param params event params
  */
-- (void)fireModuleEvent:(Class)module eventName:(NSString *)eventName params:(NSDictionary* _Nullable)params;
+- (void)fireModuleEvent:(Class)module eventName:(NSString *)eventName params:(NSDictionary*)params;
 
 /**
  * fire global event
  */
-- (void)fireGlobalEvent:(NSString *)eventName params:(NSDictionary * _Nullable)params;
+- (void)fireGlobalEvent:(NSString *)eventName params:(NSDictionary *)params;
 
 /**
  * complete url based with bundle url
@@ -393,14 +335,9 @@ typedef enum : NSUInteger {
 - (NSURL *)completeURL:(NSString *)url;
 
 /**
-* register jscontext for reactor
-*/
-- (void)registerReactorContext:(JSContext*)context;
-
-/**
  * jsbundle str ,may be nil (weak)
  */
-- (NSString* _Nullable) bundleTemplate;
+- (NSString*) bundleTemplate;
 
 /**
  * application performance statistics
@@ -408,114 +345,21 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString *bizType;
 @property (nonatomic, strong) NSString *pageName;
 @property (nonatomic, weak) id pageObject;
-
 //Deprecated, use @WXApmForInstance
 @property (nonatomic, strong) NSMutableDictionary *performanceDict;
-@property (nonatomic, strong) WXApmForInstance* apmInstance;
 
-@property (nonatomic, assign) BOOL appearState;
-
-/*
- * For custom render page to release/restore OpenGL resources, etc.
- */
-- (void)willAppear;
-- (void)didDisappear;
+@property (nonatomic ,strong) WXApmForInstance* apmInstance;
 
 /**
- * Raw css styles are dropped after applied to layout nodes in WeexCore.
- * If a page needs hot refresh(without recreating instance and reload js) after screen orientation changes or
- * after setting custom view-port-width/screen-width/, you need to call setPageNeedsRawCssStyles to store all css styles
- * internally for later use. Or you can use MetaModule's setPageArguments method and provide "reserveCssStyles" as "true" before rendering the page.
+ * Application required Page Width and Height to prevent Weex use DeviceWidth directly.
  */
-- (void)setPageKeepRawCssStyles;
-- (void)isKeepingRawCssStyles:(void(^)(BOOL))callback;
-
-/**
- * Set additional argument value for WeexCore
- */
-- (void)setPageArgument:(NSString*)key value:(NSString*)value;
-
-/**
- * Set specific required page width and height to prevent this page using global values.
- */
-- (BOOL)setPageRequiredWidth:(CGFloat)width height:(CGFloat)height;
-
-/**
- * Set specific required view port width prevent this page using global value (750px).
- */
-- (void)setViewportWidth:(CGFloat)width;
-
-/**
- * @abstract Get information about the last rendered page.
- Useful fot debugging and fixing online bugs.
- */
-+ (NSDictionary*)lastPageInfo;
-
-#pragma mark - Scheme Support
-
-typedef enum : NSUInteger {
-    WXAutoInvertingBehaviorDefault,
-    WXAutoInvertingBehaviorAlways,
-    WXAutoInvertingBehaviorNever,
-} WXAutoInvertingBehavior;
-
-/**
- Set auto-inverting behavior for dark scheme.
-    WXAutoInvertingBehaviorDefault: Use components attribute and
-        defaultInvertValueForRootComponent of WXDarkSchemeProtocol.
-    WXAutoInvertingBehaviorAlways: Always set 'autoInvertForDarkScheme' as
-        true for root component.
-    WXAutoInvertingBehaviorNever: Always set 'autoInvertForDarkScheme' as
-        false for root component.
- 
- This function should be called before rendering URL.
-
- @return Handler instance.
-*/
-- (void)setAutoInvertingBehavior:(WXAutoInvertingBehavior)behavior;
-
-/**
- Handler for handling color invert.
-
- @return Handler instance.
- */
-+ (id<WXDarkSchemeProtocol>)darkSchemeColorHandler;
-
-/**
- Return true if current is dark scheme for this instance.
- */
-- (BOOL)isDarkScheme;
-
-/**
- Get/set interface style of current instance.
- */
-- (NSString*)currentSchemeName;
-- (void)setCurrentSchemeName:(NSString*)name;
-
-/**
- register/unRegister module intercept
- */
-- (void)registerModuleIntercept:(NSString*)moduleName callBack:(WXModuleInterceptCallback)callback;
-- (void)unRegisterModuleIntercept:(NSString*)moduleName;
-
-/**
- call module intercept
- */
-- (BOOL)moduleInterceptWithModuleName:(NSString*)moduleName methodName:(NSString*)methodName arguments:(NSArray*)arguments options:(NSDictionary*)options;
-
-/**
- Choose final color between original color and dark-mode one.
- Also considering invert.
- */
-- (UIColor*)chooseColor:(UIColor*)originalColor
-       lightSchemeColor:(UIColor*)lightColor
-        darkSchemeColor:(UIColor*)darkColor
-                 invert:(BOOL)invert
-                  scene:(WXColorScene)scene;
+- (void)setPageRequiredWidth:(CGFloat)width height:(CGFloat)height;
 
 /** 
  * Deprecated 
  */
+
+
 @property (nonatomic, strong) NSDictionary *properties DEPRECATED_MSG_ATTRIBUTE();
 @property (nonatomic, assign) NSTimeInterval networkTime DEPRECATED_MSG_ATTRIBUTE();
 @property (nonatomic, copy) void (^updateFinish)(UIView *);
@@ -529,5 +373,3 @@ typedef enum : NSUInteger {
 - (void)creatFinish DEPRECATED_MSG_ATTRIBUTE();
 
 @end
-
-NS_ASSUME_NONNULL_END

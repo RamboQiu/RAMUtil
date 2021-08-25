@@ -27,8 +27,6 @@
 #include "core/bridge/script_bridge.h"
 #include "base/message_loop/message_loop.h"
 
-class IPCFutexPageQueue;
-
 namespace WeexCore {
 class WeexCoreManager {
  public:
@@ -48,12 +46,7 @@ class WeexCoreManager {
   inline ScriptBridge *script_bridge() { return script_bridge_; }
 
   inline void set_script_bridge(ScriptBridge *script_bridge) {
-    ScriptBridge* pre_script_bridge  =  script_bridge_;
     script_bridge_ = script_bridge;
-    if (nullptr != pre_script_bridge && do_release_map()){
-        delete pre_script_bridge;
-        pre_script_bridge = nullptr;
-    }
   }
 
   inline void set_measure_function_adapter(MeasureFunctionAdapter *adapter) {
@@ -77,29 +70,19 @@ class WeexCoreManager {
 
   inline weex::base::Thread *script_thread() { return script_thread_; }
 
-  inline bool do_release_map() { return release_map_; }
-  inline void set_release_map(bool release) {  release_map_ = release; }
-
-  IPCFutexPageQueue* client_queue_;
-  IPCFutexPageQueue* server_queue_;
-
  private:
   PlatformBridge *platform_bridge_;
   MeasureFunctionAdapter *measure_function_adapter_;
   ScriptBridge *script_bridge_;
   ProjectMode project_mode_;
   weex::base::Thread *script_thread_;
-  volatile bool release_map_;
 
   WeexCoreManager()
       : platform_bridge_(nullptr),
         measure_function_adapter_(nullptr),
         script_bridge_(nullptr),
         project_mode_(COMMON),
-        script_thread_(nullptr),
-        client_queue_(nullptr),
-        server_queue_(nullptr),
-        release_map_(false){};
+        script_thread_(nullptr){};
   ~WeexCoreManager(){};
 };
 }  // namespace WeexCore

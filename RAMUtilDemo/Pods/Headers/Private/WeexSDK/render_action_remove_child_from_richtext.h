@@ -1,1 +1,0 @@
-../../../WeexSDK/weex_core/Source/core/render/action/render_action_remove_child_from_richtext.h

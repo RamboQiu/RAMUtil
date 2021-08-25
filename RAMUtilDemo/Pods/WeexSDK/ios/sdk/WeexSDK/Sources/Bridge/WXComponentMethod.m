@@ -49,17 +49,11 @@
         if (!component) {
             WXLogError(@"component not found for ref:%@, type:%@", _componentRef, _componentName);
         }
-        BOOL synchronous = NO;
-        SEL selector = [WXComponentFactory methodWithComponentName:component.type withMethod:self.methodName isSync:&synchronous];
+        SEL selector = [WXComponentFactory methodWithComponentName:component.type withMethod:self.methodName];
         NSInvocation * invocation = [self invocationWithTarget:component selector:selector];
-        if (synchronous) {
+        WXPerformBlockOnMainThread(^{
             [invocation invoke];
-        }
-        else {
-            WXPerformBlockOnMainThread(^{
-                [invocation invoke];
-            });
-        }
+        });
     });
     
     

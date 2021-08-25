@@ -20,8 +20,6 @@
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @class WXBridgeMethod;
 @class WXSDKInstance;
 
@@ -30,10 +28,6 @@ extern "C" {
 #endif
     void WXPerformBlockOnBridgeThread(void (^block)(void));
     void WXPerformBlockSyncOnBridgeThread(void (^block) (void));
-    void WXPerformBlockOnBackupBridgeThread(void (^block)(void));
-
-    void WXPerformBlockOnBridgeThreadForInstance(void (^block)(void), NSString* instance);
-    void WXPerformBlockSyncOnBridgeThreadForInstance(void (^block) (void), NSString* instance);
 #ifdef __cplusplus
 }
 #endif
@@ -45,10 +39,6 @@ extern "C" {
  **/
 @property (nonatomic, weak, readonly) WXSDKInstance *topInstance;
 
-@property (nonatomic, strong) NSMutableDictionary *lastMethodInfo;
-
-+ (instancetype)sharedManager;
-
 /**
  *  Create Instance Method
  *  @param instance  :   instance id
@@ -58,8 +48,8 @@ extern "C" {
  **/
 - (void)createInstanceForJS:(NSString *)instance
               template:(NSString *)temp
-               options:(NSDictionary * _Nullable)options
-                  data:(id _Nullable)data;
+               options:(NSDictionary *)options
+                  data:(id)data;
 
 /**
  *  Create Instance Method
@@ -70,8 +60,8 @@ extern "C" {
  **/
 - (void)createInstance:(NSString *)instance
               template:(NSString *)temp
-               options:(NSDictionary * _Nullable)options
-                  data:(id _Nullable)data;
+               options:(NSDictionary *)options
+                  data:(id)data;
 
 /**
  *  Create Instance with opcode
@@ -82,8 +72,8 @@ extern "C" {
  **/
 - (void)createInstance:(NSString *)instance
               contents:(NSData *)contents
-               options:(NSDictionary * _Nullable)options
-                  data:(id _Nullable)data;
+               options:(NSDictionary *)options
+                  data:(id)data;
 
 /**
  * @abstract return currentInstanceId
@@ -106,7 +96,7 @@ extern "C" {
  *  @param instance  :   instance id
  *  @param data      :   external data
  **/
-- (void)refreshInstance:(NSString *)instance data:(id _Nullable)data;
+- (void)refreshInstance:(NSString *)instance data:(id)data;
 
 /**
  *  Unload
@@ -118,7 +108,7 @@ extern "C" {
  *  @param instance  :   instance id
  *  @param data      :   parameters
  **/
-- (void)updateState:(NSString *)instance data:(id _Nullable)data;
+- (void)updateState:(NSString *)instance data:(id)data;
 
 /**
  *  Execute JSFramework Script
@@ -128,10 +118,9 @@ extern "C" {
 
 /**
  + *  download JS Script
- + *  @param instance    :   instance id
- + *  @param scriptUrl   :   script url
+ + *  @param scriptUrl    :   script url
  + **/
-- (void)DownloadJS:(NSString *)instance url:(NSURL *)scriptUrl completion:(void (^)(NSString *script))complection;
+- (void)DownloadJS:(NSURL *)scriptUrl completion:(void (^)(NSString *script))complection;
 
 /**
  *  Register JS service Script
@@ -140,7 +129,7 @@ extern "C" {
  *  @param options   :   service options
  *  @param completion : completion callback
  **/
-- (void)registerService:(NSString *)name withService:(NSString *)serviceScript withOptions:(NSDictionary * _Nullable)options completion:(nullable void(^)(BOOL result))completion;
+- (void)registerService:(NSString *)name withService:(NSString *)serviceScript withOptions:(NSDictionary *)options completion:(void(^)(BOOL result))completion;
 
 
 /**
@@ -150,7 +139,7 @@ extern "C" {
  *  @param options      :   service options
  *  @param completion : completion callback
  **/
--(void)registerService:(NSString *)name withServiceUrl:(NSURL *)serviceScriptUrl withOptions:(NSDictionary * _Nullable)options completion:(nullable void(^)(BOOL result))completion;
+-(void)registerService:(NSString *)name withServiceUrl:(NSURL *)serviceScriptUrl withOptions:(NSDictionary *)options completion:(void(^)(BOOL result))completion;
 
 /**
  *  Unregister JS service Script
@@ -178,7 +167,7 @@ extern "C" {
  *  @param params    :   parameters in event object
  *  @param domChanges   dom value changes, used for two-way data binding
  **/
-- (void)fireEvent:(NSString *)instanceId ref:(NSString *)ref type:(NSString *)type params:(NSDictionary * _Nullable)params domChanges:(NSDictionary * _Nullable)domChanges;
+- (void)fireEvent:(NSString *)instanceId ref:(NSString *)ref type:(NSString *)type params:(NSDictionary *)params domChanges:(NSDictionary *)domChanges;
 
 /**
  *  FireEvent
@@ -189,9 +178,9 @@ extern "C" {
  *  @param domChanges   dom value changes, used for two-way data binding
  *  @param handlerArguments : arguments passed to event handler
  **/
-- (void)fireEvent:(NSString *)instanceId ref:(NSString *)ref type:(NSString *)type params:(NSDictionary * _Nullable)params domChanges:(NSDictionary * _Nullable)domChanges handlerArguments:(NSArray * _Nullable)handlerArguments;
+- (void)fireEvent:(NSString *)instanceId ref:(NSString *)ref type:(NSString *)type params:(NSDictionary *)params domChanges:(NSDictionary *)domChanges handlerArguments:(NSArray *)handlerArguments;
 
-- (JSValue *)fireEventWithResult:(NSString *)instanceId ref:(NSString *)ref type:(NSString *)type params:(NSDictionary * _Nullable)params domChanges:(NSDictionary * _Nullable)domChanges;
+- (JSValue *)fireEventWithResult:(NSString *)instanceId ref:(NSString *)ref type:(NSString *)type params:(NSDictionary *)params domChanges:(NSDictionary *)domChanges;
 
 /**
  * componentHook
@@ -200,7 +189,7 @@ extern "C" {
  * @param type        : component hook Type, such as life-cycle
  * @param hookPhase   : hook phase
  */
-- (void)callComponentHook:(NSString*)instanceId componentId:(NSString*)componentId type:(NSString*)type hook:(NSString*)hookPhase args:(NSArray* _Nullable)args competion:(nullable void (^)(JSValue * value))complection;
+- (void)callComponentHook:(NSString*)instanceId componentId:(NSString*)componentId type:(NSString*)type hook:(NSString*)hookPhase args:(NSArray*)args competion:(void (^)(JSValue * value))complection;
 /**
  *  callBack
  *
@@ -209,7 +198,7 @@ extern "C" {
  *  @param params     params
  *  @param keepAlive     indicate that whether this func will be reused
  */
-- (void)callBack:(NSString *)instanceId funcId:(NSString *)funcId params:(id _Nullable)params keepAlive:(BOOL)keepAlive;
+- (void)callBack:(NSString *)instanceId funcId:(NSString *)funcId params:(id)params keepAlive:(BOOL)keepAlive;
 
 /**
  *  Connect To WebSocket for devtool debug
@@ -223,7 +212,7 @@ extern "C" {
  *  @param funcId    :   callback id
  *  @param params    :   parameters
  **/
-- (void)callBack:(NSString *)instanceId funcId:(NSString *)funcId params:(id _Nullable)params;
+- (void)callBack:(NSString *)instanceId funcId:(NSString *)funcId params:(id)params;
 
 /**
  *  Connect To WebSocket for collecting log
@@ -243,19 +232,9 @@ extern "C" {
  **/
 - (void)resetEnvironment;
 
-- (void)fireEvent:(NSString *)instanceId ref:(NSString *)ref type:(NSString *)type params:(NSDictionary * _Nullable)params DEPRECATED_MSG_ATTRIBUTE("Use fireEvent:ref:type:params:domChanges: method instead.");
+- (void)fireEvent:(NSString *)instanceId ref:(NSString *)ref type:(NSString *)type params:(NSDictionary *)params DEPRECATED_MSG_ATTRIBUTE("Use fireEvent:ref:type:params:domChanges: method instead.");
 - (void)executeJsMethod:(WXBridgeMethod *)method DEPRECATED_MSG_ATTRIBUTE();
 
 - (void)callJSMethod:(NSString *)method args:(NSArray *)args;
 
-- (void)callJSMethod:(NSString *)method args:(NSArray *)args completion:(void (^ _Nullable)(JSValue * _Nullable))completion;
-
-- (void)executeJSTaskQueue;
-
-- (void)checkJSThread;
-
-+ (NSThread *)jsThread;
-
 @end
-
-NS_ASSUME_NONNULL_END

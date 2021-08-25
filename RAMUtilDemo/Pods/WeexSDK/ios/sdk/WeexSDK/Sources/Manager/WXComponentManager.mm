@@ -42,8 +42,6 @@
 #import "WXComponent_performance.h"
 #import "WXAnalyzerCenter.h"
 #import "WXDisplayLinkManager.h"
-#import "WXDarkSchemeProtocol.h"
-#import "WXSDKInstance_private.h"
 
 static NSThread *WXComponentThread;
 
@@ -70,7 +68,6 @@ static NSThread *WXComponentThread;
 
 #define WXAssertComponentExist(component)  WXAssert(component, @"component not exists")
 #define MAX_DROP_FRAME_FOR_BATCH   200
-#define SYNC_UI_EXCEPTION_LOG_INTERVAL 1000
 
 @interface WXComponentManager () <WXDisplayLinkClient>
 @end
@@ -162,7 +159,12 @@ static NSThread *WXComponentThread;
     dispatch_once(&onceToken, ^{
         WXComponentThread = [[NSThread alloc] initWithTarget:[self sharedManager] selector:@selector(_runLoopThread) object:nil];
         [WXComponentThread setName:WX_COMPONENT_THREAD_NAME];
-        [WXComponentThread setQualityOfService:[[NSThread mainThread] qualityOfService]];
+        if(WX_SYS_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+            [WXComponentThread setQualityOfService:[[NSThread mainThread] qualityOfService]];
+        } else {
+            [WXComponentThread setThreadPriority:[[NSThread mainThread] threadPriority]];
+        }
+        
         [WXComponentThread start];
     });
     
@@ -264,21 +266,6 @@ static NSThread *WXComponentThread;
     
     _rootComponent = [self _buildComponent:ref type:type supercomponent:nil styles:styles attributes:attributes events:events renderObject:renderObject];
     
-    if ([WXUtility isDarkSchemeSupportEnabled]) {
-        if (attributes[@"invertForDarkScheme"] == nil) {
-            WXAutoInvertingBehavior invertingBehavior = _weexInstance.autoInvertingBehavior;
-            if (invertingBehavior == WXAutoInvertingBehaviorDefault) {
-                _rootComponent.invertForDarkScheme = [[WXSDKInstance darkSchemeColorHandler] defaultInvertValueForRootComponent];
-            }
-            else if (invertingBehavior == WXAutoInvertingBehaviorAlways) {
-                _rootComponent.invertForDarkScheme = YES;
-            }
-            else {
-                _rootComponent.invertForDarkScheme = NO;
-            }
-        }
-    }
-    
     CGSize size = _weexInstance.frame.size;
     [WXCoreBridge setDefaultDimensionIntoRoot:_weexInstance.instanceId
                                         width:size.width height:size.height
@@ -333,22 +320,8 @@ static NSThread *WXComponentThread;
     }
     if (supercomponent.ignoreInteraction) {
         component.ignoreInteraction = YES;
-    } else {
-        if ([attributes objectForKey:@"ignoreInteraction"]) {
-            component.ignoreInteraction = [[attributes objectForKey:@"ignoreInteraction"] boolValue];
-        } else {
-            if (component->_positionType == WXPositionTypeFixed) {
-                component.ignoreInteraction = YES;
-            } else {
-                component.ignoreInteraction = NO;
-            }
-        }
     }
-    
-    // Not explicitly declare "invertForDarkScheme", inherit
-    if (attributes[@"invertForDarkScheme"] == nil) {
-        component.invertForDarkScheme = supercomponent.invertForDarkScheme;
-    }
+    component.ignoreInteraction = [[component.attributes objectForKey:@"ignoreInteraction"] boolValue];
     
 #ifdef DEBUG
     WXLogDebug(@"flexLayout -> _recursivelyAddComponent : super:(%@,%@):[%f,%f] ,child:(%@,%@):[%f,%f],childClass:%@",
@@ -590,11 +563,6 @@ static NSThread *WXComponentThread;
     [_indexDict setObject:component forKey:ref];
 }
 
-- (void)removeComponentForRef:(NSString *)ref
-{
-    [_indexDict removeObjectForKey:ref];
-}
-
 - (NSDictionary *)_extractBindings:(NSDictionary **)attributesOrStylesPoint
 {
     NSDictionary *attributesOrStyles = *attributesOrStylesPoint;
@@ -717,9 +685,8 @@ static NSThread *WXComponentThread;
     [component _updateStylesOnMainThread:normalStyles resetStyles:resetStyles];
     [component readyToRender];
     
-    NSDictionary* dupStyles = [NSDictionary dictionaryWithDictionary:normalStyles];
     WXPerformBlockOnComponentThread(^{
-        [component _updateStylesOnComponentThread:dupStyles resetStyles:resetStyles isUpdateStyles:isUpdateStyles];
+        [component _updateStylesOnComponentThread:normalStyles resetStyles:resetStyles isUpdateStyles:isUpdateStyles];
     });
 }
 
@@ -735,10 +702,8 @@ static NSThread *WXComponentThread;
     NSMutableArray *resetStyles = [NSMutableArray new];
     [self filterStyles:styles normalStyles:normalStyles resetStyles:resetStyles];
     [component _updateStylesOnComponentThread:normalStyles resetStyles:resetStyles isUpdateStyles:isUpdateStyles];
-    
-    NSDictionary* dupStyles = [NSDictionary dictionaryWithDictionary:normalStyles];
     [self _addUITask:^{
-        [component _updateStylesOnMainThread:dupStyles resetStyles:resetStyles];
+        [component _updateStylesOnMainThread:normalStyles resetStyles:resetStyles];
         [component readyToRender];
     }];
 }
@@ -942,9 +907,6 @@ static NSThread *WXComponentThread;
     [self _addUITask:^{
         UIView *rootView = instance.rootView;
         [instance.performance onInstanceRenderSuccess:instance];
-        if ([instance.renderPlugin.pluginName isEqualToString:@"EagleRax"]) {
-            [instance.apmInstance forceSetInteractionTime:[WXUtility getUnixFixTimeMillis]];
-        }
         if (instance.renderFinish) {
             instance.renderFinish(rootView);
         }
@@ -1129,7 +1091,7 @@ static NSThread *WXComponentThread;
         }
     }
     
-    if (mismatchBeginIndex == _uiTaskQueue.count) {//!OCLint
+    if (mismatchBeginIndex == _uiTaskQueue.count) {
         // here we get end tag or there are not begin and end directives
     } else {
         _syncUITaskCount ++;
@@ -1147,15 +1109,7 @@ static NSThread *WXComponentThread;
         if (blocks.count) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 for(dispatch_block_t block in blocks) {
-                    @try {
-                        block();
-                    } @catch (NSException *exception) {
-                        static NSInteger sCatchCount = 0;
-                        if (++sCatchCount % SYNC_UI_EXCEPTION_LOG_INTERVAL == 1) {
-                            // log for the first time and control interval
-                            WXLogError(@"SyncUI Exception:%@", exception);
-                        }
-                    }
+                    block();
                 }
             });
         }

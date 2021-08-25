@@ -30,7 +30,6 @@
 #import "WXAssert.h"
 #import "WXSDKInstance_private.h"
 #import "WXLength.h"
-#import "WXDarkSchemeProtocol.h"
 
 @implementation WXTransitionInfo
 @end
@@ -83,8 +82,6 @@
                                                            @"bottom": @(WXTransitionOptionsBottom),
                                                            @"top": @(WXTransitionOptionsTop),
                                                            @"backgroundColor": @(WXTransitionOptionsBackgroundColor),
-                                                           @"weexDarkSchemeBackgroundColor": @(WXTransitionOptionsBackgroundColor),
-                                                           @"weexLightSchemeBackgroundColor": @(WXTransitionOptionsBackgroundColor),
                                                            @"transform": @(WXTransitionOptionsTransform),
                                                            @"opacity": @(WXTransitionOptionsOpacity)
                                                            };
@@ -109,66 +106,24 @@
     _filterStyles = _filterStyles ?:[NSMutableDictionary new];
     _oldFilterStyles = _oldFilterStyles ?: [NSMutableDictionary new];
     NSMutableDictionary *futileStyles = [NSMutableDictionary new];
-    NSDictionary* componentRawStyles = targetComponent.styles;
-    
-    BOOL isDarkScheme = [targetComponent.weexInstance isDarkScheme];
-    BOOL updatingDarkSchemeBackgroundColor = styles[@"weexDarkSchemeBackgroundColor"] != nil;
-    BOOL updatingLightSchemeBackgroundColor = styles[@"weexLightSchemeBackgroundColor"] != nil;
     
     for (NSString *key in styles) {
         if (self.transitionOptions & [self transitionOptionsFromString:key]) {
-            if ([key isEqualToString:@"backgroundColor"]) {
-                if (isDarkScheme && (updatingDarkSchemeBackgroundColor ||
-                                    componentRawStyles[@"weexDarkSchemeBackgroundColor"] != nil)) {
-                    /* Updating "darkSchemeBackgroundColor" in dark mode,
-                     or this component has dark bg color explicitly defined in styels.
-                     We ignore transition animation for "backgroundColor" */
-                    [futileStyles setObject:styles[key] forKey:key];
-                    continue;
-                }
-                else if (!isDarkScheme && (updatingLightSchemeBackgroundColor ||
-                                          componentRawStyles[@"weexLightSchemeBackgroundColor"] != nil)) {
-                    [futileStyles setObject:styles[key] forKey:key];
-                    continue;
-                }
-            }
-            else if ([key isEqualToString:@"weexDarkSchemeBackgroundColor"]) {
-                if (!isDarkScheme) {
-                    /* Do not do animation for "darkSchemeBackgroundColor" in light mode. */
-                    [futileStyles setObject:styles[key] forKey:key];
-                    continue;
-                }
-            }
-            else if ([key isEqualToString:@"weexLightSchemeBackgroundColor"]){
-                if (isDarkScheme) {
-                    [futileStyles setObject:styles[key] forKey:key];
-                    continue;
-                }
-            }
-            
             [_filterStyles setObject:styles[key] forKey:key];
             if (![key isEqualToString:@"transform"]) {
                 if (!isRunning) {
-                    // Get animation 'from' value from raw styles.
-                    id styleValue = componentRawStyles[key];
-                    if ([key isEqualToString:@"backgroundColor"] ||
-                        [key isEqualToString:@"weexDarkSchemeBackgroundColor"] ||
-                        [key isEqualToString:@"weexLightSchemeBackgroundColor"]) {
-                        if (styleValue == nil) {
-                            // background color is transparent by default.
-                            styleValue = @"transparent";
-                        }
-                    }
-                    else if (styleValue == nil) {
-                        /* Flex styles may not be in component.styles, so we must get
-                         value from layout and convert it to style value. */
+                    /* style value may not be in component.styles, so we must get
+                     value from layout and convert it to style value. */
+                    id styleValue = targetComponent.styles[key];
+                    if (styleValue == nil) {
                         styleValue = [targetComponent convertLayoutValueToStyleValue:key];
                     }
                     [_oldFilterStyles setObject:styleValue forKey:key];
                 }
             }
         }
-        else {
+        else
+        {
             [futileStyles setObject:styles[key] forKey:key];
         }
     }
@@ -176,7 +131,7 @@
 
     _targetComponent = targetComponent;
     NSMutableDictionary *componentStyles = [NSMutableDictionary dictionaryWithDictionary:styles];
-    [componentStyles addEntriesFromDictionary:componentRawStyles];
+    [componentStyles addEntriesFromDictionary:targetComponent.styles];
 
     _transitionDuration = componentStyles[kWXTransitionDuration] ? [WXConvert CGFloat:componentStyles[kWXTransitionDuration]] : 0;
     _transitionDelay = componentStyles[kWXTransitionDelay] ? [WXConvert CGFloat:componentStyles[kWXTransitionDelay]] : 0;
@@ -215,9 +170,8 @@
     }
     [targetComponent _updateCSSNodeStyles:styles];
     [targetComponent _resetCSSNodeStyles:resetStyles];
-    NSDictionary* dupStyles = [NSDictionary dictionaryWithDictionary:styles];
     WXPerformBlockOnMainThread(^{
-        [targetComponent _updateViewStyles:dupStyles];
+        [targetComponent _updateViewStyles:styles];
     });
 }
 
@@ -245,22 +199,10 @@
         if (!_propertyArray) {
             _propertyArray = [NSMutableArray new];
         }
-        if ([singleProperty isEqualToString:@"backgroundColor"] ||
-            [singleProperty isEqualToString:@"weexDarkSchemeBackgroundColor"] ||
-            [singleProperty isEqualToString:@"weexLightSchemeBackgroundColor"]) {
-            UIColor* fromColor = [WXConvert UIColor:_oldFilterStyles[singleProperty]];
-            UIColor* toColor = [WXConvert UIColor:_filterStyles[singleProperty]];
-            if ([_targetComponent.weexInstance isDarkScheme] &&
-                _targetComponent.invertForDarkScheme &&
-                [singleProperty isEqualToString:@"backgroundColor"]) {
-                // Invert color
-                fromColor = [[WXSDKInstance darkSchemeColorHandler] getInvertedColorFor:fromColor ofScene:[_targetComponent colorSceneType] withDefault:fromColor];
-                toColor = [[WXSDKInstance darkSchemeColorHandler] getInvertedColorFor:toColor ofScene:[_targetComponent colorSceneType] withDefault:toColor];
-            }
-            
+        if ([singleProperty isEqualToString:@"backgroundColor"]) {
             WXTransitionInfo *info = [WXTransitionInfo new];
-            info.fromValue = [self _dealWithColor:fromColor];
-            info.toValue = [self _dealWithColor:toColor];
+            info.fromValue = [self _dealWithColor:[WXConvert UIColor:_oldFilterStyles[singleProperty]]];
+            info.toValue = [self _dealWithColor:[WXConvert UIColor:_filterStyles[singleProperty]]];
             info.perValue = [self _calculatePerColorRGB1:info.toValue RGB2:info.fromValue];
             info.propertyName = singleProperty;
             [_propertyArray addObject:info];
@@ -375,15 +317,10 @@
     if (_propertyArray.count == 0) {
         return;
     }
-
-    // Bugfix: https://github.com/apache/incubator-weex/issues/2347
-    NSUInteger frameCount = MAX(_transitionDuration * 60 / 1000, 1);
-    NSUInteger currentFrame = _transitionCount + 1;
-    double per = (double)currentFrame / frameCount; //linear
-    if (currentFrame < frameCount && ![[NSString stringWithFormat:@"%@",_transitionTimingFunction] isEqualToString: kCAMediaTimingFunctionLinear]) {
-        per = [self solveWithx:per epsilon:SOLVE_EPS(_transitionDuration)];
+    double per = 1000 * (_transitionCount + 1 ) / (60 * _transitionDuration);//linear
+    if (![[NSString stringWithFormat:@"%@",_transitionTimingFunction] isEqualToString: kCAMediaTimingFunctionLinear]) {
+        per = [self solveWithx:((_transitionCount+2)*16)/_transitionDuration epsilon:SOLVE_EPS(_transitionDuration)];
     }
-
     NSString *transformString = [NSString string];
     for (WXTransitionInfo *info in _propertyArray) {
         if ([info.propertyName isEqualToString:@"backgroundColor"]) {
@@ -394,7 +331,6 @@
                                @([info.fromValue[3] floatValue] + [info.perValue[3] floatValue] * per)];
             UIColor *color = [UIColor colorWithRed:[array[0] floatValue] green:[array[1] floatValue] blue:[array[2] floatValue] alpha:[array[3] floatValue]];
             WXPerformBlockOnMainThread(^{
-                // Here we do not need to consider about dark mode.
                 _targetComponent.view.backgroundColor = color;
                 [_targetComponent.view setNeedsDisplay];
             });
@@ -508,7 +444,7 @@
 - (void)_handleTransitionDisplayLink
 {
     WXAssertComponentThread();
-    int count = MAX(_transitionDuration * 60 / 1000, 1);
+    int count = _transitionDuration * 60 / 1000;
     if (_transitionCount >= count) {
         [self _suspendTransitionDisplayLink];
         [self _resetProcessAnimationParameter];

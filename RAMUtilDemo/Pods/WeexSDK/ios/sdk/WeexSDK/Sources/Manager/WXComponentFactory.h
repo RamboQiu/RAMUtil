@@ -18,15 +18,13 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <WeexSDK/WXInvocationConfig.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import "WXInvocationConfig.h"
 
 @interface WXComponentConfig : WXInvocationConfig
 
-@property (nonatomic, strong) NSDictionary * _Nullable properties;
+@property (nonatomic, strong) NSDictionary *properties;
 
-- (instancetype)initWithName:(NSString *)name class:(NSString *)clazz pros:(NSDictionary * _Nullable)pros;
+- (instancetype)initWithName:(NSString *)name class:(NSString *)clazz pros:(NSDictionary *)pros;
 
 @end
 
@@ -50,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param clazz The WXComponent subclass to register
  * @param pros The component properties to register
  */
-+ (void)registerComponent:(NSString *)name withClass:(Class)clazz withPros:(NSDictionary * _Nullable)pros;
++ (void)registerComponent:(NSString *)name withClass:(Class)clazz withPros:(NSDictionary *)pros;
 
 /**
  * @abstract Register a list of components
@@ -60,8 +58,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSMutableDictionary *)componentMethodMapsWithName:(NSString *)name;
 + (NSMutableDictionary *)componentSelectorMapsWithName:(NSString *)name;
-
-+ (SEL)methodWithComponentName:(NSString *)name withMethod:(NSString *)method isSync:(BOOL *)isSync;
 
 + (SEL)methodWithComponentName:(NSString *)name withMethod:(NSString *)method;
 
@@ -86,5 +82,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @end
-
-NS_ASSUME_NONNULL_END

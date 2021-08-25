@@ -171,9 +171,6 @@
     BOOL _isUpdating;
     NSMutableArray<void(^)(void)> *_updates;
     NSTimeInterval _reloadInterval;
-    
-    CGPoint *_targetContentOffset;
-    CGPoint _nextStepContentOffset;
 }
 
 - (instancetype)initWithRef:(NSString *)ref type:(NSString *)type styles:(NSDictionary *)styles attributes:(NSDictionary *)attributes events:(NSArray *)events weexInstance:(WXSDKInstance *)weexInstance
@@ -285,18 +282,6 @@
     contentOffsetY += cellRect.origin.y;
     contentOffsetY += offset * self.weexInstance.pixelScaleFactor;
     
-    if (self.snapData.useSnap) {
-        CGFloat snapOffset = [self.snapData calcScrollSnapPositionOffset];
-        contentOffsetY -= (offset * self.weexInstance.pixelScaleFactor + snapOffset);
-        if (self.snapData.alignment == WXScrollSnapAlignCenter) {
-            contentOffsetY += (cellRect.size.height / 2);
-        } else if (self.snapData.alignment == WXScrollSnapAlignEnd) {
-            contentOffsetY += cellRect.size.height;
-        }
-        if (contentOffsetY < 0) {
-            contentOffsetY = 0;
-        }
-    }
     if (_tableView.contentSize.height >= _tableView.frame.size.height && contentOffsetY > _tableView.contentSize.height - _tableView.frame.size.height) {
         contentOffset.y = _tableView.contentSize.height - _tableView.frame.size.height;
     } else {
@@ -349,40 +334,13 @@
             && [subcomponent isKindOfClass:[WXHeaderComponent class]]) {
             // insert a header in the middle, one section may divide into two
             // so the original section need to be reloaded
-            
-            /*
-             Here we may encounter a problem that _sections is not always containing all cells of list.
-             Because cell are not added to _sections until cellDidLayout. So if a cell is not added to _sections,
-             
-                NSIndexPath *indexPathBeforeHeader = [self indexPathForSubIndex:index - 1];
-             The indexPathForSubIndex method use all sub components of list to calculate row in section. This would
-             be incorrect if a cell is not added to _sections. And the split is incorrect resulting some cells put to
-             wrong WXSectionComponent and then UITableView crash.
-             
-             In fixed version, we use _subcomponents[index - 1] to get the last component that should be put to original section
-             and get the index of it in section rows.
-             */
-            
-            if (_sections[insertIndex - 1].rows.count > 0) {
-                WXComponent* componentBeforeHeader = _subcomponents[index - 1];
-                
-                NSArray *rowsToSeparate = _sections[insertIndex - 1].rows;
-                NSUInteger indexOfLastComponentAfterSeparate = [rowsToSeparate indexOfObject:componentBeforeHeader];
-                if (indexOfLastComponentAfterSeparate != NSNotFound && componentBeforeHeader != [rowsToSeparate lastObject]) {
-                    reloadSection = _sections[insertIndex - 1];
-                    insertSection.rows = [[rowsToSeparate subarrayWithRange:NSMakeRange(indexOfLastComponentAfterSeparate + 1, rowsToSeparate.count - (indexOfLastComponentAfterSeparate + 1))] mutableCopy];
-                    reloadSection.rows = [[rowsToSeparate subarrayWithRange:NSMakeRange(0, indexOfLastComponentAfterSeparate + 1)]  mutableCopy];
-                }
+            NSIndexPath *indexPathBeforeHeader = [self indexPathForSubIndex:index - 1];
+            if (_sections[insertIndex - 1].rows.count != 0 && indexPathBeforeHeader.row < _sections[insertIndex - 1].rows.count - 1) {
+                reloadSection = _sections[insertIndex - 1];
+                NSArray *rowsToSeparate = reloadSection.rows;
+                insertSection.rows = [[rowsToSeparate subarrayWithRange:NSMakeRange(indexPathBeforeHeader.row + 1, rowsToSeparate.count - indexPathBeforeHeader.row - 1)] mutableCopy];
+                reloadSection.rows = [[rowsToSeparate subarrayWithRange:NSMakeRange(0, indexPathBeforeHeader.row + 1)]  mutableCopy];
             }
-            
-//          This is wrong!!!
-//            NSIndexPath *indexPathBeforeHeader = [self indexPathForSubIndex:index - 1];
-//            if (_sections[insertIndex - 1].rows.count != 0 && indexPathBeforeHeader.row < _sections[insertIndex - 1].rows.count - 1) {
-//                reloadSection = _sections[insertIndex - 1];
-//                NSArray *rowsToSeparate = reloadSection.rows;
-//                insertSection.rows = [[rowsToSeparate subarrayWithRange:NSMakeRange(indexPathBeforeHeader.row + 1, rowsToSeparate.count - indexPathBeforeHeader.row - 1)] mutableCopy];
-//                reloadSection.rows = [[rowsToSeparate subarrayWithRange:NSMakeRange(0, indexPathBeforeHeader.row + 1)]  mutableCopy];
-//            }
         }
     
         [_sections insertObject:insertSection atIndex:insertIndex];
@@ -415,6 +373,8 @@
                     [_tableView endUpdates];
                 } @catch (NSException *exception) {
                     WXLogError(@"list insert component occurs exception %@", exception);
+                } @finally {
+                     // nothing
                 }
                 
             }];
@@ -638,8 +598,7 @@
     NSIndexPath *fromIndexPath = [self indexPathForCell:cell sections:_sections];
     NSIndexPath *toIndexPath = [self indexPathForSubIndex:index];
     if (toIndexPath.row > [_sections[toIndexPath.section].rows count] || toIndexPath.row < 0) {
-    //FIXME: WXLogError trigger crash
-//        WXLogError(@"toIndexPath %@ is out of range as the current is %lu",toIndexPath ,(unsigned long)[_sections[toIndexPath.section].rows count]);
+        WXLogError(@"toIndexPath %@ is out of range as the current is %lu",toIndexPath ,(unsigned long)[_sections[toIndexPath.section].rows count]);
         return;
     }
     [self removeCellForIndexPath:fromIndexPath withSections:_sections];
@@ -670,6 +629,8 @@
                     [_tableView endUpdates];
                 }@catch(NSException * exception){
                     WXLogDebug(@"move cell exception: %@", [exception description]);
+                }@finally {
+                    // do nothing
                 }
             }];
         }
@@ -742,140 +703,6 @@
     } else {
         return 0.0;
     }
-}
-
-- (NSIndexPath *)getNeighbouringIndexPath:(NSIndexPath *)currentIndexPath findNext:(BOOL)findNext {
-    NSIndexPath *neighbourIndexPath;
-    if (findNext) {
-        if (currentIndexPath.row == _completedSections[currentIndexPath.section].rows.count - 1) {
-            if (currentIndexPath.section == _completedSections.count-1) {// the last cell
-                neighbourIndexPath = [NSIndexPath indexPathForRow:currentIndexPath.row inSection:currentIndexPath.section];
-            } else {// the first cell on next section
-                neighbourIndexPath = [NSIndexPath indexPathForRow:0 inSection:currentIndexPath.section+1];
-            }
-        } else {// the next cell
-            neighbourIndexPath = [NSIndexPath indexPathForRow:currentIndexPath.row+1 inSection:currentIndexPath.section];
-        }
-    } else {
-        if (currentIndexPath.row == 0) {
-            if (currentIndexPath.section == 0) {// the first cell
-                neighbourIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            } else {// the last cell on previous section
-                neighbourIndexPath = [NSIndexPath indexPathForRow:_completedSections[currentIndexPath.section-1].rows.count-1 inSection:currentIndexPath.section-1];
-            }
-        } else {// the previous cell
-            neighbourIndexPath = [NSIndexPath indexPathForRow:currentIndexPath.row-1 inSection:currentIndexPath.section];
-        }
-    }
-    return neighbourIndexPath;
-}
-
-
-- (CGPoint)calculateSnapPosition:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity startPosition:(CGPoint)startPosition targetPosition:(CGPoint)preTargetPosition{
-    [self.snapData bindingScrollView:scrollView];
-    WXTableView *tableView = (WXTableView *)scrollView;
-    /// The offset for start position, to avoid the start position error in continuous sliding if last sliding was not finished
-    CGFloat kstartPositionOffset = 10.f;
-    
-    /// The snap point of scroll container when finger touch down
-    self.snapData.startPosition = startPosition;
-    CGPoint snapContainerPosition, currentOffset;
-    CGPoint currentPoint = scrollView.contentOffset;
-    /// The offset of the snap point relative to the container vertex
-    CGFloat snapOffset = [self.snapData calcScrollSnapPositionOffset];
-    if (self.scrollDirection == WXScrollDirectionHorizontal) {
-        currentOffset = CGPointMake(currentPoint.x-startPosition.x, currentPoint.y);
-        snapContainerPosition = CGPointMake(startPosition.x + snapOffset, startPosition.y);
-    } else {
-        currentOffset = CGPointMake(currentPoint.x, currentPoint.y-startPosition.y);
-        snapContainerPosition = CGPointMake(startPosition.x, startPosition.y + snapOffset);
-    }
-    /// Calculate snap staus
-    WXScrollSnapStatus snapStatus = [self.snapData shouldTriggerSnap:currentOffset velocity:velocity];
-    
-    CGPoint targetContentOffset = startPosition;
-    if (currentPoint.x < 0 || currentPoint.y < 0) {
-        return targetContentOffset;
-    }
-    /// Bounce to origin offset
-    if (snapStatus == WXScrollSnapNone) {
-        return targetContentOffset;
-    }
-    
-    /// Determine the start position, if align-start + 4, else if align-end - 4
-    CGPoint correctSnapPosition = snapContainerPosition;
-    if (self.scrollDirection == WXScrollDirectionHorizontal) {
-        switch (self.snapData.alignment) {
-            case WXScrollSnapAlignStart:
-                correctSnapPosition.x += kstartPositionOffset;
-                break;
-            case WXScrollSnapAlignEnd:
-                correctSnapPosition.x -= kstartPositionOffset;
-                break;
-            default:
-                break;
-        }
-    } else {
-        switch (self.snapData.alignment) {
-            case WXScrollSnapAlignStart:
-                correctSnapPosition.y += kstartPositionOffset;
-                break;
-            case WXScrollSnapAlignEnd:
-                correctSnapPosition.y -= kstartPositionOffset;
-                break;
-            default:
-                break;
-        }
-    }
-    /// The cell corresponding to the starting point
-    NSIndexPath *beginIndexPath = [tableView indexPathForRowAtPoint:correctSnapPosition];
-    CGRect beginCellRect = [tableView rectForRowAtIndexPath:beginIndexPath];
-    if (CGRectIsNull(beginCellRect)) {
-        return targetContentOffset;
-    }
-    NSIndexPath *targetIndexPath = beginIndexPath;
-    
-    if (snapStatus == WXScrollSnapStay) {
-        // Do nothing
-    } else {
-        NSIndexPath *lastIndexPath = beginIndexPath;
-        targetIndexPath = [self getNeighbouringIndexPath:beginIndexPath findNext:(snapStatus == WXScrollSnapToNext)];
-        WXCellComponent *cell = [self cellForIndexPath:targetIndexPath];
-        while (cell.ignoreScrollSnap && [lastIndexPath compare:targetIndexPath] != NSOrderedSame) {
-            lastIndexPath = targetIndexPath;
-            targetIndexPath = [self getNeighbouringIndexPath:targetIndexPath findNext:(snapStatus == WXScrollSnapToNext)];
-            cell = [self cellForIndexPath:targetIndexPath];
-        }
-    }
-    
-    CGRect targetCellRect = [tableView rectForRowAtIndexPath:targetIndexPath];
-    
-    if (self.scrollDirection == WXScrollDirectionVertical) {
-        targetContentOffset.y = targetCellRect.origin.y - snapOffset;
-        if (self.snapData.alignment == WXScrollSnapAlignCenter) {
-            targetContentOffset.y += (targetCellRect.size.height / 2);
-        } else if (self.snapData.alignment == WXScrollSnapAlignEnd) {
-            targetContentOffset.y += targetCellRect.size.height;
-        }
-        if (targetContentOffset.y < 0) {
-            targetContentOffset.y = 0;
-        }
-    } else {
-        targetContentOffset.x = targetCellRect.origin.x - snapOffset;
-        if (self.snapData.alignment == WXScrollSnapAlignCenter) {
-            targetContentOffset.x += (targetCellRect.size.width / 2);
-        } else if (self.snapData.alignment == WXScrollSnapAlignEnd) {
-            targetContentOffset.x += targetCellRect.size.width;
-        }
-        if (targetContentOffset.x < 0) {
-            targetContentOffset.x = 0;
-        }
-    }
-    WXLogInfo(@"[scroll snap] veloc:%.2f (%.2f,%.2f)=>(%.2f,%.2f)", velocity.y, startPosition.x, startPosition.y, targetContentOffset.x, targetContentOffset.y);
-    self.snapData.targetIndexPath = targetIndexPath;
-    self.snapData.snapping = true;
-    
-    return targetContentOffset;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -1122,7 +949,7 @@
         // catch system exception under 11.2 https://forums.developer.apple.com/thread/49676
         @try {
             [_tableView insertSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:animation];
-        } @catch(NSException *) {//!OCLint
+        } @catch(NSException *) {
             
         }
     } withKeepScrollPosition:keepScrollPosition adjustmentBlock:^CGFloat(NSIndexPath *top) {
@@ -1140,7 +967,7 @@
         // catch system exception under 11.2 https://forums.developer.apple.com/thread/49676
         @try {
             [_tableView deleteSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:animation];
-        } @catch(NSException *) {//!OCLint
+        } @catch(NSException *) {
             
         }
 
@@ -1162,7 +989,7 @@
             // catch system exception under 11.2 https://forums.developer.apple.com/thread/49676
             @try {
                 [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:animation];
-            } @catch(NSException *e) {//!OCLint
+            } @catch(NSException *e) {
                 
             }
         }
@@ -1184,7 +1011,7 @@
         // catch system exception under 11.2 https://forums.developer.apple.com/thread/49676
         @try {
             [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:animation];
-        } @catch (NSException* e) {//!OCLint
+        } @catch (NSException* e) {
             
         }
     } withKeepScrollPosition:keepScrollPosition adjustmentBlock:^CGFloat(NSIndexPath *top) {

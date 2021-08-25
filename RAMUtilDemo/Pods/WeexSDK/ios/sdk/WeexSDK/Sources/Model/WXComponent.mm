@@ -42,7 +42,6 @@
 #import "WXSDKInstance_performance.h"
 #import "WXComponent_performance.h"
 #import "WXCoreBridge.h"
-#import "WXDarkSchemeProtocol.h"
 
 #pragma clang diagnostic ignored "-Wincomplete-implementation"
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
@@ -71,9 +70,6 @@ static BOOL bNeedRemoveEvents = YES;
 }
 
 @synthesize transform = _transform;
-@synthesize styleBackgroundColor = _styleBackgroundColor;
-@synthesize darkSchemeBackgroundColor = _darkSchemeBackgroundColor;
-@synthesize lightSchemeBackgroundColor = _lightSchemeBackgroundColor;
 
 #pragma mark Life Cycle
 
@@ -103,11 +99,8 @@ static BOOL bNeedRemoveEvents = YES;
         _isViewFrameSyncWithCalculated = YES;
         _ariaHidden = nil;
         _accessible = nil;
-        _userInteractionEnabled = YES;
-        _eventPenetrationEnabled = NO;
         _accessibilityHintContent = nil;
         _cancelsTouchesInView = YES;
-        _invertForDarkScheme = NO;
         
         _async = NO;
         
@@ -124,18 +117,6 @@ static BOOL bNeedRemoveEvents = YES;
             if (!_styles[@"top"] && !_styles[@"bottom"]) {
                 _styles[@"top"] = @0.0f;
             }
-        }
-        
-        if (attributes[@"invertForDarkScheme"]) {
-            _invertForDarkScheme = [WXConvert BOOL:attributes[@"invertForDarkScheme"]];
-        }
-        
-        if (attributes[@"userInteractionEnabled"]) {
-            _userInteractionEnabled = [WXConvert BOOL:attributes[@"userInteractionEnabled"]];
-        }
-        
-        if (attributes[@"eventPenetrationEnabled"]) {
-            _eventPenetrationEnabled = [WXConvert BOOL:attributes[@"eventPenetrationEnabled"]];
         }
         
         if (attributes[@"ariaHidden"]) {
@@ -280,6 +261,12 @@ static BOOL bNeedRemoveEvents = YES;
         [_panGesture removeTarget:nil action:NULL];
     }
     
+    if (bNeedRemoveEvents) {
+        if (WX_SYS_VERSION_LESS_THAN(@"9.0")) {
+            [self _removeAllEvents];
+        }
+    }
+    
     if (_bindingExpressions != nullptr) {
         for (WXJSExpression* expr : *_bindingExpressions) {
             if (expr != nullptr) {
@@ -378,7 +365,6 @@ static BOOL bNeedRemoveEvents = YES;
         return _view;
     } else {
         WXAssertMainThread();
-        double startCreateViewTime = CACurrentMediaTime()*1000;
         
         // compositing child will be drew by its composited ancestor
         if (_isCompositingChild) {
@@ -388,12 +374,6 @@ static BOOL bNeedRemoveEvents = YES;
         [self viewWillLoad];
         
         _view = [self loadView];
-        
-        // Provide a chance for dark scheme handler to process the view
-        if ([WXUtility isDarkSchemeSupportEnabled]) {
-            [[WXSDKInstance darkSchemeColorHandler] configureView:_view ofComponent:self];
-        }
-        
 #ifdef DEBUG
         WXLogDebug(@"flexLayout -> loadView:addr-(%p),componentRef-(%@)",_view,self.ref);
 #endif
@@ -402,18 +382,11 @@ static BOOL bNeedRemoveEvents = YES;
         _view.hidden = _visibility == WXVisibilityShow ? NO : YES;
         _view.clipsToBounds = _clipToBounds;
         if (![self _needsDrawBorder]) {
-            _layer.borderColor = [self.weexInstance chooseColor:_borderTopColor lightSchemeColor:_lightSchemeBorderTopColor darkSchemeColor:_darkSchemeBorderTopColor invert:_invertForDarkScheme scene:[self colorSceneType]].CGColor;
+            _layer.borderColor = _borderTopColor.CGColor;
             _layer.borderWidth = _borderTopWidth;
             [self _resetNativeBorderRadius];
             _layer.opacity = _opacity;
-
-            if ([WXUtility isDarkSchemeSupportEnabled]) {
-                UIColor* choosedColor = [self.weexInstance chooseColor:self.styleBackgroundColor lightSchemeColor:self.lightSchemeBackgroundColor darkSchemeColor:self.darkSchemeBackgroundColor invert:_invertForDarkScheme scene:[self colorSceneType]];
-                _view.backgroundColor = choosedColor;
-            }
-            else {
-                _view.backgroundColor = self.styleBackgroundColor;
-            }
+            _view.backgroundColor = _backgroundColor;
         }
 
         if (_backgroundImage) {
@@ -426,17 +399,13 @@ static BOOL bNeedRemoveEvents = YES;
         
         [self _adjustForRTL];
         
-        WXBoxShadow* usingBoxShadow = [self _chooseBoxShadow];        
-        if (usingBoxShadow) {
-            _lastBoxShadow = usingBoxShadow;
-            [self configBoxShadow:usingBoxShadow];
+        if (_boxShadow) {
+            [self configBoxShadow:_boxShadow];
         }
         
         _view.wx_component = self;
         _view.wx_ref = self.ref;
         _layer.wx_component = self;
-        
-        [_view setUserInteractionEnabled:_userInteractionEnabled];
         
         if (_roles) {
             [_view setAccessibilityTraits:[self _parseAccessibilityTraitsWithTraits:self.view.accessibilityTraits roles:_roles]];
@@ -459,7 +428,6 @@ static BOOL bNeedRemoveEvents = YES;
         
         if (_ariaHidden) {
             [_view setAccessibilityElementsHidden:[WXConvert BOOL:_ariaHidden]];
-            
         }
         if (_groupAccessibilityChildren) {
             [_view setShouldGroupAccessibilityChildren:[WXConvert BOOL:_groupAccessibilityChildren]];
@@ -479,12 +447,11 @@ static BOOL bNeedRemoveEvents = YES;
         [self setNeedsDisplay];
         [[NSNotificationCenter defaultCenter] postNotificationName:WX_COMPONENT_NOTIFICATION_VIEW_LOADED object:self];
         [self viewDidLoad];
-        double diffTime = CACurrentMediaTime()*1000 - startCreateViewTime;
-        [self.weexInstance.performance recordViewCreatePerformance:diffTime];
         
         if (_lazyCreateView) {
             [self _buildViewHierarchyLazily];
         }
+
         [self _handleFirstScreenTime];
         
         [self.weexInstance.performance onViewLoad:self];
@@ -637,6 +604,7 @@ static BOOL bNeedRemoveEvents = YES;
     pthread_mutex_unlock(&_propertyMutex);
     
     if (subcomponent->_positionType == WXPositionTypeFixed) {
+        subcomponent.ignoreInteraction = YES;
         [self.weexInstance.componentManager addFixedComponent:subcomponent];
     }
     
@@ -832,10 +800,6 @@ static BOOL bNeedRemoveEvents = YES;
 - (void)updateStyles:(NSDictionary *)styles
 {
     WXAssertMainThread();
-
-    if (self.componentCallback) {
-        self.componentCallback(self, WXComponentUpdateStylesCallback, styles);
-    }
 }
 
 - (void)updateAttributes:(NSDictionary *)attributes
@@ -868,25 +832,7 @@ static BOOL bNeedRemoveEvents = YES;
     if (CGRectEqualToRect(self.view.frame, CGRectZero)) {
         return;
     }
-    
-    NSString* styleValue = nil;
-    BOOL isDark = [self.weexInstance isDarkScheme];
-    if (isDark) {
-        if (_darkSchemeBackgroundImage) {
-            styleValue = _darkSchemeBackgroundImage;
-        }
-        else {
-            styleValue = _backgroundImage;
-        }
-    }
-    else if (_lightSchemeBackgroundImage) {
-        styleValue = _lightSchemeBackgroundImage;
-    }
-    else {
-        styleValue = _backgroundImage;
-    }
-    
-    NSDictionary * linearGradient = [WXUtility linearGradientWithBackgroundImage:styleValue];
+    NSDictionary * linearGradient = [WXUtility linearGradientWithBackgroundImage:_backgroundImage];
     if (!linearGradient) {
         return ;
     }
@@ -895,14 +841,12 @@ static BOOL bNeedRemoveEvents = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
         __strong typeof(self) strongSelf = weakSelf;
         if(strongSelf) {
-            // No need to auto-invert linear-gradient colors. We only allows using 'dark-scheme-background-image' style.
             UIColor * startColor = (UIColor*)linearGradient[@"startColor"];
             UIColor * endColor = (UIColor*)linearGradient[@"endColor"];
             CAGradientLayer * gradientLayer = [WXUtility gradientLayerFromColors:@[startColor, endColor] locations:nil frame:strongSelf.view.bounds gradientType:(WXGradientType)[linearGradient[@"gradientType"] integerValue]];
             if (gradientLayer) {
-                strongSelf.styleBackgroundColor = [UIColor colorWithPatternImage:[strongSelf imageFromLayer:gradientLayer]];
-                strongSelf.view.backgroundColor = strongSelf.styleBackgroundColor;
-                [strongSelf setNeedsDisplay];
+                _backgroundColor = [UIColor colorWithPatternImage:[strongSelf imageFromLayer:gradientLayer]];
+                strongSelf.view.backgroundColor = _backgroundColor;
             }
         }
     });
@@ -936,14 +880,7 @@ static BOOL bNeedRemoveEvents = YES;
         _groupAccessibilityChildren = [WXConvert NSString:attributes[@"groupAccessibilityChildren"]];
         [self.view setShouldGroupAccessibilityChildren:[WXConvert BOOL:_groupAccessibilityChildren]];
     }
-    if (attributes[@"userInteractionEnabled"]) {
-        _userInteractionEnabled = [WXConvert BOOL:attributes[@"userInteractionEnabled"]];
-        [self.view setUserInteractionEnabled:_userInteractionEnabled];
-    }
-    
-    if (attributes[@"eventPenetrationEnabled"]) {
-        _eventPenetrationEnabled = [WXConvert BOOL:attributes[@"eventPenetrationEnabled"]];
-    }
+
     
     if (attributes[@"testId"]) {
         [self.view setAccessibilityIdentifier:[WXConvert NSString:attributes[@"testId"]]];

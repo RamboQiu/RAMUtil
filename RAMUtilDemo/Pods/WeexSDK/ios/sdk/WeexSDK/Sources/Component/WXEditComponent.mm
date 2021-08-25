@@ -28,7 +28,6 @@
 #import "WXComponent+PseudoClassManagement.h"
 #import "WXTextInputComponent.h"
 #import "WXComponent+Layout.h"
-#import "WXComponent_internal.h"
 
 @interface WXEditComponent()
 {
@@ -53,9 +52,7 @@
 @property (nonatomic) WXTextStyle fontStyle;
 @property (nonatomic) CGFloat fontWeight;
 @property (nonatomic, strong) NSString *fontFamily;
-@property (atomic, strong) UIColor *colorForStyle;
-@property (atomic, strong) UIColor *darkSchemeColorForStyle;
-@property (atomic, strong) UIColor *lightSchemeColorForStyle;
+@property (nonatomic, strong) UIColor *colorForStyle;
 @property (nonatomic)NSTextAlignment textAlignForStyle;
 
 //event
@@ -145,16 +142,7 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
         
         // handle styles
         if (styles[@"color"]) {
-            self.colorForStyle = [WXConvert UIColor:styles[@"color"]];
-        }
-        else {
-            self.colorForStyle = [UIColor blackColor];
-        }
-        if (styles[@"weexDarkSchemeColor"]) {
-            self.darkSchemeColorForStyle = [WXConvert UIColor:styles[@"weexDarkSchemeColor"]];
-        }
-        if (styles[@"weexLightSchemeColor"]) {
-            self.lightSchemeColorForStyle = [WXConvert UIColor:styles[@"weexLightSchemeColor"]];
+            _colorForStyle = [WXConvert UIColor:styles[@"color"]];
         }
         if (styles[@"fontSize"]) {
             _fontSize = [WXConvert WXPixelType:styles[@"fontSize"] scaleFactor:self.weexInstance.pixelScaleFactor];
@@ -172,15 +160,9 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
             _textAlignForStyle = [WXConvert NSTextAlignment:styles[@"textAlign"]];
         }
         if (styles[@"placeholderColor"]) {
-            self.placeholderColor = [WXConvert UIColor:styles[@"placeholderColor"]];
+            _placeholderColor = [WXConvert UIColor:styles[@"placeholderColor"]];
         }else {
-            self.placeholderColor = [UIColor colorWithRed:0x99/255.0 green:0x99/255.0 blue:0x99/255.0 alpha:1.0];
-        }
-        if (styles[@"weexDarkSchemePlaceholderColor"]) {
-            self.darkSchemePlaceholderColor = [WXConvert UIColor:styles[@"weexDarkSchemePlaceholderColor"]];
-        }
-        if (styles[@"weexLightSchemePlaceholderColor"]) {
-            self.lightSchemePlaceholderColor = [WXConvert UIColor:styles[@"weexLightSchemePlaceholderColor"]];
+            _placeholderColor = [UIColor colorWithRed:0x99/255.0 green:0x99/255.0 blue:0x99/255.0 alpha:1.0];
         }
     }
     
@@ -205,7 +187,7 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
     [self setTextFont];
     [self setPlaceholderAttributedString];
     [self setTextAlignment];
-    [self setTextColor:[self.weexInstance chooseColor:self.colorForStyle lightSchemeColor:self.lightSchemeColorForStyle darkSchemeColor:self.darkSchemeColorForStyle invert:self.invertForDarkScheme scene:WXColorSceneText]];
+    [self setTextColor:_colorForStyle];
     [self setText:_value];
     [self setEnabled:!_disabled];
     [self setRows:_rows];
@@ -250,7 +232,6 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
 {
     if(self.view) {
         [self.view becomeFirstResponder];
-        self.weexInstance.apmInstance.forceStopRecordInteractionTime = YES;
     }
 }
 
@@ -316,11 +297,6 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
 
 - (void)setText:(NSString *)text
 {
-}
-
-- (void)_setTextColor
-{
-    [self setTextColor:[self.weexInstance chooseColor:self.colorForStyle lightSchemeColor:self.lightSchemeColorForStyle darkSchemeColor:self.darkSchemeColorForStyle invert:self.invertForDarkScheme scene:WXColorSceneText]];
 }
 
 -(void)setTextColor:(UIColor *)color
@@ -502,23 +478,10 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
 
 - (void)updateStyles:(NSDictionary *)styles
 {
-    BOOL colorChanged = NO;
     if (styles[@"color"]) {
-        self.colorForStyle = [WXConvert UIColor:styles[@"color"]];
-        colorChanged = YES;
+        _colorForStyle = [WXConvert UIColor:styles[@"color"]];
+        [self setTextColor:_colorForStyle];
     }
-    if (styles[@"weexDarkSchemeColor"]) {
-        self.darkSchemeColorForStyle = [WXConvert UIColor:styles[@"weexDarkSchemeColor"]];
-        colorChanged = YES;
-    }
-    if (styles[@"weexLightSchemeColor"]) {
-        self.lightSchemeColorForStyle = [WXConvert UIColor:styles[@"weexLightSchemeColor"]];
-        colorChanged = YES;
-    }
-    if (colorChanged) {
-        [self _setTextColor];
-    }
-    
     if (styles[@"fontSize"]) {
         _fontSize = [WXConvert WXPixelType:styles[@"fontSize"] scaleFactor:self.weexInstance.pixelScaleFactor];
     }
@@ -537,26 +500,12 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
         _textAlignForStyle = [WXConvert NSTextAlignment:styles[@"textAlign"]];
         [self setTextAlignment:_textAlignForStyle] ;
     }
-    
-    BOOL placeholderColorChanged = NO;
     if (styles[@"placeholderColor"]) {
-        self.placeholderColor = [WXConvert UIColor:styles[@"placeholderColor"]];
-        placeholderColorChanged = YES;
+        _placeholderColor = [WXConvert UIColor:styles[@"placeholderColor"]];
     }else {
-        self.placeholderColor = [UIColor colorWithRed:0x99/255.0 green:0x99/255.0 blue:0x99/255.0 alpha:1.0];
+        _placeholderColor = [UIColor colorWithRed:0x99/255.0 green:0x99/255.0 blue:0x99/255.0 alpha:1.0];
     }
-    if (styles[@"weexDarkSchemePlaceholderColor"]) {
-        self.darkSchemePlaceholderColor = [WXConvert UIColor:styles[@"weexDarkSchemePlaceholderColor"]];
-        placeholderColorChanged = YES;
-    }
-    if (styles[@"weexLightSchemePlaceholderColor"]) {
-        self.lightSchemePlaceholderColor = [WXConvert UIColor:styles[@"weexLightSchemePlaceholderColor"]];
-        placeholderColorChanged = YES;
-    }
-    if (placeholderColorChanged && [self.placeHolderLabel.text length] > 0) {
-        [self setPlaceholderAttributedString];
-    }
-    
+    [self setPlaceholderAttributedString];
     [self updatePattern];
 }
 
@@ -725,12 +674,18 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
         if (cursorPosition == textField.text.length) {
             adjust = newString.length-oldText.length;
         }
-        if (!textField.deleteWords || ![textField.editWords isKindOfClass:[NSString class]] || ![_recoverRule isEqualToString:textField.editWords]) {
+        if (textField.deleteWords &&[textField.editWords isKindOfClass:[NSString class]] && [_recoverRule isEqualToString:textField.editWords]) {
+            // do nothing
+        } else {
             textField.text = [newString copy];
             UITextPosition * newPosition = [textField positionFromPosition:textField.beginningOfDocument offset:cursorPosition+adjust];
             textField.selectedTextRange = [textField textRangeFromPosition:newPosition toPosition:newPosition];
         }
 
+    }
+    if (_inputEvent) {
+        // bind each other , the key must be attrs
+        [self fireEvent:@"input" params:@{@"value":[textField text]} domChanges:@{@"attrs":@{@"value":[textField text]}}];
     }
     
     if (_maxLength) {
@@ -750,11 +705,6 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
             }
         }
     }
-
-    if (_inputEvent) {
-        // bind each other , the key must be attrs
-        [self fireEvent:@"input" params:@{@"value":[textField text]} domChanges:@{@"attrs":@{@"value":[textField text]}}];
-    }
 }
 
 - (void)setViewMovedUp:(BOOL)movedUp
@@ -764,8 +714,7 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
     CGRect rootViewFrame = rootView.frame;
     CGRect inputFrame = [self.view.superview convertRect:self.view.frame toView:rootView];
     if (movedUp) {
-        CGFloat inputOffset = inputFrame.size.height - (rootViewFrame.size.height - inputFrame.origin.y);
-        CGFloat offset = inputFrame.origin.y-(rootViewFrame.size.height-_keyboardSize.height- (inputOffset > 0 ? inputFrame.size.height - inputOffset : inputFrame.size.height)) + _upriseOffset;
+        CGFloat offset = inputFrame.origin.y-(rootViewFrame.size.height-_keyboardSize.height-inputFrame.size.height) + _upriseOffset;
         if (offset > 0) {
             rect = (CGRect){
                 .origin.x = 0.f,
@@ -875,9 +824,8 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
 
 - (void)setPlaceholderAttributedString
 {
-    UIColor* placeholderColor = [self.weexInstance chooseColor:self.placeholderColor lightSchemeColor:self.lightSchemePlaceholderColor darkSchemeColor:self.darkSchemePlaceholderColor invert:self.invertForDarkScheme scene:WXColorSceneText];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_placeholderString];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:placeholderColor range:NSMakeRange(0, _placeholderString.length)];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:_placeholderColor range:NSMakeRange(0, _placeholderString.length)];
     UIFont *font = [WXUtility fontWithSize:_fontSize textWeight:_fontWeight textStyle:_fontStyle fontFamily:_fontFamily scaleFactor:self.weexInstance.pixelScaleFactor];
     [self setAttributedPlaceholder:attributedString font:font];
 }
@@ -897,7 +845,6 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
         }else
         {
             [self.view becomeFirstResponder];
-             self.weexInstance.apmInstance.forceStopRecordInteractionTime = YES;
         }
     } else {
         if([self isDateType])
@@ -1037,39 +984,13 @@ WX_EXPORT_METHOD(@selector(setTextFormatter:))
 #pragma mark -reset color
 - (void)resetStyles:(NSArray *)styles
 {
-    BOOL colorChanged = NO;
     if ([styles containsObject:@"color"]) {
-        self.colorForStyle = [UIColor blackColor];
-        colorChanged = YES;
+        [self setTextColor:[UIColor blackColor]];
     }
-    if ([styles containsObject:@"weexDarkSchemeColor"]) {
-        self.darkSchemeColorForStyle = nil;
-        colorChanged = YES;
-    }
-    if ([styles containsObject:@"weexLightSchemeColor"]) {
-        self.lightSchemeColorForStyle = nil;
-        colorChanged = YES;
-    }
-    if (colorChanged) {
-        [self _setTextColor];
-    }
-    
     if ([styles containsObject:@"fontSize"]) {
         _fontSize = WX_TEXT_FONT_SIZE;
         [self setTextFont];
     }
 }
-
-- (void)schemeDidChange:(NSString*)scheme
-{
-    [super schemeDidChange:scheme];
-    if (_view) {
-        [self _setTextColor];
-        if ([self.placeHolderLabel.text length] > 0) {
-            [self setPlaceholderAttributedString];
-        }
-    }
-}
-
 @end
 

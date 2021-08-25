@@ -28,7 +28,8 @@
 
     //Register custom modules and components, optional.
 //    [WXSDKEngine registerComponent:@"myview" withClass:[MyViewComponent class]];
-//    [WXSDKEngine registerModule:@"mymodule" withClass:[MyWeexModule class]];
+    [WXSDKEngine registerModule:@"RAMStatistics" withClass:NSClassFromString(@"RAMStatisticsModule")];
+    
 
     //Register the implementation of protocol, optional.
 //    [WXSDKEngine registerHandler:[WXAppNavigationImpl new] withProtocol:@protocol(WXNavigationProtocol)];

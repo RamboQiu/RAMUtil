@@ -22,7 +22,7 @@
 
 #include <string>
 
-constexpr char OS_Android[] = "android";
-constexpr char OS_iOS[] = "iOS";
+const std::string OS_Android = "android";
+const std::string OS_iOS = "iOS";
 
 #endif //WEEXV8_CONSTANTSNAME_H

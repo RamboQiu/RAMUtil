@@ -34,8 +34,8 @@
     _instance.renderFinish = ^ (UIView *view) {
         //process renderFinish
     };
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"js"];
-    [_instance renderWithURL:url options:@{@"bundleUrl":url} data:nil];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"js"];
+    [_instance renderWithURL:url options:@{@"bundleUrl":@"index.js"} data:nil];
 }
 
 - (void)dealloc

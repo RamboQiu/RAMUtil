@@ -28,9 +28,8 @@ namespace network {
 class HttpModule {
  public:
   HttpModule();
-  HttpModule(RequestHandler *request_handler);
-  void Send(const char *instance_id, const char *url, Callback callback);
-  void GetBundleType(const char *instance_id, const char *content, Callback callback);
+  HttpModule(RequestHandler* request_handler);
+  void Send(const char* instance_id, const char* url, Callback callback);
 
  private:
   std::unique_ptr<RequestHandler> request_handler_;
