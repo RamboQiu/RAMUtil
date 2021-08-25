@@ -104,6 +104,19 @@ UITableViewDataSource>
     weexData.model = weexModel;
     [section2 addObject:weexData];
     
+    RAMCellModel *ramInvocationModel = [[RAMCellModel alloc] initWithTitle:@"实现block的invocation"
+                                                            desc:@"http://doc.weex.io/"];
+    ramInvocationModel.classStr = @"RAMInvocationBlockViewController";
+    RAMCellData *ramImvocationData = RAMCellData.new;
+    ramImvocationData.cellClass = RAMBaseTableViewCell.class;
+    ramImvocationData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:ramInvocationModel];
+    ramImvocationData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    ramImvocationData.cellSelectSEL = @selector(selNormalCellData:);
+    ramImvocationData.model = ramInvocationModel;
+    [section2 addObject:ramImvocationData];
+    
+    
+    
     RAMCellModel *swiftModel = [[RAMCellModel alloc] initWithTitle:@"Swift学习"
                                                             desc:@"cnswift.org"];
     swiftModel.classStr = @"RAMUtilDemo.RAMSwiftViewController";

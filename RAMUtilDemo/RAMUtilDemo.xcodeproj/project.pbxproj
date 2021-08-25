@@ -89,6 +89,8 @@
 		4146AB0626D6682F0092283C /* RAMNativeBridgeWeex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4146AB0426D6682F0092283C /* RAMNativeBridgeWeex.m */; };
 		4146AB0926D6683D0092283C /* RAMNativeBridgeFlutter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4146AB0726D6683D0092283C /* RAMNativeBridgeFlutter.h */; };
 		4146AB0A26D6683D0092283C /* RAMNativeBridgeFlutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4146AB0826D6683D0092283C /* RAMNativeBridgeFlutter.m */; };
+		4146AB0E26D66F1A0092283C /* RAMInvocationBlockViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4146AB0C26D66F1A0092283C /* RAMInvocationBlockViewController.h */; };
+		4146AB0F26D66F1A0092283C /* RAMInvocationBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4146AB0D26D66F1A0092283C /* RAMInvocationBlockViewController.m */; };
 		415F7496243C6D130066F1FD /* RAMNestScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415F7495243C6D130066F1FD /* RAMNestScrollViewController.swift */; };
 		416A8423238B81EE0031BCF3 /* RAMUIEventChainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 416A8422238B81EE0031BCF3 /* RAMUIEventChainViewController.m */; };
 		4193476B2418902C0092A0A2 /* RAMAnimateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193476A2418902C0092A0A2 /* RAMAnimateController.swift */; };
@@ -217,6 +219,8 @@
 		4146AB0426D6682F0092283C /* RAMNativeBridgeWeex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMNativeBridgeWeex.m; sourceTree = "<group>"; };
 		4146AB0726D6683D0092283C /* RAMNativeBridgeFlutter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMNativeBridgeFlutter.h; sourceTree = "<group>"; };
 		4146AB0826D6683D0092283C /* RAMNativeBridgeFlutter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMNativeBridgeFlutter.m; sourceTree = "<group>"; };
+		4146AB0C26D66F1A0092283C /* RAMInvocationBlockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMInvocationBlockViewController.h; sourceTree = "<group>"; };
+		4146AB0D26D66F1A0092283C /* RAMInvocationBlockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMInvocationBlockViewController.m; sourceTree = "<group>"; };
 		415F7495243C6D130066F1FD /* RAMNestScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMNestScrollViewController.swift; sourceTree = "<group>"; };
 		416A8421238B81EE0031BCF3 /* RAMUIEventChainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMUIEventChainViewController.h; sourceTree = "<group>"; };
 		416A8422238B81EE0031BCF3 /* RAMUIEventChainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMUIEventChainViewController.m; sourceTree = "<group>"; };
@@ -264,8 +268,7 @@
 		35497F0B2269FC3600D090E8 /* RAMTestUI */ = {
 			isa = PBXGroup;
 			children = (
-				4146AAEA26D646DA0092283C /* NSInvocation+Block.h */,
-				4146AAEB26D646DB0092283C /* NSInvocation+Block.m */,
+				4146AB1026D66F1E0092283C /* BlockInvocation */,
 				4146AAE526D640E10092283C /* NRPC */,
 				411701602669F699005EB083 /* RAMBaseViewController.h */,
 				411701612669F699005EB083 /* RAMBaseViewController.m */,
@@ -525,6 +528,17 @@
 			path = NativeBridges;
 			sourceTree = "<group>";
 		};
+		4146AB1026D66F1E0092283C /* BlockInvocation */ = {
+			isa = PBXGroup;
+			children = (
+				4146AAEA26D646DA0092283C /* NSInvocation+Block.h */,
+				4146AAEB26D646DB0092283C /* NSInvocation+Block.m */,
+				4146AB0C26D66F1A0092283C /* RAMInvocationBlockViewController.h */,
+				4146AB0D26D66F1A0092283C /* RAMInvocationBlockViewController.m */,
+			);
+			path = BlockInvocation;
+			sourceTree = "<group>";
+		};
 		415F7494243C6CCD0066F1FD /* RAMNestScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +620,7 @@
 				41EDCE8224555EE10095B4CF /* RAMCodeTestViewController.h in Headers */,
 				4146AB0526D6682F0092283C /* RAMNativeBridgeWeex.h in Headers */,
 				41170175266A005D005EB083 /* RAMCategoryProtocol.h in Headers */,
+				4146AB0E26D66F1A0092283C /* RAMInvocationBlockViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +795,7 @@
 				35CA1639238F64EA00A32058 /* UIViewController+RAMPointerSwizzling.m in Sources */,
 				411701632669F699005EB083 /* RAMBaseViewController.m in Sources */,
 				352E9A202397E6D8009531D1 /* RAMBlockViewController.m in Sources */,
+				4146AB0F26D66F1A0092283C /* RAMInvocationBlockViewController.m in Sources */,
 				4146AAF926D663450092283C /* RAMBridgeShareModule.m in Sources */,
 				4146AAED26D646DB0092283C /* NSInvocation+Block.m in Sources */,
 				4146AAF026D6628F0092283C /* RAMNRPCViewController.m in Sources */,
