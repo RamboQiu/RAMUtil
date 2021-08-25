@@ -80,6 +80,19 @@ UITableViewDataSource>
     codeData.model = codeModel;
     [section2 addObject:codeData];
     
+    
+    RAMCellModel *rpcModel = [[RAMCellModel alloc] initWithTitle:@"通用中继器设计"
+                                                            desc:@"http://doc.weex.io/"];
+    rpcModel.classStr = @"RAMNRPCViewController";
+    RAMCellData *rpcData = RAMCellData.new;
+    rpcData.cellClass = RAMBaseTableViewCell.class;
+    rpcData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:rpcModel];
+    rpcData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    rpcData.cellSelectSEL = @selector(selNormalCellData:);
+    rpcData.model = rpcModel;
+    [section2 addObject:rpcData];
+    
+    
     RAMCellModel *weexModel = [[RAMCellModel alloc] initWithTitle:@"weex学习"
                                                             desc:@"http://doc.weex.io/"];
     weexModel.classStr = @"RAMWeexViewController";
