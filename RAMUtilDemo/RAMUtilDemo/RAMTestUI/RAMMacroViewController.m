@@ -1,4 +1,4 @@
-//
+    //
 //  RAMMacroViewController.m
 //  RAMUtilDemo
 //
@@ -11,7 +11,7 @@
 #import <RAMUtil/RAMMacros.h>
 
 // example(abc)； 在编译时将会展开成：printf("the input string is:/t%s/n","abc");
-#define example(instr) printf("thie input string is:/t%s/n",#instr)
+#define LOG(str) NSLog(@"thie input string is:/t%@/n",@#str)
 // string str=example1(abc)； 将会展成：string str="abc"；
 #define example1(instr) #instr
 // int num9=9;
@@ -19,6 +19,8 @@
 #define exampleNum(n) num##n
 // a = makechar(b); 将会扩展成 a= 'b';
 #define makechar(x)  @#x
+
+#define paster( n ) printf( "token" #n " = %d", token##n )
 
 
 /*
@@ -76,6 +78,17 @@ A2(a1, int);  /* 等价于: int a1_int_type;   */
  extern const struct gtype##_id __mod_##gtype##_table \
  __attribute__ ((unused, alias(__stringify(name))))
 
+#define TESTCOUNT num##__COUNTER__
+
+#define PP_CONCAT(A, B) PP_CONCAT_IMPL(A, B)
+#define PP_CONCAT_IMPL(A, B) A##B
+
+#define PP_GET_N(N, ...) PP_CONCAT(PP_GET_N_, N)(__VA_ARGS__)
+#define PP_GET_N_0(_0, ...) _0
+#define PP_GET_N_1(_0, _1, ...) _1
+#define PP_GET_N_2(_0, _1, _2, ...) _2
+// ...
+#define PP_GET_N_8(_0, _1, _2, _3, _4, _5, _6, _7, _8, ...) _8
 
 @interface RAMMacroViewController ()
 @property (nonatomic, strong) UILabel *label;
@@ -85,8 +98,21 @@ A2(a1, int);  /* 等价于: int a1_int_type;   */
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.titleText?:@"";
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    int token9 = 9;
+    paster(9);
+    
+    NSLog(@"%s", __func__);
+    
+    NSLog(@"%d", __LINE__);
+    
+    int foo = 1, bar = 2;
+    int a = PP_GET_N(0, foo, bar);  // -> foo
+    int b = PP_GET_N(1, foo, bar);  // -> bar
+    
+    NSLog(@"%d", __COUNTER__);//0
+    NSLog(@"%d", __COUNTER__);//1
+    NSLog(@"%d", __COUNTER__);//2
     
     self.label = UILabel.new;
     self.label.font = [UIFont systemFontOfSize:14];
@@ -104,6 +130,10 @@ A2(a1, int);  /* 等价于: int a1_int_type;   */
     
     self.label.width = RAMScreenWidth;
     [self.label sizeToFit];
+}
+
+- (void)testAction:(id)sender {
+    NSLog(@"%d", __COUNTER__);//3
 }
 
 - (void)viewWillLayoutSubviews {

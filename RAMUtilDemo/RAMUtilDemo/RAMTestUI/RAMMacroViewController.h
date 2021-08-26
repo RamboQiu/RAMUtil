@@ -6,13 +6,13 @@
 //  Copyright © 2019 裘俊云. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RAMBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RAMMacroViewController : UIViewController
+@interface RAMMacroViewController : RAMBaseViewController
 
-@property (nonatomic, strong) NSString *titleText;
+
 @end
 
 NS_ASSUME_NONNULL_END
