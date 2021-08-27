@@ -70,6 +70,6 @@
     "webpack-merge": "^4.1.0",
     "webpack-uglify-parallel": "^0.1.4",
     "weex-loader": "^0.7.2",
-    "ws": "^1.1.0"
+    "ws": "^5.2.3"
   }
 }
