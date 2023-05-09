@@ -26,9 +26,9 @@
     self.title = self.titleText?:@"";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"1");
-    });
+//    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        NSLog(@"1");
+//    });
     
 
     self.mainQueue = dispatch_queue_create("test.main", DISPATCH_QUEUE_CONCURRENT);
@@ -64,7 +64,7 @@
 //    [self testSyncSeQueue_async];
     
     
-//    [self test];
+    [self test];
 //    [self test2];
 //    [self test3];
 }
@@ -93,15 +93,25 @@
 //        NSLog(@"%@----",[NSThread currentThread]);
 //        NSLog(@"\n\n");
 //    }
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
-    if (timer) {
-        self.myGCDTimer = timer;
-        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1 * NSEC_PER_SEC, 1ull * NSEC_PER_SEC);
-        dispatch_source_set_event_handler(timer, ^ {
-            NSLog(@"doSomething");
+    
+//    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+//    if (timer) {
+//        self.myGCDTimer = timer;
+//        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1 * NSEC_PER_SEC, 1ull * NSEC_PER_SEC);
+//        dispatch_source_set_event_handler(timer, ^ {
+//            NSLog(@"doSomething");
+//        });
+//        dispatch_resume(timer);
+//    }
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSLog(@"1");
         });
-        dispatch_resume(timer);
-    }
+        NSLog(@"2");
+        NSLog(@"3");
+    });
+    [NSThread sleepForTimeInterval:1];
+    NSLog(@"4");
 }
 - (void)dealloc {
     if (_myGCDTimer) {
