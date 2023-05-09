@@ -661,15 +661,21 @@ void _class_resolveMethod(Class cls, SEL sel, id inst)
 {
     if (! cls->isMetaClass()) {
         // try [cls resolveInstanceMethod:sel]
+        // 针对于对象方法的操作
+        // 这个方法是动态方法解析中，当收到无法解读的消息后调用。
+        // 这个方法也会用在@dynamic，以后会在消息转发机制的源码分析中介绍
         _class_resolveInstanceMethod(cls, sel, inst);
     } 
     else {
         // try [nonMetaClass resolveClassMethod:sel]
         // and [cls resolveInstanceMethod:sel]
+        // 针对于类方法的操作，说明同上
         _class_resolveClassMethod(cls, sel, inst);
+        // 再次启动查询，并且判断是否拥有缓存中消息标记_objc_msgForward_impcache
         if (!lookUpImpOrNil(cls, sel, inst, 
                             NO/*initialize*/, YES/*cache*/, NO/*resolver*/)) 
         {
+            // 说明可能不是 metaclass 的方法实现，当做对象方法尝试
             _class_resolveInstanceMethod(cls, sel, inst);
         }
     }

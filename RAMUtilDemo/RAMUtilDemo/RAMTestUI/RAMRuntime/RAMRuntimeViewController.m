@@ -12,6 +12,36 @@
 #import <RAMUtil/UIView+Frame.h>
 #import "UIViewController+RAMPointerSwizzling.h"
 
+@interface XXObject : NSObject
+
+- (void)hello;
+
+@end
+
+@implementation XXObject
+
+- (void)hello {
+    NSLog(@"HelloXX");
+    NSLog(@"%p", @selector(hello));
+}
+
+@end
+
+@interface YYObject : NSObject
+
+- (void)hello;
+
+@end
+
+@implementation YYObject
+
+- (void)hello {
+    NSLog(@"HelloYY");
+    NSLog(@"%p", @selector(hello));
+}
+
+@end
+
 @interface RAMRuntimeViewController ()
 @property (nonatomic, strong) UIButton *button;
 
@@ -68,6 +98,14 @@
     free(properties);
     
     [self performSelector:@selector(fun)];
+    
+    NSLog(@"-----------选择子-----");
+    
+    XXObject *objectXX = [[XXObject alloc] init];
+    [objectXX hello];
+    YYObject *objectYY = [[YYObject alloc] init];
+    [objectYY hello];
+    
 }
 
 + (BOOL)resolveInstanceMethod:(SEL)sel {
