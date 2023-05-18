@@ -52,6 +52,7 @@
 //    });
 //
 //    [self gcdSemaphore];
+    [self semaphore];
     
 //    [self testAsyncConQueue_sync];
 //    [self testAsyncConQueue_async];
@@ -64,7 +65,7 @@
 //    [self testSyncSeQueue_async];
     
     
-    [self test];
+//    [self test];
 //    [self test2];
 //    [self test3];
 }
@@ -407,6 +408,54 @@
             NSLog(@"%@", self.testString);
         }
     });
+}
+
+- (void)semaphore {
+    dispatch_semaphore_t signal;
+    // creat指定初始的singal
+    signal = dispatch_semaphore_create(1);
+    __block long x = 1;
+    NSLog(@"0_x:%ld",x);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        sleep(1);
+        NSLog(@"waiting1");
+        x = dispatch_semaphore_signal(signal);
+        NSLog(@"1_x:%ld",x);
+            
+        sleep(2);
+        NSLog(@"waiking2");
+        x = dispatch_semaphore_signal(signal);
+        NSLog(@"2_x:%ld",x);
+        // 让直行结束的signal>=1 避免EXC_BAD_INSTRUCTION奔溃
+//        x = dispatch_semaphore_signal(signal);
+//        x = dispatch_semaphore_signal(signal);
+    });
+    //    dispatch_time_t duration = dispatch_time(DISPATCH_TIME_NOW, 1*1000*1000*1000); //超时1秒
+    //    dispatch_semaphore_wait(signal, duration);
+        
+    x = dispatch_semaphore_wait(signal, DISPATCH_TIME_FOREVER);
+    NSLog(@"3_x:%ld",x);
+        
+    x = dispatch_semaphore_wait(signal, DISPATCH_TIME_FOREVER);
+    NSLog(@"wait 2");
+    NSLog(@"4_x:%ld",x);
+        
+    x = dispatch_semaphore_wait(signal, DISPATCH_TIME_FOREVER);
+    NSLog(@"wait 3");
+    NSLog(@"5_x:%ld",x); // EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0)
+    // semaphore结束时候的signal的初始值要>=create(1)，也就是>=1
+    
+//    2023-05-18 11:27:08.160356+0800 RAMUtilDemo[66437:3565466] 0_x:1
+//    2023-05-18 11:27:08.160528+0800 RAMUtilDemo[66437:3565466] 3_x:0
+//    2023-05-18 11:27:09.160841+0800 RAMUtilDemo[66437:3565841] waiting1
+//    2023-05-18 11:27:09.161077+0800 RAMUtilDemo[66437:3565841] 1_x:1
+//    2023-05-18 11:27:09.161085+0800 RAMUtilDemo[66437:3565466] wait 2
+//    2023-05-18 11:27:09.161183+0800 RAMUtilDemo[66437:3565466] 4_x:0
+//    2023-05-18 11:27:11.166266+0800 RAMUtilDemo[66437:3565841] waiking2
+//    2023-05-18 11:27:11.166476+0800 RAMUtilDemo[66437:3565841] 2_x:1
+//    2023-05-18 11:27:11.166494+0800 RAMUtilDemo[66437:3565466] wait 3
+//    2023-05-18 11:27:11.166574+0800 RAMUtilDemo[66437:3565466] 5_x:0
+    
 }
 
 @end

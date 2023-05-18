@@ -35,7 +35,14 @@ class RAMSwiftObject: NSObject {
         print(isValid("]"))
         print(combine(0,1))
         print(findContentChildren([1,2,3],[1,1]))
-        testHighFunc()
+//        testHighFunc()
+        print("------------")
+        print(headtail(["ab","bc","cd","da","ae","ef","fa","cg","gh","hc"]))
+        print(headtail2(["ab","bc","cd","da","ae","ef","fa","cg","gh","hc"]))
+        print(headtail3(["ab","bc","cd","da","ae","ef","fa","cg","gh","hc","aa"]))
+        
+        var input = [[0,0,0,0,0,0],[1,0,1,0,1,1],[0,1,0,1,1,0],[-1,-1,-1,0,0,0]]
+        print(updateMatrix(&input))
     }
     
     func testHighFunc() {
@@ -421,4 +428,197 @@ class RAMSwiftObject: NSObject {
         
         return sum
     }
+    
+    // 传入字符串数组判断是否可以首位相连形成环
+    //  ["gj","jl","dg","ad","gg"]
+    func headtail(_ list: [String]?) -> Bool {
+        // 用动态规划试试
+        guard let list = list else { return true }
+        for (index, item) in list.enumerated() {
+            var nextList = list
+            nextList.remove(at: index)
+            let resut = juade(item, nextList)
+            if resut.0 {
+                let lastStr = resut.1
+                if item.first == lastStr.last {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    func juade(_ head: String, _ list: [String]) -> (Bool, String) {
+        if list.count == 0 {
+            return (false, "")
+        }
+        let tail: Character = head.last!
+        if list.count == 1 {
+            let firstr = list.first!
+            if firstr[head.startIndex] == tail {
+                return (true, firstr)
+            }
+        }
+        for (index, item) in list.enumerated() {
+            if item.first == tail {
+                var nextList = list
+                nextList.remove(at: index)
+                return juade(item, nextList)
+            }
+        }
+        return (false, "")
+    }
+    
+    // 拼多多面试题
+    // 传入字符串数组判断是否可以首位相连形成环
+    // https://blog.csdn.net/Bazinga521/article/details/97623572
+    //  ["gj","jl","dg","ad","gg"]
+    // 出现出度>0，且没法消费掉的，就说明这个节点没法进入环中
+    // 尝试使用向量图的方式没法解决，向量图只能判断当前图中是否有环，并不能判断出是否所有元素形成一个大环
+    func headtail2(_ list: [String]?) -> Bool {
+        // 通过有向图的方法进行解答
+        // 一次遍历算出每个字符的度是多少
+        guard let list = list else { return true }
+        // 1. 生成邻接矩阵
+        var graph = [[Int]](repeating: [Int](repeating: 0, count: 26), count: 26)
+        let start = "a".unicodeScalars.first!.value
+        var chudu: [Int: Int] = [:]
+        for item in list {
+            let x = item.unicodeScalars.first!.value - start
+            let y = item.unicodeScalars.last!.value - start
+            graph[Int(x)][Int(y)] = 1
+            if chudu[Int(x)] == nil {
+                chudu[Int(x)] = 1
+            } else {
+                chudu[Int(x)]! += 1
+            }
+        }
+        
+        // 从任意字符串开始
+        var next = Int(list.first!.unicodeScalars.first!.value - start)
+        let begin = next
+        while next != -1 {
+            for tail in 0..<26 {
+//                print("\(next)+\(tail)")
+                if graph[Int(next)][tail] != 0 {
+                    let tailcd = chudu[tail]
+                    if tailcd != nil && tailcd! > 0 {
+                        graph[Int(next)][tail] -= 1
+                        chudu[Int(next)]! -= 1
+                        next = tail
+//                        print("next:\(next)")
+                        break
+                    } else if Int(chudu[next]!) > 1 {
+                        if tail == 25 {
+                            next = -1
+                        }
+                        continue
+                    } else if tail == begin {
+                        graph[Int(next)][tail] -= 1
+                        chudu[Int(next)]! -= 1
+                        next = -1
+//                        print("next:\(next)")
+                        break
+                    } else {
+                        return false
+                    }
+                }
+            }
+        }
+        for (_, cc) in chudu.enumerated() {
+            if cc.value > 0 {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    // https://blog.csdn.net/Bazinga521/article/details/97623572
+    // 使用另一种方案
+    // 将所有字符串进行所有可能的首尾连接的情况下判断最末尾和最开始的单词是否收尾相同，有相同就flag=true并return
+    // 全排列所有的可行链接
+    // 固定一个单词，然后遍历其他的查找是否能接尾的，找到就进行和他后面的替换动作，替换完之后接着遍历固定第二个，递归遍历完了，就将第二个换回来，重新跳过进行查找
+    var flag = false
+    func headtail3(_ list: [String]?) -> Bool {
+        guard var list = list else {
+            return true
+        }
+        if list.count == 0 {
+            return true
+        }
+        if list.count == 1 {
+            return list[0].first == list[0].last
+        }
+        
+        linkheadtail(&list, list.count, 1)
+        
+        return flag
+    }
+    
+    func linkheadtail(_ list: inout [String], _ n: Int, _ k: Int) {
+        
+        if n == k {
+            // 遍历到最后一个了
+            if list[k-1].last == list[0].first {
+                flag = true
+                return
+            }
+        }
+        
+        for index in k..<list.count {
+            if list[k-1].last == list[index].first {
+                swapworld(&list, k, index) // 交换顺序
+                linkheadtail(&list, n, k+1) // 接着递归查接下来的能够连接的
+                swapworld(&list, k, index) // 重置过来，i接着偏移，也就是跳过命中了i的那一个相同的，看看后续还有没有其他case
+            }
+        }
+        
+    }
+    
+    func swapworld(_ list: inout [String], _ a: Int, _ b: Int) {
+        let tmp = list[a]
+        list[a] = list[b]
+        list[b] = tmp
+    }
+    
+    
+    func updateMatrix(_ mat: inout [[Int]]) -> [[Int]] {
+
+        var queue: [(Int, Int)] = []
+
+        for (indexx, x) in mat.enumerated() {
+            for (indexy, y) in x.enumerated() {
+                if y == 0 {
+                    queue.append((indexx, indexy))
+                } else {
+                    mat[indexx][indexy] = -1
+                }
+            }
+        }
+        
+        let x = [-1, 0, 1, 0]
+        let y = [0, -1, 0, 1]
+        
+        while !queue.isEmpty {
+            let target = queue.removeFirst()
+            for i in 0..<4 {
+                let indexx = target.0 + x[i]
+                let indexy = target.1 + y[i]
+                if indexx >= 0 &&
+                    indexx < mat.count &&
+                    indexy >= 0 &&
+                    indexy < mat[0].count &&
+                    mat[indexx][indexy] == -1 {
+                    mat[indexx][indexy] = mat[target.0][target.1] + 1
+                    queue.append((indexx, indexy))
+                }
+            }
+        }
+        
+        return mat
+
+
+    }
+    
 }

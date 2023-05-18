@@ -12,7 +12,11 @@
 #import <RAMUtil/UIView+Frame.h>
 #import "UIViewController+RAMPointerSwizzling.h"
 
-@interface XXObject : NSObject
+@interface XXObject : NSObject {
+    NSString *inner_name;
+}
+
+@property (nonatomic, strong) NSString *name;
 
 - (void)hello;
 
@@ -105,7 +109,8 @@
     [objectXX hello];
     YYObject *objectYY = [[YYObject alloc] init];
     [objectYY hello];
-    
+    Class xoClass = object_getClass(objectXX);
+    NSLog(@"%@ - %p", objectXX, xoClass);
 }
 
 + (BOOL)resolveInstanceMethod:(SEL)sel {
