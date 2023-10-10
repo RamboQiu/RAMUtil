@@ -18,6 +18,7 @@
 		353E4E3121CCBC3400A689DA /* RAMBlockA.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E4E3021CCBC3400A689DA /* RAMBlockA.m */; };
 		353E4E3421CCBC3F00A689DA /* RAMBlockB.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E4E3321CCBC3F00A689DA /* RAMBlockB.m */; };
 		353E4E3721CCD9CE00A689DA /* RAMData.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E4E3621CCD9CE00A689DA /* RAMData.m */; };
+		3548FC9D2AD41ADA0063E47C /* RAMSwitchCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548FC9C2AD41ADA0063E47C /* RAMSwitchCollectionView.swift */; };
 		35497F0E2269FC4600D090E8 /* RAMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35497F0D2269FC4600D090E8 /* RAMTableViewController.m */; };
 		355EC72E2271E0470045725B /* RAMImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355EC72D2271E0470045725B /* RAMImageViewController.m */; };
 		3588B08C21C0B7FC0085B8EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3588B08B21C0B7FC0085B8EE /* AppDelegate.m */; };
@@ -71,8 +72,6 @@
 		4146AAB626BB94BB0092283C /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 4146AAB526BB94BB0092283C /* main.js */; };
 		4146AAC926C104490092283C /* RAMStatisticsModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4146AAC726C104490092283C /* RAMStatisticsModule.h */; };
 		4146AACA26C104490092283C /* RAMStatisticsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4146AAC826C104490092283C /* RAMStatisticsModule.m */; };
-		4146AACF26C11B400092283C /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 4146AACC26C11B400092283C /* index.js */; };
-		4146AAD026C11B400092283C /* HelloWorld.js in Resources */ = {isa = PBXBuildFile; fileRef = 4146AACE26C11B400092283C /* HelloWorld.js */; };
 		4146AAEC26D646DB0092283C /* NSInvocation+Block.h in Headers */ = {isa = PBXBuildFile; fileRef = 4146AAEA26D646DA0092283C /* NSInvocation+Block.h */; };
 		4146AAED26D646DB0092283C /* NSInvocation+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 4146AAEB26D646DB0092283C /* NSInvocation+Block.m */; };
 		4146AAF026D6628F0092283C /* RAMNRPCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4146AAEE26D6628E0092283C /* RAMNRPCViewController.m */; };
@@ -131,6 +130,7 @@
 		353E4E3321CCBC3F00A689DA /* RAMBlockB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMBlockB.m; sourceTree = "<group>"; };
 		353E4E3521CCD9CE00A689DA /* RAMData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMData.h; sourceTree = "<group>"; };
 		353E4E3621CCD9CE00A689DA /* RAMData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMData.m; sourceTree = "<group>"; };
+		3548FC9C2AD41ADA0063E47C /* RAMSwitchCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMSwitchCollectionView.swift; sourceTree = "<group>"; };
 		35497F0C2269FC4600D090E8 /* RAMTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMTableViewController.h; sourceTree = "<group>"; };
 		35497F0D2269FC4600D090E8 /* RAMTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMTableViewController.m; sourceTree = "<group>"; };
 		355EC72C2271E0470045725B /* RAMImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMImageViewController.h; sourceTree = "<group>"; };
@@ -201,8 +201,6 @@
 		4146AAB526BB94BB0092283C /* main.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		4146AAC726C104490092283C /* RAMStatisticsModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMStatisticsModule.h; sourceTree = "<group>"; };
 		4146AAC826C104490092283C /* RAMStatisticsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMStatisticsModule.m; sourceTree = "<group>"; };
-		4146AACC26C11B400092283C /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
-		4146AACE26C11B400092283C /* HelloWorld.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = HelloWorld.js; sourceTree = "<group>"; };
 		4146AAEA26D646DA0092283C /* NSInvocation+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Block.h"; sourceTree = "<group>"; };
 		4146AAEB26D646DB0092283C /* NSInvocation+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Block.m"; sourceTree = "<group>"; };
 		4146AAEE26D6628E0092283C /* RAMNRPCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RAMNRPCViewController.m; sourceTree = "<group>"; };
@@ -469,26 +467,8 @@
 				4146AAC726C104490092283C /* RAMStatisticsModule.h */,
 				4146AAC826C104490092283C /* RAMStatisticsModule.m */,
 				4146AAB526BB94BB0092283C /* main.js */,
-				4146AACB26C11B400092283C /* build */,
 			);
 			path = RAMWeex;
-			sourceTree = "<group>";
-		};
-		4146AACB26C11B400092283C /* build */ = {
-			isa = PBXGroup;
-			children = (
-				4146AACC26C11B400092283C /* index.js */,
-				4146AACD26C11B400092283C /* components */,
-			);
-			path = build;
-			sourceTree = "<group>";
-		};
-		4146AACD26C11B400092283C /* components */ = {
-			isa = PBXGroup;
-			children = (
-				4146AACE26C11B400092283C /* HelloWorld.js */,
-			);
-			path = components;
 			sourceTree = "<group>";
 		};
 		4146AAE526D640E10092283C /* NRPC */ = {
@@ -559,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				41B45A6E23D6DB4B00C03139 /* RAMSwiftViewController.swift */,
+				3548FC9C2AD41ADA0063E47C /* RAMSwitchCollectionView.swift */,
 				41B45A7023D6DC4000C03139 /* RAMSwiftObject.swift */,
 				41B45A7223D6E80600C03139 /* RAMSwiftView.swift */,
 				41B45A6D23D6DB4B00C03139 /* RAMUtilDemo-Bridging-Header.h */,
@@ -688,8 +669,6 @@
 				3588B09721C0B7FD0085B8EE /* LaunchScreen.storyboard in Resources */,
 				3588B09421C0B7FD0085B8EE /* Assets.xcassets in Resources */,
 				3588B09221C0B7FC0085B8EE /* Main.storyboard in Resources */,
-				4146AACF26C11B400092283C /* index.js in Resources */,
-				4146AAD026C11B400092283C /* HelloWorld.js in Resources */,
 				351C0F022275A5F0001174E2 /* core.js in Resources */,
 				4146AAB626BB94BB0092283C /* main.js in Resources */,
 			);
@@ -742,6 +721,7 @@
 			files = (
 				3588B08F21C0B7FC0085B8EE /* ViewController.m in Sources */,
 				352B854521D0DC57008C0DE7 /* RAMExportViewController.m in Sources */,
+				3548FC9D2AD41ADA0063E47C /* RAMSwitchCollectionView.swift in Sources */,
 				3588B09A21C0B7FD0085B8EE /* main.m in Sources */,
 				353E4E3121CCBC3400A689DA /* RAMBlockA.m in Sources */,
 				35CBC7D82396630A00CAF953 /* RAMMacroViewController.m in Sources */,

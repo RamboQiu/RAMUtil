@@ -128,6 +128,17 @@ UITableViewDataSource>
     swiftData.model = swiftModel;
     [section2 addObject:swiftData];
     
+    RAMCellModel *swiftSwitchModel = [[RAMCellModel alloc] initWithTitle:@"支持定制的一个collection开关页面"
+                                                            desc:@"专门用来集成各种开关"];
+    swiftSwitchModel.classStr = @"RAMUtilDemo.RAMSwitchViewController";
+    RAMCellData *swiftSwitchData = RAMCellData.new;
+    swiftSwitchData.cellClass = RAMBaseTableViewCell.class;
+    swiftSwitchData.cellHeight = [RAMBaseTableViewCell cellHeightWithModel:swiftModel];
+    swiftSwitchData.cellCustomSEL = @selector(cusNormalCell:withData:);
+    swiftSwitchData.cellSelectSEL = @selector(selNormalCellData:);
+    swiftSwitchData.model = swiftSwitchModel;
+    [section2 addObject:swiftSwitchData];
+    
     RAMCellModel *animateModel = [[RAMCellModel alloc] initWithTitle:@"animate学习"
                                                             desc:@""];
     animateModel.classStr = @"RAMUtilDemo.RAMAnimateController";
